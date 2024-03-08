@@ -36,6 +36,7 @@ coding!
 
 - Andra Mertilos #1: [GitHub](https://github.com/andram11) / [LinkedIn](https://www.linkedin.com/in/andra-mertilos-49008055/)
 - Stefan Brkic #2: [GitHub](https://github.com/stefanbrkic1) / [LinkedIn](https://www.linkedin.com/in/stefan-brki%C4%87-4014012a3/)
+- Andrei Olteanu #3: [GitHub](https://github.com/andreiolteanu555) / [LinkedIn](https://www.linkedin.com/in/andrei-olteanu-9009/)
 
   ...
 
