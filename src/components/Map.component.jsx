@@ -25,7 +25,7 @@ export default function DinosaurMap(geoCoordinates){
                     position.map((location, index) => (
                         <>
                        {/* Advanced Marker marks the coordinates position on the map*/}
-                         <AdvancedMarker key={index} position={location}>
+                         <AdvancedMarker key={index} position={location[0]}>
                             {/*Pin is used to define the styling of the pin on the map*/}
                         <Pin 
                         background={'yellow'} 

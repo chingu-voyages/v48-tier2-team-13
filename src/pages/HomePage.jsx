@@ -10,8 +10,8 @@ import useGeoCoordinates from "../hooks/useGeoCoordinates";
 function HomePage() {
 
   //Load data for Maps= temporary location for the Map component in the home page
-  const geoCoordinates= useGeoCoordinates('Belgium')
-
+  const geoCoordinates= useGeoCoordinates(['Belgium', 'France','Luxembourg'])
+  console.log(geoCoordinates)
   return (
     <>
       <h1 className="text-[55px] font-bold text-center mt-[50px]">

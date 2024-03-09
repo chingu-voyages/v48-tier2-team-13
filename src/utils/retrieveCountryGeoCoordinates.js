@@ -1,17 +1,11 @@
-export default function (countryName, listOfGeoCoordinates){
-    //Iterate through array of geocoordinates and retain only the geoocoordinates where the searched position is a Country
-    //Based on the Geocode API doc https://geocode.maps.co/, the first item in the return list corresponds to the 
-    //country and display_name parameter in response = official name of the country
-    //The values of latitude and longi
+export default function (listOfGeoCoordinates){
+    //Create a list of geocoordinates by retrieving only the latitude and longitute of the provided input parameter
 
     const listResponse = []
-    listOfGeoCoordinates.forEach(item => {
-        if (item.display_name === countryName){
-            {/**The values of latitutde and longitude are provided as strings but Google API needs floats */}
-            listResponse.push({lat: parseFloat(item.lat), lng: parseFloat(item.lon) })
-        } 
+    //Transforming the value in number in case it is returned as string since Google Maps API requires floats
+    listResponse.push({lat: Number(listOfGeoCoordinates.features[0].properties.lat), lng:Number(listOfGeoCoordinates.features[0].properties.lon) })
 
-    })
+    console.log(listResponse)
     return listResponse
         
       
