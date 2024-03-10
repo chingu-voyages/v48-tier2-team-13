@@ -8,8 +8,9 @@ function useGeoCoordinates(countryNames) {
   const getGeoCoordinates = useCallback(async () => {
     const list = [];
     for (const country of countryNames) {
-      const fetchedGeoCoordinate = await httpGetGeoCoordinates(country);
-      list.push(fetchedGeoCoordinate);
+      if (country !== 'N/A')
+      {const fetchedGeoCoordinate = await httpGetGeoCoordinates(country);
+      list.push(fetchedGeoCoordinate);}
     }
     setGeoCoordinates(list);
   }, [countryNames]);
