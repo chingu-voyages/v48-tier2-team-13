@@ -1,5 +1,7 @@
 //Component import
 import DinosaurMap from "../components/Map.component";
+import DietChart from "../components/PieChart";
+import DinosaurTypeChart from '../components/DoughnutChart';
 
 //Hooks import
 import useGeoCoordinates from "../hooks/useGeoCoordinates";
@@ -11,6 +13,24 @@ function HomePage() {
   //Load data for Maps= temporary location for the Map component in the home page
   const geoCoordinates = useGeoCoordinates(["Belgium", "France", "Luxembourg"]);
   console.log(geoCoordinates);
+
+  //Temporary dataset for the diet pie chart
+  const dietData = [
+    { label: 'Herbivore', value: 50 },
+    { label: 'Carnivore', value: 40 },
+    { label: 'Omnivore', value: 10 },
+  ];
+
+  //Temporary dataset for the dinosaur type doughnut chart
+  const dinosaurTypeData = [
+    { label: 'prosauropod', value: 20 },
+    { label: 'ceratopsian', value: 15 },
+    { label: 'large therapod', value: 25 },
+    { label: 'sauropod', value: 20 },
+    { label: 'small ornithischian', value: 10 },
+    { label: 'small therapod', value: 10 },
+  ];
+
   return (
     <>
       <h1 className="text-[55px] font-bold text-center mt-[50px]">
@@ -23,6 +43,16 @@ function HomePage() {
 
       <h4> Temporary placeholder for MAP COMPONENT</h4>
       <DinosaurMap geoCoordinates={geoCoordinates}></DinosaurMap>
+
+      <h4 className="text-center text-[16px] mt-5">Temporary Diet Distribution Chart</h4>
+      <div>
+        <DietChart dataset={dietData}  />
+      </div>
+
+      <h4 className="text-center text-[16px] mt-5">Temporary Dinosaur Type Distribution Chart</h4>
+      <div>
+        <DinosaurTypeChart dataset={dinosaurTypeData} />
+      </div>
     </>
   );
 }
