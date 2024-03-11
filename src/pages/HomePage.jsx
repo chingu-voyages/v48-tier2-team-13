@@ -30,7 +30,7 @@ function HomePage() {
     { label: 'small ornithischian', value: 10 },
     { label: 'small therapod', value: 10 },
   ];
-
+  
   return (
     <>
       <h1 className="text-[55px] font-bold text-center mt-[50px]">
