@@ -13,7 +13,6 @@ import useGeoCoordinates from "../hooks/useGeoCoordinates";
 function HomePage() {
   //Load data for Maps= temporary location for the Map component in the home page
   const geoCoordinates = useGeoCoordinates(["Belgium", "France", "Luxembourg"]);
-  console.log(geoCoordinates);
 
   //Temporary dataset for the diet pie chart
   const dietData = [
