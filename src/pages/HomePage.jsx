@@ -1,5 +1,5 @@
 //Component import
-import DinosaurMap from "../components/Map.component";
+import DinosaurMap from "../components/Map";
 import DietChart from "../components/PieChart";
 import DinosaurTypeChart from '../components/DoughnutChart';
 
@@ -12,7 +12,6 @@ import useGeoCoordinates from "../hooks/useGeoCoordinates";
 function HomePage() {
   //Load data for Maps= temporary location for the Map component in the home page
   const geoCoordinates = useGeoCoordinates(["Belgium", "France", "Luxembourg"]);
-  console.log(geoCoordinates);
 
   //Temporary dataset for the diet pie chart
   const dietData = [
