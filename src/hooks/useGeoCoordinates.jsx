@@ -17,7 +17,7 @@ function useGeoCoordinates(countryNames) {
 
   useEffect(() => {
     getGeoCoordinates();
-  }, [getGeoCoordinates]);
+  }, []);
 
   return geoCoordinates;
 }
