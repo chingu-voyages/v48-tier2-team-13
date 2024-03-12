@@ -14,13 +14,6 @@ function HomePage() {
   //Load data for Maps= temporary location for the Map component in the home page
   const geoCoordinates = useGeoCoordinates(["Belgium", "France", "Luxembourg"]);
 
-  //Temporary dataset for the diet pie chart
-  const dietData = [
-    { label: "Herbivore", value: 50 },
-    { label: "Carnivore", value: 40 },
-    { label: "Omnivore", value: 10 },
-  ];
-
   //Temporary dataset for the dinosaur type doughnut chart
   const dinosaurTypeData = [
     { label: "prosauropod", value: 20 },
@@ -48,7 +41,7 @@ function HomePage() {
         Temporary Diet Distribution Chart
       </h4>
       <div>
-        <DietChart dataset={dietData} />
+        <DietChart />
       </div>
 
       <h4 className="text-center text-[16px] mt-5">
