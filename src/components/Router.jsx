@@ -11,8 +11,7 @@ function Router() {
     },
     {
       path: "/search",
-      element: <SearchPage />,
-      errorElement: <div>ERROR 404 PAGE</div>,
+      element: <SearchPage />
     },
 
   ]);

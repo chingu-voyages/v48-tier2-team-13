@@ -1,5 +1,5 @@
 //Component import
-import DinosaurMap from "../components/Map.component";
+import DinosaurMap from "../components/Map";
 import DietChart from "../components/PieChart";
 import DinosaurTypeChart from "../components/DoughnutChart";
 import DinosaursNews from "../components/DinosaursNews";
