@@ -12,6 +12,7 @@ function DinosaursNews() {
     fetchDinosaursNews()
       .then((data) => {
         setDinosaursNews(data);
+        console.log(data);
       })
       .catch((error) => {
         setError(error);
