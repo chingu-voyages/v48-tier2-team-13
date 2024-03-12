@@ -11,7 +11,7 @@ function DinosaursNews() {
   useEffect(() => {
     fetchDinosaursNews()
       .then((data) => {
-        setDinosaursNews(data.articles);
+        setDinosaursNews(data);
       })
       .catch((error) => {
         setError(error);
