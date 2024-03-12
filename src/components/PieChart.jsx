@@ -12,15 +12,19 @@ const DietChart = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchDinosaursData();
-      setDinosaurData(data);
+      try {
+        const data = await fetchDinosaursData();
+        setDinosaurData(data);
+      } catch (error) {
+        console.error("Error fetching dinosaur data:", error);
+      }
     };
 
     fetchData();
   }, []);
 
   const calculateDistribution = () => {
-    // Extracts the information about the diet
+    // Extracts the information about the diet types
     const diets = dinosaurData.map((dinosaur) => dinosaur.diet);
   
     // Counts occurrences of each diet type
@@ -33,9 +37,8 @@ const DietChart = () => {
     const totalDinosaurs = diets.length;
     const dietDistribution = Object.entries(dietCounts).map(([diet, count]) => ({
       label: diet,
-      value: (count / totalDinosaurs) * 100,
+      value: parseFloat(((count / totalDinosaurs) * 100).toFixed(2)),
     }));
-  
     return dietDistribution;
   };
 
@@ -52,6 +55,7 @@ const DietChart = () => {
       },
     ],
   };
+
   // Chart options
   const options = {
     responsive: true,
