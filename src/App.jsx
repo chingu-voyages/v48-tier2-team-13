@@ -25,7 +25,7 @@ function App() {
   }, []);
 
   return (
-    <AppContext.Provider value={{ dinosaursData, loading, error }}>
+    <AppContext.Provider value={{ dinosaursData,setDinosaursData, loading, error }}>
       <Router />
     </AppContext.Provider>
   );

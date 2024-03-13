@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "../pages/HomePage";
+import SearchPage from "../pages/SearchPage";
 
 function Router() {
   const router = createBrowserRouter([
@@ -8,6 +9,11 @@ function Router() {
       element: <HomePage />,
       errorElement: <div>ERROR 404 PAGE</div>,
     },
+    {
+      path: "/search",
+      element: <SearchPage />
+    },
+
   ]);
   return <RouterProvider router={router} />;
 }
