@@ -14,16 +14,6 @@ function HomePage() {
   //Load data for Maps= temporary location for the Map component in the home page
   const geoCoordinates = useGeoCoordinates(["Belgium", "France", "Luxembourg"]);
 
-  //Temporary dataset for the dinosaur type doughnut chart
-  /*const dinosaurTypeData = [
-    { label: "prosauropod", value: 20 },
-    { label: "ceratopsian", value: 15 },
-    { label: "large therapod", value: 25 },
-    { label: "sauropod", value: 20 },
-    { label: "small ornithischian", value: 10 },
-    { label: "small therapod", value: 10 },
-  ];*/
-
   return (
     <>
       <h1 className="text-[55px] font-bold text-center mt-[50px]">

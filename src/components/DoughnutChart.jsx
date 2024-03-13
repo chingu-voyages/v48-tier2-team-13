@@ -2,7 +2,7 @@ import fetchDinosaursData from "../services/DinosaursAPI/dinosaursApi";
 import { useState, useEffect } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
-import PropTypes from 'prop-types';
+
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -68,13 +68,6 @@ const DinosaurTypeChart = () => {
   return <Doughnut data={data} options={options} />;
 };
 
-DinosaurTypeChart.propTypes = {
-  dataset: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      value: PropTypes.number.isRequired,
-    })
-  ).isRequired,
-};
+
 
 export default DinosaurTypeChart;
