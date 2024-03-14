@@ -6,10 +6,14 @@ import {
   Pin,
 } from "@vis.gl/react-google-maps";
 
+//Hooks import
+import useGeoCoordinates from "../hooks/useGeoCoordinates";
+
+//Test data examples
+//const position= [{lat:50.5039, lng:5.4699}, {lat:45.9432, lng:24.9668}, {lat:44.0165, lng:21.0059} ]
+
 export default function DinosaurMap(geoCoordinates) {
-  const position = geoCoordinates.geoCoordinates;
-  //Test data examples
-  //const position= [{lat:50.5039, lng:5.4699}, {lat:45.9432, lng:24.9668}, {lat:44.0165, lng:21.0059} ]
+  const position = useGeoCoordinates(geoCoordinates.geoCoordinates);
 
   //Default coordinates for centering the map (I chose France)
   const defaultPosition = { lat: 46.2276, lng: 2.2137 };
@@ -21,7 +25,7 @@ export default function DinosaurMap(geoCoordinates) {
       {/*Temporary responsive div style for testing purpose*/}
       <div className="relative w-full h-96">
         <Map
-          defaultZoom={5}
+          defaultZoom={1}
           defaultCenter={defaultPosition}
           mapId={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
         >

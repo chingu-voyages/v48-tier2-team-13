@@ -1,6 +1,7 @@
 import retrieveCountryGeoCoordinates from "../../utils/retrieveCountryGeoCoordinates";
 
 async function httpGetGeoCoordinates(countryName) {
+
   try {
     const response = await fetch(
       "https://api.geoapify.com/v1/geocode/search?country=" +
