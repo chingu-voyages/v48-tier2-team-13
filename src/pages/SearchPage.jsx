@@ -6,6 +6,9 @@ import { AppContext } from "../App";
 import SearchItemPreview from "../components/SearchItemPreview";
 import Loader from "../components/Loader";
 
+//Id generator
+import { v4 as uuidv4 } from "uuid";
+
 function SearchPage() {
   //Load dinosaurs api context
   const { dinosaursData, loading } = useContext(AppContext);
@@ -111,14 +114,13 @@ function SearchPage() {
       ) : (
         <div className="grid grid-cols-5 gap-3">
           {filteredDinosaurItems.map((dinosaurItem) => (
-            <>
               <SearchItemPreview
-                key={dinosaurItem.id}
+                key={uuidv4()}
                 previewDetails={{
                   dinosaurItem,
                 }}
               />
-            </>
+ 
           ))}
         </div>
       )}

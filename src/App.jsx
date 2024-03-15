@@ -1,6 +1,6 @@
 import { useEffect, useState, createContext } from "react";
 import Router from "./components/Router";
-import {fetchDinosaursData} from "./services/DinosaursAPI/dinosaursApi";
+import fetchDinosaursData from "./services/DinosaursAPI/dinosaursApi";
 
 export const AppContext = createContext({
   dinosaursData: [],

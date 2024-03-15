@@ -1,7 +1,7 @@
 //Import components for rending a Google Map using react
 import {
   APIProvider,
-  Map,
+  Map as GoogleMap,
   AdvancedMarker,
   Pin,
 } from "@vis.gl/react-google-maps";
@@ -9,10 +9,13 @@ import {
 //Hooks import
 import useGeoCoordinates from "../hooks/useGeoCoordinates";
 
+//Id generator
+import { v4 as uuidv4 } from "uuid";
+
 //Test data examples
 //const position= [{lat:50.5039, lng:5.4699}, {lat:45.9432, lng:24.9668}, {lat:44.0165, lng:21.0059} ]
 
-export default function DinosaurMap(geoCoordinates) {
+export default function Map(geoCoordinates) {
   const position = useGeoCoordinates(geoCoordinates.geoCoordinates);
 
   //Default coordinates for centering the map (I chose France)
@@ -24,17 +27,18 @@ export default function DinosaurMap(geoCoordinates) {
     <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
       {/*Temporary responsive div style for testing purpose*/}
       <div className="relative w-full h-96">
-        <Map
+        <GoogleMap
+          key={uuidv4()}
           defaultZoom={1}
           defaultCenter={defaultPosition}
           mapId={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
         >
-          {position.map((location, index) => (
+          {position.map((location) => (
             <>
               {/* Advanced Marker marks the coordinates position on the map*/}
-              <AdvancedMarker key={index} position={location[0]}>
+              <AdvancedMarker key={uuidv4()} position={location[0]}>
                 {/*Pin is used to define the styling of the pin on the map*/}
-                <Pin
+                <Pin key={uuidv4()}
                   background={"yellow"}
                   borderColor={"blue"}
                   glyphColor={"red"}
@@ -42,7 +46,7 @@ export default function DinosaurMap(geoCoordinates) {
               </AdvancedMarker>
             </>
           ))}
-        </Map>
+        </GoogleMap>
       </div>
     </APIProvider>
   );

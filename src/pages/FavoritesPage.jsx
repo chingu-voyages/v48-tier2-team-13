@@ -4,6 +4,9 @@ import { useState } from "react";
 //Import functions
 import updateLocalStorage from "../utils/updateLocalStorage";
 
+//Id generator
+import { v4 as uuidv4 } from "uuid";
+
 function FavoritesPage() {
   const [favorites, setFavorites] = useState(Object.keys(localStorage));
 
@@ -17,21 +20,18 @@ function FavoritesPage() {
       <h1>Here is a list of dinosaurs you saved as favorites:</h1>
       <div>
         {favorites.length >= 1 ? (
-          <ul>
+          <div>
             {favorites.map((key) => (
-              <>
-                <li key={key}>
+  
+                <div key={uuidv4()}>
                   {JSON.parse(localStorage.getItem(key))}
-                  <br></br>
                   <button id={key} onClick={(e) => handleDelete(e)}>
-                    DELETE{" "}
+                      DELETE{" "}
                   </button>
-                </li>
-
-                <br></br>
-              </>
+                </div>
+    
             ))}
-          </ul>
+          </div>
         ) : (
           <h2>You have no favorite dinosaurs saved to your list.</h2>
         )}
