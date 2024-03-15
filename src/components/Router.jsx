@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import SearchPage from "../pages/SearchPage";
+import FavoritesPage from "../pages/FavoritesPage";
 
 function Router() {
   const router = createBrowserRouter([
@@ -12,6 +13,10 @@ function Router() {
     {
       path: "/search",
       element: <SearchPage />
+    },
+    {
+      path: "/favorites",
+      element: <FavoritesPage />
     },
 
   ]);
