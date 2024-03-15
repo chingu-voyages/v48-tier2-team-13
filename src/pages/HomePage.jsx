@@ -12,23 +12,6 @@ function HomePage() {
   //Load data for Maps= temporary location for the Map component in the home page
   
 
-  //Temporary dataset for the diet pie chart
-  const dietData = [
-    { label: "Herbivore", value: 50 },
-    { label: "Carnivore", value: 40 },
-    { label: "Omnivore", value: 10 },
-  ];
-
-  //Temporary dataset for the dinosaur type doughnut chart
-  const dinosaurTypeData = [
-    { label: "prosauropod", value: 20 },
-    { label: "ceratopsian", value: 15 },
-    { label: "large therapod", value: 25 },
-    { label: "sauropod", value: 20 },
-    { label: "small ornithischian", value: 10 },
-    { label: "small therapod", value: 10 },
-  ];
-
   return (
     <>
       <h1 className="text-[55px] font-bold text-center mt-[50px]">
@@ -44,14 +27,14 @@ function HomePage() {
         Temporary Diet Distribution Chart
       </h4>
       <div>
-        <DietChart dataset={dietData} />
+        <DietChart />
       </div>
 
       <h4 className="text-center text-[16px] mt-5">
         Temporary Dinosaur Type Distribution Chart
       </h4>
       <div>
-        <DinosaurTypeChart dataset={dinosaurTypeData} />
+        <DinosaurTypeChart />
       </div>
 
       <h4 className="text-center text-[16px] mt-5">
