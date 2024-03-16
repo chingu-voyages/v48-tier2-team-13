@@ -6,105 +6,165 @@ import { AppContext } from "../App";
 import SearchItemPreview from "../components/SearchItemPreview";
 import Loader from "../components/Loader";
 
-//Id generator
+// Libs/Utils
 import { v4 as uuidv4 } from "uuid";
+import getFoundInCountries from "../utils/getFoundInCountries";
 
 function SearchPage() {
   //Load dinosaurs api context
   const { dinosaursData, loading } = useContext(AppContext);
 
-  //Load state for search parameter
-  const [query, setQuery] = useState("");
+  // Get all countries that dinosaurs have been found in
+  const dinosaursCountries = getFoundInCountries(dinosaursData);
 
-  //Filter dinosaur data based on query parameter
+  // Search queries
+  const [searchText, setSearchText] = useState("");
+  const [weightFilter, setWeightFilter] = useState([]);
+  const [lengthFilter, setLengthFilter] = useState([]);
+  const [dietFilter, setDietFilter] = useState("");
+  const [countryFilter, setCountryFilter] = useState("");
+
+  // Filter dinosaur data based on query parameters
   const filteredDinosaurItems = useMemo(() => {
-    switch (query) {
-      case "0 - 5.000 kg":
-        return dinosaursData.filter(
-          (item) => item.weight > 0 && item.weight <= 5000
-        );
-      case "5.000 - 10.000 kg":
-        return dinosaursData.filter(
-          (item) => item.weight > 5000 && item.weight <= 10000
-        );
-      case "10.000 - 15.000 kg":
-        return dinosaursData.filter(
-          (item) => item.weight > 10000 && item.weight <= 15000
-        );
-      case "> 15.000 kg":
-        return dinosaursData.filter((item) => item.weight > 15000);
-      case "< 1m":
-        return dinosaursData.filter(
-          (item) => item.length > 0 && item.length <= 1
-        );
-      case "1 - 20m":
-        return dinosaursData.filter(
-          (item) => item.length > 1 && item.length <= 20
-        );
-      case "20 - 40m":
-        return dinosaursData.filter(
-          (item) => item.length > 20 && item.length <= 40
-        );
-      case "> 40m":
-        return dinosaursData.filter((item) => item.length > 40);
-      default:
-        return dinosaursData.filter(
-          (item) =>
-            item.foundIn.toLowerCase().includes(query) ||
-            item.name.toLowerCase().includes(query) ||
-            item.diet.toLowerCase().includes(query)
-        );
+    return dinosaursData.filter((item) => {
+      // Check if the dinosaur's name matches the search text
+      //if it's empty return true otherwise make filtering condition
+      const nameMatches =
+        !searchText || item.name.toLowerCase().includes(searchText);
+
+      // Check if the dinosaur's weight falls within the specified range
+      //if it's empty return true otherwise make filtering condition
+      const weightMatches =
+        weightFilter.length === 0 ||
+        (item.weight >= weightFilter[0] && item.weight <= weightFilter[1]);
+
+      // Check if the dinosaur's length falls within the specified range
+      //if it's empty return true otherwise make filtering condition
+      const lengthMatches =
+        lengthFilter.length === 0 ||
+        (item.length >= lengthFilter[0] && item.length <= lengthFilter[1]);
+
+      // Check if the dinosaur's diet matches the selected diet filter
+      //if it's empty return true otherwise make filtering condition
+      const dietMatches = !dietFilter || item.diet === dietFilter;
+
+      // Check if the dinosaur is found in the selected country
+      //if it's empty return true otherwise make filtering condition
+      const countryMatches =
+        !countryFilter || item.foundIn.split(",").includes(countryFilter);
+
+      // Apply filtering for all values that have filtering condition
+      return (
+        nameMatches &&
+        weightMatches &&
+        lengthMatches &&
+        dietMatches &&
+        countryMatches
+      );
+    });
+  }, [
+    dinosaursData,
+    searchText,
+    weightFilter,
+    lengthFilter,
+    dietFilter,
+    countryFilter,
+  ]);
+
+  // Extract weight range value
+  function handleWeightInput(e) {
+    const value = e.target.value;
+    if (value === "None") {
+      setWeightFilter([]);
+      return;
     }
-  }, [dinosaursData, query]);
+    const range = value.split("-").map((num) => Number(num));
+    setWeightFilter(range);
+  }
+
+  // Extract length range value
+  function handleLengthInput(e) {
+    const value = e.target.value;
+    if (value === "None") {
+      setLengthFilter([]);
+      return;
+    }
+    const range = value.split("-").map((num) => Number(num));
+    setLengthFilter(range);
+  }
 
   return (
     <>
       <h1>Temporary placeholder for search page</h1>
 
-      <div>
+      <div className="my-5">
         <label
-          className="block mb-2 text-sm font-medium text-gray-900"
+          className="block text-sm font-medium text-gray-900"
           htmlFor="searchBar"
         >
-          Search by name, country and diet
+          Search by Name
         </label>
         <input
-          value={query}
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-50 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          value={searchText}
+          className="border-2 border-black"
           type="search"
           id="searchBar"
           name="searchBar"
-          onChange={(e) => setQuery(e.target.value.toLowerCase())}
+          onChange={(e) => setSearchText(e.target.value.toLowerCase())}
         />
       </div>
 
-      <br></br>
-      <br></br>
-      <br></br>
-      <div>Search Results</div>
-      <label htmlFor="weight">Filter by weight:</label>
+      <label htmlFor="diet">Filter by diet:</label>
       <select
-        name="weight"
-        id="weight"
-        onChange={(e) => setQuery(e.target.value)}
+        name="diet"
+        id="diet"
+        onChange={(e) => setDietFilter(e.target.value)}
       >
-        <option value=""></option>
-        <option value="0 - 5.000 kg">0 - 5.000 kg</option>
-        <option value="5.000 - 10.000 kg">5.000 - 10.000 kg</option>
-        <option value="10.000 - 15.000 kg">10.000 - 15.000 kg</option>
-        <option value="> 15.000 kg">&gt;15.000 kg</option>
+        <option value="">None</option>
+        <option value="herbivorous">Herbivorous</option>
+        <option value="carnivorous">Carnivorous</option>
+        <option value="omnivorous">Omnivorous</option>
+        <option value="herbivorous or omnivorous">
+          Herbivorous or Omnivorous
+        </option>
+        <option value="unknown">Unknown</option>
       </select>
-      <label htmlFor="length">Filter by length:</label>
+
+      <label htmlFor="country">Found In:</label>
       <select
-        name="length"
-        id="length"
-        onChange={(e) => setQuery(e.target.value)}
+        value={countryFilter}
+        name="country"
+        id="country"
+        onChange={(e) => setCountryFilter(e.target.value)}
       >
-        <option value=""></option>
-        <option value="< 1m"> &lt; 1m </option>
-        <option value="1 - 20m">1 - 20m</option>
-        <option value="20 - 40m">20 - 40m</option>
-        <option value="> 40m">&gt;40m</option>
+        <option value="">None</option>
+        {dinosaursCountries &&
+          dinosaursCountries.length > 0 &&
+          dinosaursCountries.map((country) => {
+            return (
+              <option key={uuidv4()} value={country}>
+                {country}
+              </option>
+            );
+          })}
+      </select>
+
+      <label htmlFor="weight">Filter by weight:</label>
+      <select name="weight" id="weight" onChange={(e) => handleWeightInput(e)}>
+        <option value="None">None</option>
+        <option value="0-5000">0 - 5.000kg</option>
+        <option value="5000-10000">5.000 - 10.000kg</option>
+        <option value="10000-15000">10.000 - 15.000kg</option>
+        <option value="15000-Infinity">&gt;15.000kg</option>
+      </select>
+
+      <label htmlFor="length">Filter by length:</label>
+      <select name="length" id="length" onChange={(e) => handleLengthInput(e)}>
+        <option value="None">None</option>
+        <option value="0-1">&lt;1m</option>
+        <option value="1-20">1 - 20m</option>
+        <option value="20-40">20 - 40m</option>
+        <option value="40-Infinity">&gt;40m</option>
       </select>
 
       {loading ? (
@@ -112,15 +172,14 @@ function SearchPage() {
       ) : filteredDinosaurItems.length === 0 ? (
         <div>Your search didn&apos;t return any results.</div>
       ) : (
-        <div className="grid grid-cols-5 gap-3">
+        <div className="grid grid-cols-5 gap-3 mt-5">
           {filteredDinosaurItems.map((dinosaurItem) => (
-              <SearchItemPreview
-                key={uuidv4()}
-                previewDetails={{
-                  dinosaurItem,
-                }}
-              />
- 
+            <SearchItemPreview
+              key={dinosaurItem.id}
+              previewDetails={{
+                dinosaurItem,
+              }}
+            />
           ))}
         </div>
       )}
