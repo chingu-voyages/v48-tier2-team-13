@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import fetchDinosaursNews from "../services/NewsAPI/newsApi";
 import NewsArticle from "./NewsArticle";
+import Loader from "./Loader";
 import { v4 as uuidv4 } from "uuid";
 
 function DinosaursNews() {
@@ -20,7 +21,7 @@ function DinosaursNews() {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   if (error) {
