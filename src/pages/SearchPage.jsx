@@ -130,24 +130,6 @@ function SearchPage() {
         <option value="unknown">Unknown</option>
       </select>
 
-      <label htmlFor="weight">Filter by weight:</label>
-      <select name="weight" id="weight" onChange={(e) => handleWeightInput(e)}>
-        <option value="None">None</option>
-        <option value="0-5000">0 - 5.000kg</option>
-        <option value="5000-10000">5.000 - 10.000kg</option>
-        <option value="10000-15000">10.000 - 15.000kg</option>
-        <option value="15000-Infinity">&gt;15.000kg</option>
-      </select>
-
-      <label htmlFor="length">Filter by length:</label>
-      <select name="length" id="length" onChange={(e) => handleLengthInput(e)}>
-        <option value="None">None</option>
-        <option value="0-1">&lt;1m</option>
-        <option value="1-20">1 - 20m</option>
-        <option value="20-40">20 - 40m</option>
-        <option value="40-Infinity">&gt;40m</option>
-      </select>
-
       <label htmlFor="country">Found In:</label>
       <select
         value={countryFilter}
@@ -165,6 +147,24 @@ function SearchPage() {
               </option>
             );
           })}
+      </select>
+
+      <label htmlFor="weight">Filter by weight:</label>
+      <select name="weight" id="weight" onChange={(e) => handleWeightInput(e)}>
+        <option value="None">None</option>
+        <option value="0-5000">0 - 5.000kg</option>
+        <option value="5000-10000">5.000 - 10.000kg</option>
+        <option value="10000-15000">10.000 - 15.000kg</option>
+        <option value="15000-Infinity">&gt;15.000kg</option>
+      </select>
+
+      <label htmlFor="length">Filter by length:</label>
+      <select name="length" id="length" onChange={(e) => handleLengthInput(e)}>
+        <option value="None">None</option>
+        <option value="0-1">&lt;1m</option>
+        <option value="1-20">1 - 20m</option>
+        <option value="20-40">20 - 40m</option>
+        <option value="40-Infinity">&gt;40m</option>
       </select>
 
       {loading ? (
