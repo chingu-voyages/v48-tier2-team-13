@@ -13,6 +13,4 @@ async function fetchDinosaursData() {
   }
 }
 
-
-
 export default fetchDinosaursData;
