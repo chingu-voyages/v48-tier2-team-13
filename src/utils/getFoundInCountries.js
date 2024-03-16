@@ -4,7 +4,7 @@ export default function getFoundInCountries(dinosaursData) {
   const uniqueCountriesSet = new Set(
     flattenedArray.map((country) => country.trim())
   );
-  const uniqueCountriesArray = Array.from(uniqueCountriesSet);
+  const uniqueCountriesArray = Array.from(uniqueCountriesSet).sort();
 
   return uniqueCountriesArray;
 }
