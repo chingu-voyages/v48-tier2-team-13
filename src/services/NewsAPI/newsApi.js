@@ -1,6 +1,4 @@
-import filterNews from "../../utils/filterNews";
-
-const URL = `https://newsapi.org/v2/everything?q=dinosaur OR dinosaurs -management -batman -forza -toys -devil -chickens -versand&searchIn=title&apiKey=${
+const URL = `https://gnews.io/api/v4/search?q=dinosaurs&in=title&apikey=${
   import.meta.env.VITE_NEWS_API_KEY
 }`;
 
@@ -11,8 +9,7 @@ async function fetchDinosaursNews() {
       throw new Error("Error: Service error");
     }
     const data = await response.json();
-    const filteredNews = filterNews(data.articles);
-    return filteredNews;
+    return data.articles;
   } catch (error) {
     console.error(error);
   }

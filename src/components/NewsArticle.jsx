@@ -6,6 +6,7 @@ function NewsArticle({ article }) {
       <div className="font-bold">NewsArticleDemo</div>
       <div>{article.title}</div>
       <div>Source:{article.source.name}</div>
+      <img src={article.image} alt="" className="w-[400px]" />
     </div>
   );
 }
