@@ -1,5 +1,5 @@
 //Import hooks
-import { useContext, useState, useMemo } from "react";
+import { useContext, useState, useMemo, useEffect } from "react";
 import { AppContext } from "../App";
 
 //Import components
@@ -11,8 +11,14 @@ import { v4 as uuidv4 } from "uuid";
 import getFoundInCountries from "../utils/getFoundInCountries";
 
 function SearchPage() {
-  //Load dinosaurs api context
+  //Load dinosaurs data from api context
   const { dinosaursData, loading } = useContext(AppContext);
+
+  //Load state to keep track of which items to load on scrolling as well as the index to use to split the data array
+  const [items, setItems]= useState([])
+  const [index, setIndex] = useState(0);
+  //Calculate screen size in order to upload first 5 (mobile) or 10(desktop) results and then the next 5 or 10 more
+  const indexToUse= window.innerWidth <960? 5: 10
 
   // Get all countries that dinosaurs have been found in
   const dinosaursCountries = getFoundInCountries(dinosaursData);
@@ -25,46 +31,84 @@ function SearchPage() {
   const [countryFilter, setCountryFilter] = useState("");
 
   // Filter dinosaur data based on query parameters
-  const filteredDinosaurItems = useMemo(() => {
-    const searchTextLowerCase = searchText.toLowerCase();
-    const weightFilterMin = weightFilter[0] || 0;
-    const weightFilterMax = weightFilter[1] || Infinity;
-    const lengthFilterMin = lengthFilter[0] || 0;
-    const lengthFilterMax = lengthFilter[1] || Infinity;
 
-    return dinosaursData.filter((item) => {
-      // Check if the dinosaur's name matches the search text
-      const nameMatches =
-        !searchTextLowerCase ||
-        item.name.toLowerCase().includes(searchTextLowerCase);
-      // Check if the dinosaur's weight falls within the specified range
-      const weightMatches =
-        item.weight >= weightFilterMin && item.weight <= weightFilterMax;
-      // Check if the dinosaur's length falls within the specified range
-      const lengthMatches =
-        item.length >= lengthFilterMin && item.length <= lengthFilterMax;
-      // Check if the dinosaur's diet matches the selected diet filter
-      const dietMatches = !dietFilter || item.diet === dietFilter;
-      // Check if the dinosaur is found in the selected country
-      const countryMatches =
-        !countryFilter || item.foundIn.split(",").includes(countryFilter);
-      // Apply filtering for all values that have filtering condition
-      return (
-        nameMatches &&
-        weightMatches &&
-        lengthMatches &&
-        dietMatches &&
-        countryMatches
-      );
-    });
-  }, [
-    dinosaursData,
-    searchText,
-    weightFilter,
-    lengthFilter,
-    dietFilter,
-    countryFilter,
-  ]);
+  const filteredDinosaurItems = useMemo(
+    () => {
+      const searchTextLowerCase = searchText.toLowerCase();
+      const weightFilterMin = weightFilter[0] || 0;
+      const weightFilterMax = weightFilter[1] || Infinity;
+      const lengthFilterMin = lengthFilter[0] || 0;
+      const lengthFilterMax = lengthFilter[1] || Infinity;
+
+      //Replaced the return with a const in order to update the state of items
+      const data= dinosaursData
+        .filter((item) => {
+          // Check if the dinosaur's name matches the search text
+          const nameMatches =
+            !searchTextLowerCase ||
+            item.name.toLowerCase().includes(searchTextLowerCase);
+          // Check if the dinosaur's weight falls within the specified range
+          const weightMatches =
+            item.weight >= weightFilterMin && item.weight <= weightFilterMax;
+          // Check if the dinosaur's length falls within the specified range
+          const lengthMatches =
+            item.length >= lengthFilterMin && item.length <= lengthFilterMax;
+          // Check if the dinosaur's diet matches the selected diet filter
+          const dietMatches = !dietFilter || item.diet === dietFilter;
+          // Check if the dinosaur is found in the selected country
+          const countryMatches =
+            !countryFilter || item.foundIn.split(",").includes(countryFilter);
+          // Apply filtering for all values that have filtering condition
+          return (
+            nameMatches &&
+            weightMatches &&
+            lengthMatches &&
+            dietMatches &&
+            countryMatches
+          );
+        })
+      ;
+      setItems(data)
+      return data 
+    },
+
+    [
+      dinosaursData,
+      searchText,
+      weightFilter,
+      lengthFilter,
+      dietFilter,
+      countryFilter
+    ]
+  );
+
+  //After dinosaurs are filtered we update the items to load with the first x results (based on screen size) and update index; 
+  useEffect(()=> {
+    setItems(filteredDinosaurItems.slice(0,indexToUse))
+    setIndex(indexToUse)
+  }, [filteredDinosaurItems])
+ 
+  //Handle scrolling and loading on scroll
+  useEffect(() => {
+
+  const fetchMoreDinosaurData= ()=> {
+    setItems((prevItems)=> [...prevItems, ...filteredDinosaurItems.slice(index, index+indexToUse)])
+    setIndex((prevIndex)=> prevIndex+indexToUse)
+  }
+
+    function handleScroll(e) {
+      const { scrollHeight, scrollTop, clientHeight } =
+        e.target.scrollingElement;
+      const isBottom = scrollHeight - scrollTop <= clientHeight;
+      if (isBottom) {
+        fetchMoreDinosaurData()
+      }
+    }
+
+      document.addEventListener("scroll", handleScroll, { passive: true });
+      return () => document.removeEventListener("scroll", handleScroll);
+  }, [items,filteredDinosaurItems, index]);
+
 
   // Extract weight range value
   function handleWeightInput(e) {
@@ -167,10 +211,10 @@ function SearchPage() {
       ) : filteredDinosaurItems.length === 0 ? (
         <div>Your search didn&apos;t return any results.</div>
       ) : (
-        <div className="grid grid-cols-5 gap-3 mt-5">
-          {filteredDinosaurItems.map((dinosaurItem) => (
+        <div className="max-w-sm w-full lg:max-w-full lg:grid  lg:grid-cols-5 gap-3 mt-5">
+          {items.map((dinosaurItem) => (
             <SearchItemPreview
-              key={dinosaurItem.id}
+              key={uuidv4()}
               previewDetails={{
                 dinosaurItem,
               }}
