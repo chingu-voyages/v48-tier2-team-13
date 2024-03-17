@@ -27,10 +27,12 @@ function SearchPage() {
   // Filter dinosaur data based on query parameters
   const filteredDinosaurItems = useMemo(() => {
     const searchTextLowerCase = searchText.toLowerCase();
-    const weightFilterMin = weightFilter[0] || 0;
-    const weightFilterMax = weightFilter[1] || Infinity;
-    const lengthFilterMin = lengthFilter[0] || 0;
-    const lengthFilterMax = lengthFilter[1] || Infinity;
+    const weightFilterMin = weightFilter[0];
+    const weightFilterMax = weightFilter[1];
+    const lengthFilterMin = lengthFilter[0];
+    const lengthFilterMax = lengthFilter[1];
+    const isWeightNone = weightFilter.length === 0;
+    const isLengthNone = lengthFilter.length === 0;
 
     return dinosaursData.filter((item) => {
       // Check if the dinosaur's name matches the search text
@@ -39,10 +41,12 @@ function SearchPage() {
         item.name.toLowerCase().includes(searchTextLowerCase);
       // Check if the dinosaur's weight falls within the specified range
       const weightMatches =
-        item.weight >= weightFilterMin && item.weight <= weightFilterMax;
+        isWeightNone ||
+        (item.weight >= weightFilterMin && item.weight <= weightFilterMax);
       // Check if the dinosaur's length falls within the specified range
       const lengthMatches =
-        item.length >= lengthFilterMin && item.length <= lengthFilterMax;
+        isLengthNone ||
+        (item.length >= lengthFilterMin && item.length <= lengthFilterMax);
       // Check if the dinosaur's diet matches the selected diet filter
       const dietMatches = !dietFilter || item.diet === dietFilter;
       // Check if the dinosaur is found in the selected country
