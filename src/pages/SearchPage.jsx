@@ -13,7 +13,6 @@ import getFoundInCountries from "../utils/getFoundInCountries";
 function SearchPage() {
   //Load dinosaurs api context
   const { dinosaursData, loading } = useContext(AppContext);
-  const [filteredDinosaurItems, setFilteredDinosaurItems] = useState([]);
 
   // Get all countries that dinosaurs have been found in
   const dinosaursCountries = getFoundInCountries(dinosaursData);
@@ -26,25 +25,27 @@ function SearchPage() {
   const [countryFilter, setCountryFilter] = useState("");
 
   // Filter dinosaur data based on query parameters
-  useMemo(() => {
+  const filteredDinosaurItems = useMemo(() => {
     const searchTextLowerCase = searchText.toLowerCase();
-    const weightFilterMin = weightFilter[0] || 0;
-    const weightFilterMax = weightFilter[1] || Infinity;
-    const lengthFilterMin = lengthFilter[0] || 0;
-    const lengthFilterMax = lengthFilter[1] || Infinity;
+    const weightFilterMin = weightFilter[0];
+    const weightFilterMax = weightFilter[1];
+    const lengthFilterMin = lengthFilter[0];
+    const lengthFilterMax = lengthFilter[1];
+    const isWeightNone = weightFilter.length === 0;
+    const isLengthNone = lengthFilter.length === 0;
 
-    const filtered = dinosaursData.filter((item) => {
+    return dinosaursData.filter((item) => {
       // Check if the dinosaur's name matches the search text
       const nameMatches =
         !searchTextLowerCase ||
         item.name.toLowerCase().includes(searchTextLowerCase);
       // Check if the dinosaur's weight falls within the specified range
       const weightMatches =
-        weightFilter.length === 0 ||
+        isWeightNone ||
         (item.weight >= weightFilterMin && item.weight <= weightFilterMax);
       // Check if the dinosaur's length falls within the specified range
       const lengthMatches =
-        lengthFilter.length === 0 ||
+        isLengthNone ||
         (item.length >= lengthFilterMin && item.length <= lengthFilterMax);
       // Check if the dinosaur's diet matches the selected diet filter
       const dietMatches = !dietFilter || item.diet === dietFilter;
@@ -60,8 +61,6 @@ function SearchPage() {
         countryMatches
       );
     });
-
-    setFilteredDinosaurItems(filtered);
   }, [
     dinosaursData,
     searchText,
