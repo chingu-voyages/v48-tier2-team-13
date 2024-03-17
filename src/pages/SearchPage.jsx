@@ -13,6 +13,7 @@ import getFoundInCountries from "../utils/getFoundInCountries";
 function SearchPage() {
   //Load dinosaurs api context
   const { dinosaursData, loading } = useContext(AppContext);
+  const [filteredDinosaurItems, setFilteredDinosaurItems] = useState([]);
 
   // Get all countries that dinosaurs have been found in
   const dinosaursCountries = getFoundInCountries(dinosaursData);
@@ -25,24 +26,26 @@ function SearchPage() {
   const [countryFilter, setCountryFilter] = useState("");
 
   // Filter dinosaur data based on query parameters
-  const filteredDinosaurItems = useMemo(() => {
+  useMemo(() => {
     const searchTextLowerCase = searchText.toLowerCase();
     const weightFilterMin = weightFilter[0] || 0;
     const weightFilterMax = weightFilter[1] || Infinity;
     const lengthFilterMin = lengthFilter[0] || 0;
     const lengthFilterMax = lengthFilter[1] || Infinity;
 
-    return dinosaursData.filter((item) => {
+    const filtered = dinosaursData.filter((item) => {
       // Check if the dinosaur's name matches the search text
       const nameMatches =
         !searchTextLowerCase ||
         item.name.toLowerCase().includes(searchTextLowerCase);
       // Check if the dinosaur's weight falls within the specified range
       const weightMatches =
-        item.weight >= weightFilterMin && item.weight <= weightFilterMax;
+        weightFilter.length === 0 ||
+        (item.weight >= weightFilterMin && item.weight <= weightFilterMax);
       // Check if the dinosaur's length falls within the specified range
       const lengthMatches =
-        item.length >= lengthFilterMin && item.length <= lengthFilterMax;
+        lengthFilter.length === 0 ||
+        (item.length >= lengthFilterMin && item.length <= lengthFilterMax);
       // Check if the dinosaur's diet matches the selected diet filter
       const dietMatches = !dietFilter || item.diet === dietFilter;
       // Check if the dinosaur is found in the selected country
@@ -57,6 +60,8 @@ function SearchPage() {
         countryMatches
       );
     });
+
+    setFilteredDinosaurItems(filtered);
   }, [
     dinosaursData,
     searchText,
