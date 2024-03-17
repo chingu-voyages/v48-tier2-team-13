@@ -26,33 +26,28 @@ function SearchPage() {
 
   // Filter dinosaur data based on query parameters
   const filteredDinosaurItems = useMemo(() => {
+    const searchTextLowerCase = searchText.toLowerCase();
+    const weightFilterMin = weightFilter[0] || 0;
+    const weightFilterMax = weightFilter[1] || Infinity;
+    const lengthFilterMin = lengthFilter[0] || 0;
+    const lengthFilterMax = lengthFilter[1] || Infinity;
+
     return dinosaursData.filter((item) => {
       // Check if the dinosaur's name matches the search text
-      //if it's empty return true otherwise make filtering condition
       const nameMatches =
-        !searchText || item.name.toLowerCase().includes(searchText);
-
+        !searchTextLowerCase ||
+        item.name.toLowerCase().includes(searchTextLowerCase);
       // Check if the dinosaur's weight falls within the specified range
-      //if it's empty return true otherwise make filtering condition
       const weightMatches =
-        weightFilter.length === 0 ||
-        (item.weight >= weightFilter[0] && item.weight <= weightFilter[1]);
-
+        item.weight >= weightFilterMin && item.weight <= weightFilterMax;
       // Check if the dinosaur's length falls within the specified range
-      //if it's empty return true otherwise make filtering condition
       const lengthMatches =
-        lengthFilter.length === 0 ||
-        (item.length >= lengthFilter[0] && item.length <= lengthFilter[1]);
-
+        item.length >= lengthFilterMin && item.length <= lengthFilterMax;
       // Check if the dinosaur's diet matches the selected diet filter
-      //if it's empty return true otherwise make filtering condition
       const dietMatches = !dietFilter || item.diet === dietFilter;
-
       // Check if the dinosaur is found in the selected country
-      //if it's empty return true otherwise make filtering condition
       const countryMatches =
         !countryFilter || item.foundIn.split(",").includes(countryFilter);
-
       // Apply filtering for all values that have filtering condition
       return (
         nameMatches &&
