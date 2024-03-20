@@ -1,5 +1,5 @@
 //Import hooks
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { AppContext } from "../App";
 
 // Libs/Utils
@@ -11,16 +11,14 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 const DinosaurTypeChart = () => {
   //Load dinosaurs data from api context
   const {dinosaursData} = useContext(AppContext);
-  const [dinosaurData, setDinosaurData] = useState(dinosaursData);
 
   useEffect(() => {
-    // Update dinosaurData state when dinosaursData changes
-    setDinosaurData(dinosaursData);
+    console.log("Dinosaurs data has been updated:", dinosaursData);
   }, [dinosaursData]);
 
   const calculateTypeDistribution = () => {
     // Extract the information about the dinosaur types
-    const dinoTypes = dinosaurData.map((dinosaur) => dinosaur.typeOfDinosaur);
+    const dinoTypes = dinosaursData.map((dinosaur) => dinosaur.typeOfDinosaur);
   
     // Count occurrences of each dinosaur type
     const dinoTypeCounts = dinoTypes.reduce((acc, typeOfDinosaur) => {
