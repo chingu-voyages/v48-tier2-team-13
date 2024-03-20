@@ -1,38 +1,28 @@
-import fetchDinosaursData from "../services/DinosaursAPI/dinosaursApi";
-import { useState, useEffect } from "react";
+//Import hooks
+import { useContext } from "react";
+import { AppContext } from "../App";
+
+// Libs/Utils
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
-
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const DinosaurTypeChart = () => {
-  const [dinosaurData, setDinosaurData] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await fetchDinosaursData();
-        setDinosaurData(data);
-      } catch (error) {
-        console.error("Error fetching dinosaur data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
+  //Load dinosaurs data from api context
+  const {dinosaursData} = useContext(AppContext);
 
   const calculateTypeDistribution = () => {
-    // Extracts the information about the dinosaur types
-    const dinoTypes = dinosaurData.map((dinosaur) => dinosaur.typeOfDinosaur);
+    // Extract the information about the dinosaur types
+    const dinoTypes = dinosaursData.map((dinosaur) => dinosaur.typeOfDinosaur);
   
-    // Counts occurrences of each dinosaur type
+    // Count occurrences of each dinosaur type
     const dinoTypeCounts = dinoTypes.reduce((acc, typeOfDinosaur) => {
       acc[typeOfDinosaur] = (acc[typeOfDinosaur] || 0) + 1;
       return acc;
     }, {});
   
-    // Calculates percentage for each dinosaur type
+    // Calculate percentage for each dinosaur type
     const totalDinosaurs = dinoTypes.length;
     const dinoTypeDistribution = Object.entries(dinoTypeCounts).map(([typeOfDinosaur, count]) => ({
       label: typeOfDinosaur,
