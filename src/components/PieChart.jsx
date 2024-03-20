@@ -1,38 +1,34 @@
-import fetchDinosaursData from "../services/DinosaursAPI/dinosaursApi";
-import { useState, useEffect } from "react";
+//Import hooks
+import { useContext, useState, useEffect } from "react";
+import { AppContext } from "../App";
+
+// Libs/Utils
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-
 const DietChart = () => {
-  const [dinosaurData, setDinosaurData] = useState([]);
+  //Load dinosaurs data from api context
+  const {dinosaursData} = useContext(AppContext);
+  const [dinosaurData, setDinosaurData] = useState(dinosaursData);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await fetchDinosaursData();
-        setDinosaurData(data);
-      } catch (error) {
-        console.error("Error fetching dinosaur data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
+    // Update dinosaurData state when dinosaursData changes
+    setDinosaurData(dinosaursData);
+  }, [dinosaursData]);
 
   const calculateDistribution = () => {
-    // Extracts the information about the diet types
+    // Extract the information about the diet types
     const diets = dinosaurData.map((dinosaur) => dinosaur.diet);
   
-    // Counts occurrences of each diet type
+    // Count occurrences of each diet type
     const dietCounts = diets.reduce((acc, diet) => {
       acc[diet] = (acc[diet] || 0) + 1;
       return acc;
     }, {});
   
-    // Calculates percentage for each diet type
+    // Calculate percentage for each diet type
     const totalDinosaurs = diets.length;
     const dietDistribution = Object.entries(dietCounts).map(([diet, count]) => ({
       label: diet,
