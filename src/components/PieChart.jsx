@@ -1,5 +1,5 @@
 //Import hooks
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AppContext } from "../App";
 
 // Libs/Utils
@@ -11,10 +11,6 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 const DietChart = () => {
   //Load dinosaurs data from api context
   const {dinosaursData} = useContext(AppContext);
-
-  useEffect(() => {
-    console.log("Dinosaurs data has been updated:", dinosaursData);
-  }, [dinosaursData]);
 
   const calculateDistribution = () => {
     // Extract the information about the diet types
