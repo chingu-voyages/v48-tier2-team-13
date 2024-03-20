@@ -42,9 +42,17 @@ export default {
         900: "#725211",
         950: "#141414",
       },
+      bg: {
+        primary: "#1E1E1E",
+        secondary: "#272727",
+      },
+      text: {
+        dark: "#212427",
+        light: "#ffffff",
+      },
     },
     fontFamily: {
-      primary: ["Syncopate", "sans-serif"],
+      primary: ["Inter", "sans-serif"],
       secondary: ["OpenSans", "sans-serif"],
     },
     extend: {},
