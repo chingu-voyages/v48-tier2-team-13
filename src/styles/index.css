@@ -10,4 +10,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /*For testing how dark mode looks*/
+  background: #1E1E1E;
+
 }
