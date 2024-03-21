@@ -33,38 +33,38 @@ function SearchItemPreview(previewDetails) {
 
   return (
     <>
-      <div className="border-4">
+      <div className="relative border border-neutral-200 border my-[5%] lg:my-0">
         <div>
           {imageSrc === "N/A" ? (
             <img
-              className="rounded-[50%] h-[100px] w-[100px] mt-16 mx-[0] mb-8"
+              className="rounded-[50%] h-[150px] w-[150px] mt-16 ml-[20%] mb-8 border-4 border-primary-500"
               src={defaultDinoImage}
               alt={name}
             />
           ) : (
             <img
-              className="rounded-[50%] h-[100px] w-[100px] mt-16 mx-[0] mb-8"
+              className="rounded-[50%] h-[150px] w-[150px] mt-16 ml-[20%] mb-8 border-4 border-primary-500"
               src={imageSrc}
               alt={name}
             />
           )}
         </div>
-        <div>
+        <span className="absolute right-6 top-3">
           <Link onClick={toggleFavorite}>
             {favorite ? <SolidHeart /> : <EmptyHeart />}
           </Link>
-        </div>
+        </span>
 
-        <div>
-          <h2>Name: {name}</h2>
-          <p>Weight: {weight === "N/A" ? "unknown" : weight + " kg"}</p>
-          <p>Length: {length === "N/A" ? "unknown" : length + " m"}</p>
-          <p>Country: {foundIn === "N/A" ? "unknown" : foundIn}</p>
-          <p>Diet: {diet === "N/A" ? "unknown" : diet}</p>
+        <div className="text-text-light ml-[20%] mb-[20%]">
+          <h1 className="font-primary text-xl mb-[8%] text-secondary-500">{name.toUpperCase()}</h1>
+          <p className="font-secondary" >Weight is {weight === "N/A" ? "unknown" : weight + " kg"}</p>
+          <p className="font-secondary" >Length is {length === "N/A" ? "unknown" : length + " m"}</p>
+          <p className="font-secondary" >Found in {foundIn === "N/A" ? "unknown" : foundIn}</p>
+          <p className="font-secondary">Has a{'('}n{')'} {diet === "N/A" ? "unknown" : diet} diet </p>
         </div>
         <br></br>
         <br></br>
-        <button className="cursor-pointer" onClick={() => setShowModal(true)}>
+        <button className="font-primary absolute inset-x-14 bottom-8 h-12 bg-primary-500 text-text-dark cursor-pointer rounded-lg" onClick={() => setShowModal(true)}>
           View more details
         </button>
       </div>
