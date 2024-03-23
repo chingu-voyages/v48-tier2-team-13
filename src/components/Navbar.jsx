@@ -76,7 +76,7 @@ function Navbar({ activePage }) {
                 Favorites
               </Link>
               <Link
-                to={"/"}
+                to={"/videos"}
                 className={`px-4 py-1 border-b-[3px] transition-all ${
                   activePage === "VIDEOS_PAGE"
                     ? "border-primary-500"
@@ -86,14 +86,14 @@ function Navbar({ activePage }) {
                 Videos
               </Link>
               <Link
-                to={"/"}
+                to={"/about"}
                 className={`px-4 py-1 border-b-[3px] transition-all ${
                   activePage === "ABOUT_PAGE"
                     ? "border-primary-500"
                     : "border-transparent"
                 }`}
               >
-                About Us
+                About
               </Link>
             </div>
           </div>

@@ -21,26 +21,31 @@ function FavoritesPage() {
   }
 
   return (
-    <div>
+    <>
       <Navbar activePage={FAVORITES_PAGE} />
-      <h1>Here is a list of dinosaurs you saved as favorites:</h1>
-      <div>
-        {favorites.length >= 1 ? (
-          <div>
-            {favorites.map((key) => (
-              <div key={uuidv4()}>
-                {JSON.parse(localStorage.getItem(key))}
-                <button id={key} onClick={(e) => handleDelete(e)}>
-                  DELETE{" "}
-                </button>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <h2>You have no favorite dinosaurs saved to your list.</h2>
-        )}
-      </div>
-    </div>
+      <section className="pt-[100px] text-text-light w-screen text-center">
+        <h1 className="text-xl font-bold text-text-light">FAVORITES PAGE</h1>
+        <h1 className="font-bold">
+          Here is a list of dinosaurs you saved as favorites:
+        </h1>
+        <div>
+          {favorites.length >= 1 ? (
+            <div>
+              {favorites.map((key) => (
+                <div key={uuidv4()}>
+                  {JSON.parse(localStorage.getItem(key))}
+                  <button id={key} onClick={(e) => handleDelete(e)}>
+                    DELETE
+                  </button>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <h2>You have no favorite dinosaurs saved to your list.</h2>
+          )}
+        </div>
+      </section>
+    </>
   );
 }
 
