@@ -6,7 +6,7 @@ function Navbar({ activePage }) {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
 
   return (
-    <div className="bg-bg-primary fixed w-screen z-50">
+    <div className="bg-bg-primary fixed top-0 w-screen z-50">
       <nav className="container">
         <div className="py-5 flex justify-between text-text-light">
           <div>
@@ -53,7 +53,7 @@ function Navbar({ activePage }) {
             <div
               className={`transition-transform  bg-neutral-950 flex flex-col justify-center py-[30px] items-center gap-[10px] font-[600] absolute top-[-500px] ${
                 isNavbarOpen ? "translate-y-[500px]" : "translate-y-[-500px]"
-              } left-0 w-screen md:translate-y-[0px] md:bg-bg-primary md:static md:flex-row md:justify-end md:w-auto md:gap-[60px] md:p-0`}
+              } left-0 w-screen md:translate-y-[0px] md:bg-bg-primary md:static md:flex-row md:justify-end md:w-auto md:gap-[50px] md:p-0`}
             >
               <Link
                 to={"/"}
@@ -66,6 +66,16 @@ function Navbar({ activePage }) {
                 Home
               </Link>
               <Link
+                to={"/search"}
+                className={`px-4 py-1 border-b-[3px] transition-all ${
+                  activePage === "SEARCH_PAGE"
+                    ? "border-primary-500"
+                    : "border-transparent"
+                }`}
+              >
+                Dinosaurs
+              </Link>
+              <Link
                 to={"/favorites"}
                 className={`px-4 py-1 border-b-[3px] transition-all ${
                   activePage === "FAVORITES_PAGE"
@@ -74,16 +84,6 @@ function Navbar({ activePage }) {
                 }`}
               >
                 Favorites
-              </Link>
-              <Link
-                to={"/videos"}
-                className={`px-4 py-1 border-b-[3px] transition-all ${
-                  activePage === "VIDEOS_PAGE"
-                    ? "border-primary-500"
-                    : "border-transparent"
-                }`}
-              >
-                Videos
               </Link>
               <Link
                 to={"/about"}
