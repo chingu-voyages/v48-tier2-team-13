@@ -10,7 +10,9 @@ function Navbar({ activePage }) {
       <nav className="container">
         <div className="py-5 flex justify-between text-text-light">
           <div>
-            <div className="text-[25px] font-bold">LOGO</div>
+            <Link to={"/"} className="text-[25px] font-bold">
+              LOGO
+            </Link>
           </div>
           <div>
             <button
