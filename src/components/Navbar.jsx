@@ -51,9 +51,9 @@ function Navbar({ activePage }) {
               )}
             </button>
             <div
-              className={`transition-all flex flex-col justify-center p-5 items-center gap-[10px] font-[600] absolute ${
-                isNavbarOpen ? "top-[0px]" : "top-[-500px]"
-              } left-0 w-screen bg-bg-primary md:static md:flex-row md:justify-end md:w-auto md:gap-[60px] md:p-0`}
+              className={`transition-transform  bg-neutral-950 flex flex-col justify-center py-[30px] items-center gap-[10px] font-[600] absolute top-[-500px] ${
+                isNavbarOpen ? "translate-y-[500px]" : "translate-y-[-500px]"
+              } left-0 w-screen md:translate-y-[0px] md:bg-bg-primary md:static md:flex-row md:justify-end md:w-auto md:gap-[60px] md:p-0`}
             >
               <Link
                 to={"/"}
