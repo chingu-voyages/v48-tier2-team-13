@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import SearchPage from "../pages/SearchPage";
 import FavoritesPage from "../pages/FavoritesPage";
+import DinosaurDetailsPage from "../pages/DinosaurDetailsPage";
 
 function Router() {
   const router = createBrowserRouter([
@@ -18,6 +19,10 @@ function Router() {
       path: "/favorites",
       element: <FavoritesPage />
     },
+    {
+      path: "/search/:idParameter",
+      element: <DinosaurDetailsPage/>
+    }
 
   ]);
   return <RouterProvider router={router} />;

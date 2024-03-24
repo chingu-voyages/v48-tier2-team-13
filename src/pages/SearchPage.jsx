@@ -17,12 +17,14 @@ import getFoundInCountries from "../utils/getFoundInCountries";
 function SearchPage() {
   //Load dinosaurs data from api context
   const { dinosaursData, loading } = useContext(AppContext);
+    //Calculate screen size in order to upload first 5 (mobile) or 10(desktop) results and then the next 5 or 10 more
+  const indexToUse = window.innerWidth < 960 ? 5 : 10;
 
   //Load state to keep track of which items to load on scrolling as well as the index to use to split the data array
   const [items, setItems] = useState([]);
-  const [index, setIndex] = useState(0);
-  //Calculate screen size in order to upload first 5 (mobile) or 10(desktop) results and then the next 5 or 10 more
-  const indexToUse = window.innerWidth < 960 ? 5 : 10;
+  const [index, setIndex] = useState(indexToUse);
+
+  
 
   // Get all countries that dinosaurs have been found in
   const dinosaursCountries = getFoundInCountries(dinosaursData);
@@ -91,10 +93,11 @@ function SearchPage() {
   useEffect(() => {
     setItems(filteredDinosaurItems.slice(0, indexToUse));
     setIndex(indexToUse);
-  }, [filteredDinosaurItems]);
+  }, [filteredDinosaurItems, indexToUse]);
 
   //Handle scrolling and loading on scroll
   useEffect(() => {
+
     const fetchMoreDinosaurData = () => {
       setItems((prevItems) => [
         ...prevItems,
@@ -106,7 +109,8 @@ function SearchPage() {
     function handleScroll(e) {
       const { scrollHeight, scrollTop, clientHeight } =
         e.target.scrollingElement;
-      const isBottom = scrollHeight - scrollTop <= clientHeight;
+      const isBottom = Math.abs(scrollHeight - (scrollTop +clientHeight)) <=1;
+
       if (isBottom) {
         fetchMoreDinosaurData();
       }

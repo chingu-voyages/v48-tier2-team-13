@@ -6,8 +6,6 @@ import { Link } from "react-router-dom";
 import defaultDinoImage from "../assets/img/default-dino-image.png";
 import { EmptyHeart, SolidHeart } from "../assets/img/FavoritesIcons.jsx";
 
-//Component imports
-import DinosaurDetailView from "../components/DinosaurDetailView";
 
 //utils imports
 import updateLocalStorage from "../utils/updateLocalStorage.js";
@@ -16,15 +14,10 @@ function SearchItemPreview(previewDetails) {
   //Load props
   const { id, name, weight, imageSrc, length, foundIn, diet } =
     previewDetails.previewDetails.dinosaurItem;
-  //Set modal state
-  const [showModal, setShowModal] = useState(false);
+
   //Get favorites state from local storage
   const [favorite, setFavorite] = useState(localStorage.getItem(id));
 
-  //Close Modal function
-  function handleClose() {
-    setShowModal(false);
-  }
   // Handle favorite function
   function toggleFavorite() {
     setFavorite(!favorite);
@@ -64,18 +57,19 @@ function SearchItemPreview(previewDetails) {
         </div>
         <br></br>
         <br></br>
-        <button className="font-primary absolute inset-x-14 bottom-8 h-12 bg-primary-500 text-text-dark cursor-pointer rounded-lg" onClick={() => setShowModal(true)}>
-          View more details
-        </button>
+        <button className="font-primary absolute inset-x-14 bottom-8 h-12 bg-primary-500 text-text-dark cursor-pointer rounded-lg" 
+         >
+
+<Link to={`/search/${id}`} 
+    state={{idParameter: id
+    }} 
+     > View more details
+            </Link>
+        </button> 
       </div>
-      {showModal && (
-        <DinosaurDetailView
-          details={previewDetails.previewDetails.dinosaurItem}
-          handleClose={handleClose}
-          favorite={favorite}
-          toggleFavorite={toggleFavorite}
-        />
-      )}
+
+            
+   
     </>
   );
 }
