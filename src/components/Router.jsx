@@ -3,6 +3,7 @@ import HomePage from "../pages/HomePage";
 import SearchPage from "../pages/SearchPage";
 import FavoritesPage from "../pages/FavoritesPage";
 import DinosaurDetailsPage from "../pages/DinosaurDetailsPage";
+import AboutPage from "../pages/AboutPage";
 
 function Router() {
   const router = createBrowserRouter([
@@ -13,13 +14,16 @@ function Router() {
     },
     {
       path: "/search",
-      element: <SearchPage />
+      element: <SearchPage />,
     },
     {
       path: "/favorites",
       element: <FavoritesPage />
     },
     {
+      path: "/about",
+      element: <AboutPage />,
+    },    {
       path: "/search/:idParameter",
       element: <DinosaurDetailsPage/>
     }

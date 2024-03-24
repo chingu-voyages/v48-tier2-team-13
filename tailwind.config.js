@@ -49,6 +49,7 @@ export default {
         dark: "#212427",
         light: "#ffffff",
       },
+      transparent: "transparent",
     },
     fontFamily: {
       primary: ["Inter", "sans-serif"],

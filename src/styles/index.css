@@ -5,6 +5,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .container {
+    margin: 0 auto;
+    max-width: 2100px;
+    padding: 0 30px;
+  }
+}
+
 :root {
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -13,4 +21,8 @@
   /*For testing how dark mode looks*/
   background: #1E1E1E;
 
+}
+
+* {
+  font-family: "Inter", sans-serif;
 }
