@@ -44,7 +44,7 @@ function HomePage() {
               </div>
             </div>
             <div className="flex-1 hidden md:flex md:justify-center relative">
-              <div className="md:translate-y-[-20px] md:w-[740px] md:h-[450px] 2xl:translate-y-[-55px] 2xl:w-[830px] 2xl:h-[550px] md:bg-[url('../assets/img/dinosaur-body.png')] md:bg-contain md:bg-no-repeat"></div>
+              <div className="md:translate-y-[-20px] md:w-[740px] md:h-[450px] 2xl:translate-y-[-55px] 2xl:w-[830px] 2xl:h-[550px] md:bg-[url('../assets/img/dinosaur-body-min.png')] md:bg-contain md:bg-no-repeat"></div>
             </div>
           </div>
         </section>
