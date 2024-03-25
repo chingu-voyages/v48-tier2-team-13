@@ -1,41 +1,41 @@
 function Footer() {
   return (
-    <footer className="w-full h-auto px-20 py-14 bg-primary text-text-light">
-      <div className="flex justify-center items-stretch gap-28 border-b-[2px_solid_bg-secondary] pb-14">
+    <footer className="container py-14 bg-primary text-text-light">
+      <div className="flex justify-center items-stretch gap-28 border-solid border-b-2 border-bg-secondary pb-14">
         <div className="flex-[1] flex flex-col gap-7">
           <div className="w-28 h-7 bg-[url(../assets/img/LOGO_temp.png)] bg-center bg-no-repeat bg-contain"></div>
-          <p className="text-sm">
+          <p className="block text-sm">
           All content on this website is protected by copyright and may not be used without 
           permission from DinozzApp. For more information about our Privacy Policy, please 
           contact our Support Center.
           </p>
 
-          <div className="text-sm">
+          <p className="block text-sm mb-7">
             Copyright © 2024 DinozzApp. All Rights Reserved.
-          </div>
+          </p>
 
-          <h3 className="updates-header">Get Our Updates</h3>
+          <p className="block font-bold">Get Our Updates</p>
 
-          <div className="w-full relative flex justify-center items-stretch">
+          <div className="w-full relative flex justify-center items-stretch bg-secondary">
             <input
               type="text"
               placeholder=""
-              className="flex-[1] p-2 appearance-none border-[none]"
+              className="flex-[1] p-2 border-[none]"
             />
-            <button type="submit" className="appearance-none border-[none] outline-[none] px-5 py-0 font-bold cursor-pointer">
+            <button type="submit" className="px-5 py-0 font-bold cursor-pointer bg-secondary-800">
               SUBSCRIBE
             </button>
           </div>
         </div>
         <div className="flex-[1] flex justify-center items-stretch gap-12">
-          <div className="flex-[1] h-full flex flex-col justify-between">
-            <div className="links-container">
+          <div className="flex-[1] h-full flex flex-col justify-between mb-6">
+            <div className="flex flex-col">
               <div className="font-bold mb-3.5">Company</div>
-              <div className="text-sm mb-3 cursor-pointer hover:text-primary-400">About Us</div>
-              <div className="text-sm mb-3 cursor-pointer hover:text-primary-400">Testimonials</div>
-              <div className="text-sm mb-3 cursor-pointer hover:text-primary-400">FAQs</div>
-              <div className="text-sm mb-3 cursor-pointer hover:text-primary-400">Terms & Condition</div>
-              <div className="text-sm mb-3 cursor-pointer hover:text-primary-400">Latest Update</div>
+              <a href="#" className="block text-sm mb-3 cursor-pointer hover:text-primary-400">About Us</a>
+              <a href="#" className="block text-sm mb-3 cursor-pointer hover:text-primary-400">Testimonials</a>
+              <a href="#" className="block text-sm mb-3 cursor-pointer hover:text-primary-400">FAQs</a>
+              <a href="#" className="block text-sm mb-3 cursor-pointer hover:text-primary-400">Terms & Condition</a>
+              <a href="#" className="block text-sm mb-3 cursor-pointer hover:text-primary-400">Latest Update</a>
             </div>
 
             <div>
@@ -57,13 +57,13 @@ function Footer() {
           </div>
 
           <div className="flex-[1] h-full flex flex-col justify-between">
-            <div>
-              <div className="font-bold mb-3.5">Support</div>
-              <div className="text-sm mb-3 cursor-pointer hover:text-primary-400">Order Tracking</div>
-              <div className="text-sm mb-3 cursor-pointer hover:text-primary-400">Payment Guide</div>
-              <div className="text-sm mb-3 cursor-pointer hover:text-primary-400">Help Centre</div>
-              <div className="text-sm mb-3 cursor-pointer hover:text-primary-400">Privacy Policy</div>
-              <div className="text-sm mb-3 cursor-pointer hover:text-primary-400">Return Policy</div>
+            <div className="flex flex-col">
+              <a className="font-bold mb-3.5">Support</a>
+              <a href="#" className="block text-sm mb-3 cursor-pointer hover:text-primary-400">Order Tracking</a>
+              <a href="#" className="block text-sm mb-3 cursor-pointer hover:text-primary-400">Payment Guide</a>
+              <a href="#" className="block text-sm mb-3 cursor-pointer hover:text-primary-400">Help Centre</a>
+              <a href="#" className="block text-sm mb-3 cursor-pointer hover:text-primary-400">Privacy Policy</a>
+              <a href="#" className="block text-sm mb-3 cursor-pointer hover:text-primary-400">Return Policy</a>
             </div>
 
             <div>
@@ -78,11 +78,11 @@ function Footer() {
         </div>
       </div>
       <div className="flex items-center text-xs mx-0 my-4 gap-3">
-        <div className="hover:cursor-pointer">Privacy Policy</div>
+        <a href="#" className="block cursor-pointer hover:text-primary-400">Privacy Policy</a>
         <div>|</div>
-        <div className="hover:cursor-pointer">Terms & Conditions</div>
+        <a href="#" className="block cursor-pointer hover:text-primary-400">Terms & Conditions</a>
         <div>|</div>
-        <div className="hover:cursor-pointer">Sitemap</div>
+        <a href="#" className="block cursor-pointer hover:text-primary-400">Sitemap</a>
       </div>
     </footer>
   );

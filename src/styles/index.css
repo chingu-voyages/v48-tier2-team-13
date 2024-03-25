@@ -9,7 +9,8 @@
   .container {
     margin: 0 auto;
     max-width: 2100px;
-    padding: 0 30px;
+    padding-left: 4.5%;
+    padding-right: 4.5%;
   }
 }
 
