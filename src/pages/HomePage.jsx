@@ -8,7 +8,7 @@ const HOME_PAGE = "HOME_PAGE";
 function HomePage() {
   return (
     <>
-      <div className="h-auto pb-[70px] xl:pb-0 xl:h-screen min-h-[760px] bg-bg-primary relative pt-[14%] 2xl:pt-[230px]">
+      <div className="h-auto pb-[70px] xl:pb-0 xl:h-screen md:min-h-[760px] bg-bg-primary relative pt-[14%] 2xl:pt-[230px]">
         <Navbar activePage={HOME_PAGE} />
         <section className="container text-text-light">
           <div className="flex md:flex-col xl:flex-row">
