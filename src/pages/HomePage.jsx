@@ -16,10 +16,10 @@ function HomePage() {
               <h1 className="max-w-[750px] text-center font-black text-[49px] sm:text-[65px]  leading-[75px] mb-3 xl:text-start">
                 Explore the most ancient creatures
               </h1>
-              <p className="text-[15px] sm:text-[17px] mb-[35px] sm:mb-[45px] text-center xl:text-start">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam,
-                quas sint vel error, incidunt numquam ratione ducimus
-                repudiandae, nostrum cupiditate quaerat corporis!
+              <p className="max-w-[620px] text-[16px] sm:text-[17px] mb-[35px] sm:mb-[45px] text-center xl:text-start">
+                Explore dinosaurs by country, diet, size, and weight. Dive into
+                interactive charts for insights. Uncover the wonders of the
+                prehistoric era.
               </p>
               <div className="w-full sm:w-auto flex flex-col sm:flex-row items-center gap-5">
                 <Link
