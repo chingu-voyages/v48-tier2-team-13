@@ -9,7 +9,7 @@
   .container {
     margin: 0 auto;
     max-width: 2100px;
-    padding: 0 30px;
+    padding: 0 4.5%;
   }
 }
 
@@ -19,8 +19,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /*For testing how dark mode looks*/
-  background: #1E1E1E;
-
+  background: #1e1e1e;
 }
 
 * {
