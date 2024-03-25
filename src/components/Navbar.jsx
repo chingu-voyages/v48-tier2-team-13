@@ -8,7 +8,7 @@ function Navbar({ activePage }) {
   return (
     <div className="bg-bg-primary fixed top-0 w-screen z-50">
       <nav className="container">
-        <div className="py-5 flex justify-between text-text-light">
+        <div className="py-3 sm:py-5 flex justify-between text-text-light">
           <div>
             <Link to={"/"} className="text-[25px] font-bold">
               LOGO
@@ -17,7 +17,7 @@ function Navbar({ activePage }) {
           <div>
             <button
               type="button"
-              className="absolute right-[30px] z-50 md:hidden"
+              className="absolute top-[14px] right-[30px] z-50 md:hidden"
               onClick={() => setIsNavbarOpen((val) => !val)}
             >
               {isNavbarOpen ? (
