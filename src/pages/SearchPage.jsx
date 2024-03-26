@@ -20,14 +20,12 @@ const SEARCH_PAGE = "SEARCH_PAGE";
 function SearchPage() {
   //Load dinosaurs data from api context
   const { dinosaursData, loading } = useContext(AppContext);
-    //Calculate screen size in order to upload first 5 (mobile) or 10(desktop) results and then the next 5 or 10 more
+  //Calculate screen size in order to upload first 5 (mobile) or 10(desktop) results and then the next 5 or 10 more
   const indexToUse = window.innerWidth < 960 ? 5 : 10;
 
   //Load state to keep track of which items to load on scrolling as well as the index to use to split the data array
   const [items, setItems] = useState([]);
   const [index, setIndex] = useState(indexToUse);
-
-  
 
   // Get all countries that dinosaurs have been found in
   const dinosaursCountries = getFoundInCountries(dinosaursData);
@@ -100,7 +98,6 @@ function SearchPage() {
 
   //Handle scrolling and loading on scroll
   useEffect(() => {
-
     const fetchMoreDinosaurData = () => {
       setItems((prevItems) => [
         ...prevItems,
@@ -112,7 +109,7 @@ function SearchPage() {
     function handleScroll(e) {
       const { scrollHeight, scrollTop, clientHeight } =
         e.target.scrollingElement;
-      const isBottom = Math.abs(scrollHeight - (scrollTop +clientHeight)) <=1;
+      const isBottom = Math.abs(scrollHeight - (scrollTop + clientHeight)) <= 1;
 
       if (isBottom) {
         fetchMoreDinosaurData();
@@ -237,15 +234,12 @@ function SearchPage() {
         <div id="filters" className="mx-[5%] lg:m-0" hidden={true}>
           <div className="grid md:grid-cols-4 md:gap-x-6 mb-[5%]">
             {/**DIET */}
-            <div>
-              <label htmlFor="diet" className="sr-only ">
-                Diet Select
-              </label>
-              <select
-                name="diet"
-                id="diet"
-                onChange={(e) => setDietFilter(e.target.value)}
-                className="
+            <select
+              name="diet"
+              id="diet"
+              value={dietFilter}
+              onChange={(e) => setDietFilter(e.target.value)}
+              className="
             py-2.5 px-0 
             w-full text-sm 
             text-text-light 
@@ -257,32 +251,27 @@ function SearchPage() {
             focus:ring-0
             dark:outline-none
             cursor-pointer
-          
             "
-              >
-                <option value="">Diet</option>
-                {/* <option value="">None</option> */}
-                <option value="herbivorous" className="hover:bg-primary">
-                  Herbivorous
-                </option>
-                <option value="carnivorous">Carnivorous</option>
-                <option value="omnivorous">Omnivorous</option>
-                <option value="herbivorous or omnivorous">
-                  Herbivorous or Omnivorous
-                </option>
-                <option value="unknown">Unknown</option>
-              </select>
-            </div>
+            >
+              <option value="">Diet (None)</option>
+              <option value="herbivorous" className="hover:bg-primary">
+                Herbivorous
+              </option>
+              <option value="carnivorous">Carnivorous</option>
+              <option value="omnivorous">Omnivorous</option>
+              <option value="herbivorous or omnivorous">
+                Herbivorous or Omnivorous
+              </option>
+              <option value="unknown">Unknown</option>
+            </select>
+
             {/**COUNTRY */}
-            <div className="">
-              <label htmlFor="country" className="sr-only">
-                Country
-              </label>
-              <select
-                name="country"
-                id="country"
-                onChange={(e) => setCountryFilter(e.target.value)}
-                className="
+            <select
+              name="country"
+              id="country"
+              value={countryFilter}
+              onChange={(e) => setCountryFilter(e.target.value)}
+              className="
             py-2.5 px-0 
             w-full text-sm 
             text-text-light 
@@ -291,30 +280,25 @@ function SearchPage() {
             border-secondary-400 
             focus:outline-none 
             "
-              >
-                <option value="">Country</option>
-                {dinosaursCountries &&
-                  dinosaursCountries.length > 0 &&
-                  dinosaursCountries.map((country) => {
-                    return (
-                      <option key={uuidv4()} value={country}>
-                        {country}
-                      </option>
-                    );
-                  })}
-              </select>
-            </div>
+            >
+              <option value="">Country (None)</option>
+              {dinosaursCountries &&
+                dinosaursCountries.length > 0 &&
+                dinosaursCountries.map((country) => {
+                  return (
+                    <option key={uuidv4()} value={country}>
+                      {country}
+                    </option>
+                  );
+                })}
+            </select>
 
             {/**WEIGHT */}
-            <div className="">
-              <label htmlFor="weight" className="sr-only">
-                Weight Range
-              </label>
-              <select
-                name="weight"
-                id="weight"
-                onChange={(e) => handleWeightInput(e)}
-                className="
+            <select
+              name="weight"
+              id="weight"
+              onChange={(e) => handleWeightInput(e)}
+              className="
             py-2.5 px-0 
             w-full text-sm 
             text-text-light 
@@ -323,26 +307,20 @@ function SearchPage() {
             border-secondary-400 
             focus:outline-none 
             "
-              >
-                <option value="None">Weight Range</option>
-                <option value="0-5000">0 - 5.000kg</option>
-                <option value="5000-10000">5.000 - 10.000kg</option>
-                <option value="10000-15000">10.000 - 15.000kg</option>
-                <option value="15000-Infinity">&gt;15.000kg</option>
-              </select>
-            </div>
+            >
+              <option value="None">Weight (None)</option>
+              <option value="0-5000">0 - 5.000kg</option>
+              <option value="5000-10000">5.000 - 10.000kg</option>
+              <option value="10000-15000">10.000 - 15.000kg</option>
+              <option value="15000-Infinity">&gt;15.000kg</option>
+            </select>
 
             {/**LENGTH */}
-            <div className="">
-              <label htmlFor="length" className="sr-only">
-                Length Range
-              </label>
-
-              <select
-                name="length"
-                id="length"
-                onChange={(e) => handleLengthInput(e)}
-                className="
+            <select
+              name="length"
+              id="length"
+              onChange={(e) => handleLengthInput(e)}
+              className="
             py-2.5 px-0 
             w-full text-sm 
             text-text-light 
@@ -351,14 +329,13 @@ function SearchPage() {
             border-secondary-400 
             focus:outline-none 
             "
-              >
-                <option value="None">Length Range</option>
-                <option value="0-1">&lt;1m</option>
-                <option value="1-20">1 - 20m</option>
-                <option value="20-40">20 - 40m</option>
-                <option value="40-Infinity">&gt;40m</option>
-              </select>
-            </div>
+            >
+              <option value="None">Length (None)</option>
+              <option value="0-1">&lt;1m</option>
+              <option value="1-20">1 - 20m</option>
+              <option value="20-40">20 - 40m</option>
+              <option value="40-Infinity">&gt;40m</option>
+            </select>
           </div>
         </div>
 
