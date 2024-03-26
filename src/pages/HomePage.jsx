@@ -1,5 +1,6 @@
 //Components
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 import { Link } from "react-router-dom";
 
@@ -50,6 +51,7 @@ function HomePage() {
         </section>
       </div>
       <div className="h-screen bg-bg-secondary"></div>
+      <Footer />
     </>
   );
 }
