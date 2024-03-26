@@ -1,7 +1,7 @@
 function Footer() {
   return (
-    <footer className="container py-14 bg-primary text-text-light">
-      <div className="flex justify-center items-stretch gap-28 border-solid border-b-2 border-bg-secondary pb-14">
+    <footer className="container py-14 bg-primary text-text-light w-full">
+      <div className="flex flex-col lg:flex-row justify-center items-stretch gap-14 md:gap-28 border-solid border-b-2 border-bg-secondary pb-14">
         <div className="flex-[1] flex flex-col gap-7">
           <div className="w-28 h-7 bg-[url(../assets/img/LOGO_temp.png)] bg-center bg-no-repeat bg-contain"></div>
           <p className="block text-sm">
@@ -16,18 +16,18 @@ function Footer() {
 
           <p className="block font-bold">Get Our Updates</p>
 
-          <div className="w-full relative flex justify-center items-stretch bg-secondary">
+          <div className="w-full relative flex lg:justify-center items-stretch bg-secondary">
             <input
               type="text"
               placeholder=""
-              className="flex-[1] p-2 border-[none]"
+              className="lg:flex-[1] p-2 border-[none]"
             />
             <button type="submit" className="px-5 py-0 font-bold cursor-pointer bg-secondary-800">
               SUBSCRIBE
             </button>
           </div>
         </div>
-        <div className="flex-[1] flex justify-center items-stretch gap-12">
+        <div className="flex-[1] flex flex-col md:flex-row justify-center items-stretch gap-10 md:gap-12">
           <div className="flex-[1] h-full flex flex-col justify-between mb-6">
             <div className="flex flex-col">
               <div className="font-bold mb-3.5">Company</div>
@@ -56,7 +56,7 @@ function Footer() {
             </div>
           </div>
 
-          <div className="flex-[1] h-full flex flex-col justify-between">
+          <div className="flex-[1] h-full flex flex-col justify-between gap-6 lg:gap-0">
             <div className="flex flex-col">
               <a className="font-bold mb-3.5">Support</a>
               <a href="#" className="block text-sm mb-3 cursor-pointer hover:text-primary-400">Order Tracking</a>
@@ -77,7 +77,7 @@ function Footer() {
           </div>
         </div>
       </div>
-      <div className="flex items-center text-xs mx-0 my-4 gap-3">
+      <div className="flex justify-center md:justify-start items-center text-xs mx-0 my-4 gap-3">
         <a href="#" className="block cursor-pointer hover:text-primary-400">Privacy Policy</a>
         <div>|</div>
         <a href="#" className="block cursor-pointer hover:text-primary-400">Terms & Conditions</a>
