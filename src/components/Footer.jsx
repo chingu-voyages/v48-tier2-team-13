@@ -16,13 +16,13 @@ function Footer() {
 
           <p className="block font-bold">Get Our Updates</p>
 
-          <div className="w-full relative flex lg:justify-center items-stretch bg-secondary">
+          <div className="w-full relative flex flex-col sm:flex-row lg:justify-center gap-1 sm:gap-0 items-stretch bg-secondary">
             <input
               type="text"
               placeholder=""
               className="lg:flex-[1] p-2 border-[none]"
             />
-            <button type="submit" className="px-5 py-0 font-bold cursor-pointer bg-secondary-800">
+            <button type="submit" className="px-5 py-2 sm:py-0 font-bold cursor-pointer bg-secondary-800">
               SUBSCRIBE
             </button>
           </div>
