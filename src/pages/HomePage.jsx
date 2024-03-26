@@ -1,4 +1,5 @@
 //Components
+import DinosaursNews from "../components/DinosaursNews";
 import Navbar from "../components/Navbar";
 
 import { Link } from "react-router-dom";
@@ -49,7 +50,9 @@ function HomePage() {
           </div>
         </section>
       </div>
-      <div className="h-screen bg-bg-secondary"></div>
+      <div className="h-screen bg-bg-secondary">
+        <DinosaursNews/>
+      </div>
     </>
   );
 }
