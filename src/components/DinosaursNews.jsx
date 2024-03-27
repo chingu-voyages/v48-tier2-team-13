@@ -5,7 +5,7 @@ import Loader from "./Loader";
 import { v4 as uuidv4 } from "uuid";
 
 //test data that i used in order to not reach max daily limit of 100 news requests
-import { testData } from "../../dinosaurNewsTestData";
+//import { testData } from "../../dinosaurNewsTestData";
 
 //Carousel
 import "slick-carousel/slick/slick.css";
@@ -16,29 +16,29 @@ import Slider from "react-slick";
 import {ArrowLeftIcon, ArrowRightIcon,} from '../assets/img/ArrowIcons'
 
 function DinosaursNews() {
-  const [dinosaursNews, setDinosaursNews] = useState(testData);
+  const [dinosaursNews, setDinosaursNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const arrowRef = useRef();
 
-  // useEffect(() => {
-  //   fetchDinosaursNews()
-  //     .then((data) => {
-  //       setDinosaursNews(data);
-  //     })
-  //     .catch((error) => {
-  //       setError(error);
-  //     })
-  //     .finally(() => setLoading(false));
-  // }, []);
+  useEffect(() => {
+    fetchDinosaursNews()
+      .then((data) => {
+        setDinosaursNews(data);
+      })
+      .catch((error) => {
+        setError(error);
+      })
+      .finally(() => setLoading(false));
+  }, []);
 
-  // if (loading) {
-  //   return <Loader />;
-  // }
+  if (loading) {
+    return <Loader />;
+  }
 
-  // if (error) {
-  //   return <div>Error: There was an error with news data.</div>;
-  // }
+  if (error) {
+    return <div>Error: There was an error with news data.</div>;
+  }
 
     //Slider
     const settings= {
