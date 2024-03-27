@@ -5,9 +5,9 @@ function Footer() {
         <div className="flex-[1] flex flex-col gap-7">
           <div className="w-28 h-7 bg-[url(../assets/img/LOGO_temp.png)] bg-center bg-no-repeat bg-contain"></div>
           <p className="block text-sm">
-          All content on this website is protected by copyright and may not be used without 
-          permission from DinozzApp. For more information about our Privacy Policy, please 
-          contact our Support Center.
+            All content on this website is protected by copyright and may not be
+            used without permission from DinozzApp. For more information about
+            our Privacy Policy, please contact our Support Center.
           </p>
 
           <p className="block text-sm mb-7">
@@ -22,7 +22,10 @@ function Footer() {
               placeholder=""
               className="lg:flex-[1] p-2 border-[none]"
             />
-            <button type="submit" className="px-5 py-2 sm:py-0 font-bold cursor-pointer bg-secondary-800">
+            <button
+              type="submit"
+              className="px-5 py-2 sm:py-0 font-bold cursor-pointer bg-primary-600"
+            >
               SUBSCRIBE
             </button>
           </div>
@@ -31,11 +34,36 @@ function Footer() {
           <div className="flex-[1] h-full flex flex-col justify-between mb-6">
             <div className="flex flex-col">
               <div className="font-bold mb-3.5">Company</div>
-              <a href="#" className="block text-sm mb-3 cursor-pointer hover:text-primary-400">About Us</a>
-              <a href="#" className="block text-sm mb-3 cursor-pointer hover:text-primary-400">Testimonials</a>
-              <a href="#" className="block text-sm mb-3 cursor-pointer hover:text-primary-400">FAQs</a>
-              <a href="#" className="block text-sm mb-3 cursor-pointer hover:text-primary-400">Terms & Condition</a>
-              <a href="#" className="block text-sm mb-3 cursor-pointer hover:text-primary-400">Latest Update</a>
+              <a
+                href="#"
+                className="block text-sm mb-3 cursor-pointer hover:text-primary-600"
+              >
+                About Us
+              </a>
+              <a
+                href="#"
+                className="block text-sm mb-3 cursor-pointer hover:text-primary-600"
+              >
+                Testimonials
+              </a>
+              <a
+                href="#"
+                className="block text-sm mb-3 cursor-pointer hover:text-primary-600"
+              >
+                FAQs
+              </a>
+              <a
+                href="#"
+                className="block text-sm mb-3 cursor-pointer hover:text-primary-600"
+              >
+                Terms & Condition
+              </a>
+              <a
+                href="#"
+                className="block text-sm mb-3 cursor-pointer hover:text-primary-600"
+              >
+                Latest Update
+              </a>
             </div>
 
             <div>
@@ -59,11 +87,36 @@ function Footer() {
           <div className="flex-[1] h-full flex flex-col justify-between gap-6 lg:gap-0">
             <div className="flex flex-col">
               <a className="font-bold mb-3.5">Support</a>
-              <a href="#" className="block text-sm mb-3 cursor-pointer hover:text-primary-400">Order Tracking</a>
-              <a href="#" className="block text-sm mb-3 cursor-pointer hover:text-primary-400">Payment Guide</a>
-              <a href="#" className="block text-sm mb-3 cursor-pointer hover:text-primary-400">Help Centre</a>
-              <a href="#" className="block text-sm mb-3 cursor-pointer hover:text-primary-400">Privacy Policy</a>
-              <a href="#" className="block text-sm mb-3 cursor-pointer hover:text-primary-400">Return Policy</a>
+              <a
+                href="#"
+                className="block text-sm mb-3 cursor-pointer hover:text-primary-600"
+              >
+                Order Tracking
+              </a>
+              <a
+                href="#"
+                className="block text-sm mb-3 cursor-pointer hover:text-primary-600"
+              >
+                Payment Guide
+              </a>
+              <a
+                href="#"
+                className="block text-sm mb-3 cursor-pointer hover:text-primary-600"
+              >
+                Help Centre
+              </a>
+              <a
+                href="#"
+                className="block text-sm mb-3 cursor-pointer hover:text-primary-600"
+              >
+                Privacy Policy
+              </a>
+              <a
+                href="#"
+                className="block text-sm mb-3 cursor-pointer hover:text-primary-600"
+              >
+                Return Policy
+              </a>
             </div>
 
             <div>
@@ -78,11 +131,17 @@ function Footer() {
         </div>
       </div>
       <div className="flex justify-center md:justify-start items-center text-xs mx-0 my-4 gap-3">
-        <a href="#" className="block cursor-pointer hover:text-primary-400">Privacy Policy</a>
+        <a href="#" className="block cursor-pointer hover:text-primary-600">
+          Privacy Policy
+        </a>
         <div>|</div>
-        <a href="#" className="block cursor-pointer hover:text-primary-400">Terms & Conditions</a>
+        <a href="#" className="block cursor-pointer hover:text-primary-600">
+          Terms & Conditions
+        </a>
         <div>|</div>
-        <a href="#" className="block cursor-pointer hover:text-primary-400">Sitemap</a>
+        <a href="#" className="block cursor-pointer hover:text-primary-600">
+          Sitemap
+        </a>
       </div>
     </footer>
   );
