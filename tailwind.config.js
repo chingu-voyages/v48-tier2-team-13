@@ -42,7 +42,7 @@ export default {
         950: "#141414",
       },
       bg: {
-        primary: "#1E1E1E",
+        primary: "#121212",
         secondary: "#272727",
       },
       text: {
