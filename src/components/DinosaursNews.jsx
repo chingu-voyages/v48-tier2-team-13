@@ -94,7 +94,7 @@ function DinosaursNews() {
       }
     };
 
-    const displayNews =  dinosaursNews.length > 0 &&
+    const displayNews =  dinosaursNews?.length > 0 &&
       dinosaursNews.map((article) => (
         <NewsArticle key={uuidv4()} article={article} />
       ))
