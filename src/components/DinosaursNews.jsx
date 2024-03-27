@@ -30,7 +30,7 @@ function DinosaursNews() {
 
   return (
     <>
-      {dinosaursNews.length > 0 &&
+      {dinosaursNews?.length > 0 &&
         dinosaursNews.map((article) => (
           <NewsArticle key={uuidv4()} article={article} />
         ))}
