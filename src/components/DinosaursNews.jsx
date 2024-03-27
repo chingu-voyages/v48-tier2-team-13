@@ -16,38 +16,48 @@ import Slider from "react-slick";
 import {ArrowLeftIcon, ArrowRightIcon,} from '../assets/img/ArrowIcons'
 
 function DinosaursNews() {
-  const [dinosaursNews, setDinosaursNews] = useState([]);
+  const [dinosaursNews, setDinosaursNews] = useState(testData);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const arrowRef = useRef();
 
-  useEffect(() => {
-    fetchDinosaursNews()
-      .then((data) => {
-        setDinosaursNews(data);
-      })
-      .catch((error) => {
-        setError(error);
-      })
-      .finally(() => setLoading(false));
-  }, []);
+  // useEffect(() => {
+  //   fetchDinosaursNews()
+  //     .then((data) => {
+  //       setDinosaursNews(data);
+  //     })
+  //     .catch((error) => {
+  //       setError(error);
+  //     })
+  //     .finally(() => setLoading(false));
+  // }, []);
 
-  if (loading) {
-    return <Loader />;
-  }
+  // if (loading) {
+  //   return <Loader />;
+  // }
 
-  if (error) {
-    return <div>Error: There was an error with news data.</div>;
-  }
+  // if (error) {
+  //   return <div>Error: There was an error with news data.</div>;
+  // }
 
     //Slider
     const settings= {
       dots: false,
       infinite: true,
       speed: 500,
-      slidesToShow: 3,
-      slidesToScroll: 3,
+      slidesToShow: 5,
+      slidesToScroll: 5,
       responsive: [
+
+        {
+          breakpoint: 1536,
+          settings: {
+            slidesToShow: 4,
+            slidesToScroll: 4,
+          }
+        },
+
+
         {
           breakpoint: 1024,
           settings: {
@@ -56,7 +66,15 @@ function DinosaursNews() {
           }
         },
         {
-          breakpoint: 480,
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+          }
+        },
+
+        {
+          breakpoint: 640,
           settings: {
             slidesToShow: 1,
             slidesToScroll: 1
@@ -82,13 +100,13 @@ function DinosaursNews() {
       ))
 
   return (
-    <div className="bg-bg-secondary pb-0 mb-0 lg:pb-[5%] md:pb-0">
+    <div className="bg-bg-secondary pb-0 mb-0 lg:pb-[5%] md:mb-0">
      <section className="relative z-0 flex lg:mx-[5%] pt-[5%]"  >
-      <div className="absolute left-[12%] lg:left-[4.5%] lg:top-12">
+      <div className="absolute left-[12%] lg:left-[10%] lg:top-8">
       <h1 className="text-text-light font-primary font-bold leading-8 text-2xl  ">Latest News</h1>
       </div>
      
-      <Slider className="lg:h-[30%] h-full w-full overflow-x-hidden lg:mx-[3%] mx-[10%] my-[20%] lg:my-0" ref={arrowRef}{...settings}>
+      <Slider className="lg:h-[30%] h-full w-full overflow-x-hidden lg:mx-[8%] mx-[10%] my-[20%] lg:my-0" ref={arrowRef}{...settings}>
       {displayNews}
       </Slider>
       <div className="">
