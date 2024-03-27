@@ -1,19 +1,16 @@
 //Import hooks
 import { useContext, useState, useMemo, useEffect } from "react";
 import { AppContext } from "../App";
-import { Link } from "react-router-dom";
 
 //Import components
 import SearchItemPreview from "../components/SearchItemPreview";
 import Loader from "../components/Loader";
-import { ReactSearchAutocomplete } from "react-search-autocomplete";
-import { CloseIcon } from "../assets/img/CloseIcon";
-import { FilterIcon } from "../assets/img/FilterIcon";
 import Navbar from "../components/Navbar";
 
 // Libs/Utils
 import { v4 as uuidv4 } from "uuid";
 import getFoundInCountries from "../utils/getFoundInCountries";
+import Footer from "../components/Footer";
 
 const SEARCH_PAGE = "SEARCH_PAGE";
 
@@ -142,9 +139,9 @@ function SearchPage() {
     setLengthFilter(range);
   }
 
-  //Fetch suggestion based on search query (on name)
+  //Get suggestion based on search query (on name)
   useEffect(() => {
-    const fetchSuggestions = (searchText) => {
+    const getSuggestions = (searchText) => {
       setSuggestions(
         filteredDinosaurItems.filter((name) =>
           name.name.toLowerCase().startsWith(searchText)
@@ -155,207 +152,188 @@ function SearchPage() {
     if (searchText.trim === "") {
       setSuggestions([]);
     } else {
-      fetchSuggestions(searchText);
+      getSuggestions(searchText);
     }
   }, [searchText, filteredDinosaurItems]);
-  // Set suggestions list based on search query
-
-  //Remove search Icon when searching, display the default close Icon
-  const [closeIcon, setCloseIconVisibility] = useState(true);
-  function handleSearch(e) {
-    setSearchText(e.toLowerCase());
-    setCloseIconVisibility(!closeIcon);
-  }
-
-  function handleSelect(e) {
-    setSearchText(e.name.toLowerCase());
-    setSuggestions([]);
-  }
-
-  function handleCloseIcon() {
-    setCloseIconVisibility(!closeIcon);
-    setSearchText("");
-  }
-
-  //Filters
-  const [hidden, setHidden] = useState(true);
-  function handleFilterDisplay() {
-    document.getElementById("filters").hidden = !hidden;
-    setHidden(document.getElementById("filters").hidden);
-  }
 
   return (
     <>
       <Navbar activePage={SEARCH_PAGE} />
-      <div className="bg-bg-primary mt-[100px] lg:mx-[10%] sm:mx-[5%]">
-        <div className="relative">
-          <div id="searchBar" className="cursor-pointer">
-            <ReactSearchAutocomplete
-              inputSearchString={searchText}
-              items={suggestions}
-              onSearch={(e) => handleSearch(e)}
-              onSelect={(e) => handleSelect(e)}
-              placeholder="Search by dinosaur name..."
-              showIcon={false}
-              showClear={false}
-              onClear={() => setSuggestions([])}
-              styling={{
-                backgroundColor: "#454545",
-                border: "none",
-                placeholderColor: "#E7E7E7",
-                color: "#E7E7E7",
-                hoverBackgroundColor: "#6D6D6D",
-                fontFamily: "Inter",
-                zIndex: 3,
-              }}
-            />
-          </div>
-          <div
-            id="closeIcon"
-            className="absolute right-6 top-3 mr-[10%] lg:mr-[3%] z-40"
-          >
-            {closeIcon ? (
-              ""
-            ) : (
-              <Link onClick={handleCloseIcon}>
-                <CloseIcon />{" "}
-              </Link>
-            )}
-          </div>
-          <div id="filterIcon" className="absolute right-6 top-2 z-40">
-            <Link
-              className="hover:brightness-150"
-              onClick={handleFilterDisplay}
-            >
-              <FilterIcon></FilterIcon>
-            </Link>
-          </div>
-        </div>
-        <div id="filters" className="mx-[5%] lg:m-0" hidden={true}>
-          <div className="grid md:grid-cols-4 md:gap-x-6 mb-[5%]">
-            {/**DIET */}
-            <select
-              name="diet"
-              id="diet"
-              value={dietFilter}
-              onChange={(e) => setDietFilter(e.target.value)}
-              className="
+      <div className="container">
+        <div className="mt-[85px] sm:mt-[100px] bg-bg-primary">
+          <div className="flex flex-col items-center text-text-light">
+            <div className="flex flex-col items-center mb-[22px]">
+              <h1 className="text-center font-black text-[37px] md:text-[54px] xl:text-[60px]">
+                Browse Dinosaurs
+              </h1>
+              <p className="text-[15px] md:text-[16px] xl:text-[17px] text-center">
+                Browse dinosaurs by their name, country they’re found in, diet,
+                size, and weight.
+              </p>
+            </div>
+
+            <div className="mb-[40px] w-full max-w-[800px] relative flex flex-col items-center">
+              <input
+                type="search"
+                className={`bg-bg-secondary text-text-light py-2 px-4 rounded-t-[10px] w-full focus:outline-none focus:shadow-md ${
+                  searchText === ""
+                    ? "rounded-b-[10px] border-b-[1px] border-b-transparent"
+                    : "rounded-b-[0px] border-b-[1px] border-neutral-700"
+                }`}
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+                placeholder="Search by name..."
+              />
+
+              <div className="rounded-b-[10px] w-full bg-bg-secondary max-h-[100px] overflow-y-scroll search-scroll-bar absolute top-[41px] z-10">
+                {suggestions.length > 0 &&
+                  searchText !== "" &&
+                  suggestions.map((item) => (
+                    <div
+                      key={item.id}
+                      className="px-3 py-1 hover:bg-neutral-800 cursor-pointer"
+                      onClick={() => setSearchText(item.name)}
+                    >
+                      {item.name}
+                    </div>
+                  ))}
+              </div>
+            </div>
+
+            <div className="w-full max-w-[1200px] grid md:grid-cols-4 mb-[50px] gap-6 sm:mb-[85px]">
+              {/**DIET */}
+              <select
+                name="diet"
+                id="diet"
+                value={dietFilter}
+                onChange={(e) => setDietFilter(e.target.value)}
+                className="
             py-2.5 px-0 
             w-full text-sm 
             text-text-light 
             bg-bg-primary 
-            border-b-2 
-            border-secondary-400 
+            border-b-4 
+            border-bg-secondary 
             outline-none
             focus:outline-none 
             focus:ring-0
             dark:outline-none
-            cursor-pointer
+            font-bold
             "
-            >
-              <option value="">Diet (None)</option>
-              <option value="herbivorous" className="hover:bg-primary">
-                Herbivorous
-              </option>
-              <option value="carnivorous">Carnivorous</option>
-              <option value="omnivorous">Omnivorous</option>
-              <option value="herbivorous or omnivorous">
-                Herbivorous or Omnivorous
-              </option>
-              <option value="unknown">Unknown</option>
-            </select>
+              >
+                <option value="">Diet (None)</option>
+                <option value="herbivorous" className="hover:bg-primary">
+                  Herbivorous
+                </option>
+                <option value="carnivorous">Carnivorous</option>
+                <option value="omnivorous">Omnivorous</option>
+                <option value="herbivorous or omnivorous">
+                  Herbivorous or Omnivorous
+                </option>
+                <option value="unknown">Unknown</option>
+              </select>
 
-            {/**COUNTRY */}
-            <select
-              name="country"
-              id="country"
-              value={countryFilter}
-              onChange={(e) => setCountryFilter(e.target.value)}
-              className="
+              {/**COUNTRY */}
+              <select
+                name="country"
+                id="country"
+                value={countryFilter}
+                onChange={(e) => setCountryFilter(e.target.value)}
+                className="
             py-2.5 px-0 
             w-full text-sm 
             text-text-light 
             bg-bg-primary 
-            border-0 border-b-2 
-            border-secondary-400 
+            border-0 border-b-4 
+            border-bg-secondary 
             focus:outline-none 
+            font-bold
             "
-            >
-              <option value="">Country (None)</option>
-              {dinosaursCountries &&
-                dinosaursCountries.length > 0 &&
-                dinosaursCountries.map((country) => {
-                  return (
-                    <option key={uuidv4()} value={country}>
-                      {country}
-                    </option>
-                  );
-                })}
-            </select>
+              >
+                <option value="">Country (None)</option>
+                {dinosaursCountries &&
+                  dinosaursCountries.length > 0 &&
+                  dinosaursCountries.map((country) => {
+                    return (
+                      <option key={uuidv4()} value={country}>
+                        {country}
+                      </option>
+                    );
+                  })}
+              </select>
 
-            {/**WEIGHT */}
-            <select
-              name="weight"
-              id="weight"
-              onChange={(e) => handleWeightInput(e)}
-              className="
+              {/**WEIGHT */}
+              <select
+                name="weight"
+                id="weight"
+                onChange={(e) => handleWeightInput(e)}
+                className="
             py-2.5 px-0 
             w-full text-sm 
             text-text-light 
             bg-bg-primary 
-            border-0 border-b-2 
-            border-secondary-400 
+            border-0 border-b-4 
+            border-bg-secondary 
             focus:outline-none 
+            font-bold
             "
-            >
-              <option value="None">Weight (None)</option>
-              <option value="0-5000">0 - 5.000kg</option>
-              <option value="5000-10000">5.000 - 10.000kg</option>
-              <option value="10000-15000">10.000 - 15.000kg</option>
-              <option value="15000-Infinity">&gt;15.000kg</option>
-            </select>
+              >
+                <option value="None">Weight (None)</option>
+                <option value="0-5000">0 - 5.000kg</option>
+                <option value="5000-10000">5.000 - 10.000kg</option>
+                <option value="10000-15000">10.000 - 15.000kg</option>
+                <option value="15000-Infinity">&gt;15.000kg</option>
+              </select>
 
-            {/**LENGTH */}
-            <select
-              name="length"
-              id="length"
-              onChange={(e) => handleLengthInput(e)}
-              className="
+              {/**LENGTH */}
+              <select
+                name="length"
+                id="length"
+                onChange={(e) => handleLengthInput(e)}
+                className="
             py-2.5 px-0 
             w-full text-sm 
             text-text-light 
             bg-bg-primary 
-            border-0 border-b-2 
-            border-secondary-400 
+            border-0 border-b-4 
+            border-bg-secondary 
             focus:outline-none 
+            font-bold
             "
-            >
-              <option value="None">Length (None)</option>
-              <option value="0-1">&lt;1m</option>
-              <option value="1-20">1 - 20m</option>
-              <option value="20-40">20 - 40m</option>
-              <option value="40-Infinity">&gt;40m</option>
-            </select>
+              >
+                <option value="None">Length (None)</option>
+                <option value="0-1">&lt;1m</option>
+                <option value="1-20">1 - 20m</option>
+                <option value="20-40">20 - 40m</option>
+                <option value="40-Infinity">&gt;40m</option>
+              </select>
+            </div>
           </div>
         </div>
-
-        {loading ? (
-          <Loader />
-        ) : filteredDinosaurItems.length === 0 ? (
-          <div>Your search didn&apos;t return any results.</div>
-        ) : (
-          <div className="mx-[5%] lg:mx-0 lg:w-full lg:max-w-full lg:grid lg:grid-cols-4 lg:gap-3 mt-3">
-            {items.map((dinosaurItem) => (
-              <SearchItemPreview
-                key={uuidv4()}
-                previewDetails={{
-                  dinosaurItem,
-                }}
-              />
-            ))}
-          </div>
-        )}
       </div>
+      <div className="container bg-bg-secondary py-[40px]">
+        <div>
+          {loading ? (
+            <Loader />
+          ) : filteredDinosaurItems.length === 0 ? (
+            <div className="text-text-light text-center font-bold py-[50px] text-[20px]">
+              Your search didn&apos;t return any results.
+            </div>
+          ) : (
+            <div className="mx-[5%] lg:mx-0 lg:w-full lg:max-w-full lg:grid lg:grid-cols-4 lg:gap-3 mt-3">
+              {items.map((dinosaurItem) => (
+                <SearchItemPreview
+                  key={uuidv4()}
+                  previewDetails={{
+                    dinosaurItem,
+                  }}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+      {filteredDinosaurItems.length === 0 && <Footer />}
     </>
   );
 }
