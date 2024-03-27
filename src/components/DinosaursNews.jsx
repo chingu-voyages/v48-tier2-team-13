@@ -4,7 +4,7 @@ import NewsArticle from "./NewsArticle";
 import Loader from "./Loader";
 import { v4 as uuidv4 } from "uuid";
 
-//test data
+//test data that i used in order to not reach max daily limit of 100 news requests
 import { testData } from "../../dinosaurNewsTestData";
 
 //Carousel
@@ -16,7 +16,7 @@ import Slider from "react-slick";
 import {ArrowLeftIcon, ArrowRightIcon,} from '../assets/img/ArrowIcons'
 
 function DinosaursNews() {
-  const [dinosaursNews, setDinosaursNews] = useState([testData]);
+  const [dinosaursNews, setDinosaursNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const arrowRef = useRef();
@@ -56,14 +56,6 @@ function DinosaursNews() {
           }
         },
         {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 2,
-            initialSlide: 2
-          }
-        },
-        {
           breakpoint: 480,
           settings: {
             slidesToShow: 1,
@@ -90,20 +82,20 @@ function DinosaursNews() {
       ))
 
   return (
-    <div className="bg-bg-secondary ">
+    <div className="bg-bg-secondary pb-0 mb-0 lg:pb-[5%] md:pb-0">
      <section className="relative z-0 flex lg:mx-[5%] pt-[5%]"  >
-      <div className=" left-14">
-      <h1 className="text-text-light font-bold text-xl  mb-[5%] ">Latest News</h1>
+      <div className="absolute left-[12%] lg:left-[4.5%] lg:top-12">
+      <h1 className="text-text-light font-primary font-bold leading-8 text-2xl  ">Latest News</h1>
       </div>
      
-      <Slider className="lg:h-[30%] overflow-x-hidden lg:mx-[3%] " ref={arrowRef}{...settings}>
+      <Slider className="lg:h-[30%] h-full w-full overflow-x-hidden lg:mx-[3%] mx-[10%] my-[20%] lg:my-0" ref={arrowRef}{...settings}>
       {displayNews}
       </Slider>
       <div className="">
       <button className="absolute inset-y-0 left-0 z-1 flex h-full items-center justify-center " onClick={() => incrementAndDecrement("decrement")}>
           <ArrowRightIcon />
         </button>
-        <button className="flex h-full items-center justify-center " onClick={() => incrementAndDecrement("increment")}>
+        <button className="absolute inset-y-0 right-0 z-1 flex h-full items-center justify-center " onClick={() => incrementAndDecrement("increment")}>
           <ArrowLeftIcon />
         </button>
 
