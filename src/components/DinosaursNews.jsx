@@ -13,31 +13,32 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
 //Icons
-import {ArrowLeftIcon, ArrowRightIcon} from '../assets/img/ArrowIcons'
+import {ArrowLeftIcon, ArrowRightIcon,} from '../assets/img/ArrowIcons'
 
 function DinosaursNews() {
-  const [dinosaursNews, setDinosaursNews] = useState(testData);
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState(null);
+  const [dinosaursNews, setDinosaursNews] = useState([testData]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const arrowRef = useRef();
 
-  // useEffect(() => {
-  //   fetchDinosaursNews()
-  //     .then((data) => {
-  //       setDinosaursNews(data);
-  //     })
-  //     .catch((error) => {
-  //       setError(error);
-  //     })
-  //     .finally(() => setLoading(false));
-  // }, []);
+  useEffect(() => {
+    fetchDinosaursNews()
+      .then((data) => {
+        setDinosaursNews(data);
+      })
+      .catch((error) => {
+        setError(error);
+      })
+      .finally(() => setLoading(false));
+  }, []);
 
-  // if (loading) {
-  //   return <Loader />;
-  // }
+  if (loading) {
+    return <Loader />;
+  }
 
-  // if (error) {
-  //   return <div>Error: There was an error with news data.</div>;
-  // }
+  if (error) {
+    return <div>Error: There was an error with news data.</div>;
+  }
 
     //Slider
     const settings= {
@@ -46,11 +47,34 @@ function DinosaursNews() {
       speed: 500,
       slidesToShow: 3,
       slidesToScroll: 3,
-
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3,
+          }
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+            initialSlide: 2
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
 
     }
 
-    const arrowRef = useRef();
+    
   
     const incrementAndDecrement = (btn) => {
       if (btn === "increment") {
@@ -66,16 +90,20 @@ function DinosaursNews() {
       ))
 
   return (
-    <>
-     <section  className="slider-container">
-      <Slider ref={arrowRef}{...settings}>
+    <div className="bg-bg-secondary ">
+     <section className="relative z-0 flex lg:mx-[5%] pt-[5%]"  >
+      <div className=" left-14">
+      <h1 className="text-text-light font-bold text-xl  mb-[5%] ">Latest News</h1>
+      </div>
+     
+      <Slider className="lg:h-[30%] overflow-x-hidden lg:mx-[3%] " ref={arrowRef}{...settings}>
       {displayNews}
       </Slider>
-      <div className="slick-arrows">
-      <button onClick={() => incrementAndDecrement("decrement")}>
+      <div className="">
+      <button className="absolute inset-y-0 left-0 z-1 flex h-full items-center justify-center " onClick={() => incrementAndDecrement("decrement")}>
           <ArrowRightIcon />
         </button>
-        <button onClick={() => incrementAndDecrement("increment")}>
+        <button className="flex h-full items-center justify-center " onClick={() => incrementAndDecrement("increment")}>
           <ArrowLeftIcon />
         </button>
 
@@ -87,7 +115,7 @@ function DinosaursNews() {
  
 
    
-    </>
+    </div>
   );
 }
 

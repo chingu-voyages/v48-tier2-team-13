@@ -32,6 +32,9 @@ export default function Map(geoCoordinates) {
           defaultZoom={1}
           defaultCenter={defaultPosition}
           mapId={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
+          style= {{
+            background: 'black'
+          }}
         >
           {position.map((location) => (
             <>

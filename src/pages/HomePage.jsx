@@ -50,7 +50,7 @@ function HomePage() {
           </div>
         </section>
       </div>
-      <div className="h-screen bg-bg-secondary">
+      <div className="h-screen bg-bg-primary">
         <DinosaursNews/>
       </div>
     </>
