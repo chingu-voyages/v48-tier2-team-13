@@ -3,11 +3,11 @@ import { FindOutMoreIcon } from "../assets/img/ArrowIcons";
 
 function NewsArticle({ article }) {
   return (
-    <div className="shadow-lg rounded-xl bg-bg-primary flex flex-col h-[375px]">
+    <div className="shadow-lg bg-bg-primary flex flex-col h-[375px]">
       <img
         src={article.image}
         alt="article-image"
-        className="w-full h-[180px] object-cover aspect-square rounded-t-xl"
+        className="w-full h-[180px] object-cover aspect-square"
       />
 
       <div className="p-4 flex flex-col justify-between flex-1">
