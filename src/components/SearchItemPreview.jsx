@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import defaultDinoImage from "../assets/img/default-dino-image.png";
 import { EmptyHeart, SolidHeart } from "../assets/img/FavoritesIcons.jsx";
 
-
 //utils imports
 import updateLocalStorage from "../utils/updateLocalStorage.js";
 
@@ -26,7 +25,7 @@ function SearchItemPreview(previewDetails) {
 
   return (
     <>
-      <div className="relative border border-neutral-200 border my-[5%] lg:my-0">
+      <div className="relative border border-neutral-200 my-[5%] lg:my-0">
         <div>
           {imageSrc === "N/A" ? (
             <img
@@ -49,27 +48,31 @@ function SearchItemPreview(previewDetails) {
         </span>
 
         <div className="text-text-light ml-[20%] mb-[20%]">
-          <h1 className="font-primary text-xl mb-[8%] text-secondary-500">{name.toUpperCase()}</h1>
-          <p className="font-secondary" >Weight is {weight === "N/A" ? "unknown" : weight + " kg"}</p>
-          <p className="font-secondary" >Length is {length === "N/A" ? "unknown" : length + " m"}</p>
-          <p className="font-secondary" >Found in {foundIn === "N/A" ? "unknown" : foundIn}</p>
-          <p className="font-secondary">Has a{'('}n{')'} {diet === "N/A" ? "unknown" : diet} diet </p>
+          <h1 className="font-primary text-xl mb-[8%] text-secondary-500">
+            {name.toUpperCase()}
+          </h1>
+          <p className="font-secondary">
+            Weight is {weight === "N/A" ? "unknown" : weight + " kg"}
+          </p>
+          <p className="font-secondary">
+            Length is {length === "N/A" ? "unknown" : length + " m"}
+          </p>
+          <p className="font-secondary">
+            Found in {foundIn === "N/A" ? "unknown" : foundIn}
+          </p>
+          <p className="font-secondary">
+            Has a{"("}n{")"} {diet === "N/A" ? "unknown" : diet} diet{" "}
+          </p>
         </div>
         <br></br>
         <br></br>
-        <button className="font-primary absolute inset-x-14 bottom-8 h-12 bg-primary-500 text-text-dark cursor-pointer rounded-lg" 
-         >
-
-<Link to={`/search/${id}`} 
-    state={{idParameter: id
-    }} 
-     > View more details
-            </Link>
-        </button> 
+        <button className="font-primary absolute inset-x-14 bottom-8 h-12 bg-primary-500 text-text-dark cursor-pointer rounded-lg">
+          <Link to={`/search/${id}`} state={{ idParameter: id }}>
+            {" "}
+            View more details
+          </Link>
+        </button>
       </div>
-
-            
-   
     </>
   );
 }
