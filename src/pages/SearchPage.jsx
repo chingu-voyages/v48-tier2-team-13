@@ -16,7 +16,7 @@ const SEARCH_PAGE = "SEARCH_PAGE";
 
 function SearchPage() {
   //Load dinosaurs data from api context
-  const { dinosaursData, loading } = useContext(AppContext);
+  const { dinosaursData, loadingDinosaursData } = useContext(AppContext);
   //Calculate screen size in order to upload first 5 (mobile) or 10(desktop) results and then the next 5 or 10 more
   const indexToUse = window.innerWidth < 960 ? 5 : 10;
 
@@ -314,7 +314,7 @@ function SearchPage() {
       <div className="bg-bg-secondary">
         <div className="container bg-bg-secondary py-[40px]">
           <div>
-            {loading ? (
+            {loadingDinosaursData ? (
               <Loader />
             ) : filteredDinosaurItems.length === 0 ? (
               <div className="text-text-light text-center font-bold py-[50px] text-[20px]">

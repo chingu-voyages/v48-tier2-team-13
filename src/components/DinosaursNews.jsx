@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from "react";
-import fetchDinosaursNews from "../services/NewsAPI/newsApi";
+import { useRef, useContext } from "react";
 import NewsArticle from "./NewsArticle";
 import Loader from "./Loader";
+import { AppContext } from "../App";
 import { v4 as uuidv4 } from "uuid";
 
 //test data that i used in order to not reach max daily limit of 100 news requests
@@ -16,27 +16,15 @@ import Slider from "react-slick";
 import { ArrowLeftIcon, ArrowRightIcon } from "../assets/img/ArrowIcons";
 
 function DinosaursNews() {
-  const [dinosaursNews, setDinosaursNews] = useState(testData);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { dinosaursNews, loadingDinosaursNews, errorDinosaursNews } =
+    useContext(AppContext);
   const arrowRef = useRef();
 
-  useEffect(() => {
-    fetchDinosaursNews()
-      .then((data) => {
-        setDinosaursNews(data);
-      })
-      .catch((error) => {
-        setError(error);
-      })
-      .finally(() => setLoading(false));
-  }, []);
-
-  if (loading) {
+  if (loadingDinosaursNews) {
     return <Loader />;
   }
 
-  if (error) {
+  if (errorDinosaursNews) {
     return <div>Error: There was an error with news data.</div>;
   }
 
