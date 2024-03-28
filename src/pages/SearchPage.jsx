@@ -311,26 +311,26 @@ function SearchPage() {
           </div>
         </div>
       </div>
-      <div className="container bg-bg-secondary py-[40px]">
-        <div>
-          {loading ? (
-            <Loader />
-          ) : filteredDinosaurItems.length === 0 ? (
-            <div className="text-text-light text-center font-bold py-[50px] text-[20px]">
-              Your search didn&apos;t return any results.
-            </div>
-          ) : (
-            <div className="mx-[5%] lg:mx-0 lg:w-full lg:max-w-full lg:grid lg:grid-cols-4 lg:gap-3 mt-3">
-              {items.map((dinosaurItem) => (
-                <SearchItemPreview
-                  key={uuidv4()}
-                  previewDetails={{
-                    dinosaurItem,
-                  }}
-                />
-              ))}
-            </div>
-          )}
+      <div className="bg-bg-secondary">
+        <div className="container bg-bg-secondary py-[40px]">
+          <div>
+            {loading ? (
+              <Loader />
+            ) : filteredDinosaurItems.length === 0 ? (
+              <div className="text-text-light text-center font-bold py-[50px] text-[20px]">
+                Your search didn&apos;t return any results.
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5">
+                {items.map((dinosaurItem) => (
+                  <SearchItemPreview
+                    key={uuidv4()}
+                    dinosaurItem={dinosaurItem}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
       {filteredDinosaurItems.length === 0 && <Footer />}

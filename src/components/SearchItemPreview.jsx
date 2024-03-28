@@ -1,5 +1,6 @@
 //React imports
 import { useState } from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 //Import assets
@@ -9,10 +10,9 @@ import { EmptyHeart, SolidHeart } from "../assets/img/FavoritesIcons.jsx";
 //utils imports
 import updateLocalStorage from "../utils/updateLocalStorage.js";
 
-function SearchItemPreview(previewDetails) {
+function SearchItemPreview({ dinosaurItem }) {
   //Load props
-  const { id, name, weight, imageSrc, length, foundIn, diet } =
-    previewDetails.previewDetails.dinosaurItem;
+  const { id, name, weight, imageSrc, length, foundIn, diet } = dinosaurItem;
 
   //Get favorites state from local storage
   const [favorite, setFavorite] = useState(localStorage.getItem(id));
@@ -24,57 +24,56 @@ function SearchItemPreview(previewDetails) {
   }
 
   return (
-    <>
-      <div className="relative border border-neutral-200 my-[5%] lg:my-0">
-        <div>
-          {imageSrc === "N/A" ? (
-            <img
-              className="rounded-[50%] h-[150px] w-[150px] mt-16 ml-[20%] mb-8 border-4 border-primary-500"
-              src={defaultDinoImage}
-              alt={name}
-            />
-          ) : (
-            <img
-              className="rounded-[50%] h-[150px] w-[150px] mt-16 ml-[20%] mb-8 border-4 border-primary-500"
-              src={imageSrc}
-              alt={name}
-            />
-          )}
-        </div>
-        <span className="absolute right-6 top-3">
-          <Link onClick={toggleFavorite}>
-            {favorite ? <SolidHeart /> : <EmptyHeart />}
-          </Link>
-        </span>
-
-        <div className="text-text-light ml-[20%] mb-[20%]">
-          <h1 className="font-primary text-xl mb-[8%] text-secondary-500">
-            {name.toUpperCase()}
-          </h1>
-          <p className="font-secondary">
-            Weight is {weight === "N/A" ? "unknown" : weight + " kg"}
-          </p>
-          <p className="font-secondary">
-            Length is {length === "N/A" ? "unknown" : length + " m"}
-          </p>
-          <p className="font-secondary">
-            Found in {foundIn === "N/A" ? "unknown" : foundIn}
-          </p>
-          <p className="font-secondary">
-            Has a{"("}n{")"} {diet === "N/A" ? "unknown" : diet} diet{" "}
-          </p>
-        </div>
-        <br></br>
-        <br></br>
-        <button className="font-primary absolute inset-x-14 bottom-8 h-12 bg-primary-500 text-text-dark cursor-pointer rounded-lg">
-          <Link to={`/search/${id}`} state={{ idParameter: id }}>
-            {" "}
-            View more details
-          </Link>
-        </button>
+    <div className="relative text-text-light">
+      <div className="bg-text-light overflow-hidden">
+        <img
+          src={imageSrc === "N/A" ? defaultDinoImage : imageSrc}
+          alt={name}
+          className="h-[200px] object-contain block mx-auto"
+        />
       </div>
-    </>
+      <div className="bg-bg-primary py-3 px-4 text-[15px]">
+        <div className="flex items-center justify-between mb-3">
+          <div className="font-bold text-[21px] flex-1">{name}</div>
+          <div onClick={toggleFavorite}>
+            {favorite ? <SolidHeart /> : <EmptyHeart />}
+          </div>
+        </div>
+        <div>
+          Found In:{" "}
+          <span className="font-bold">
+            {foundIn === "N/A" ? "Unknown" : foundIn}
+          </span>
+        </div>
+        <div>
+          Diet:{" "}
+          <span className="font-bold">{diet === "N/A" ? "Unknown" : diet}</span>
+        </div>
+        <div>
+          Length:{" "}
+          <span className="font-bold">
+            {length === "N/A" ? "Unknown" : length + "m"}
+          </span>
+        </div>
+        <div>
+          Weight:{" "}
+          <span className="font-bold">
+            {weight === "N/A" ? "Unknown" : weight + "kg"}
+          </span>
+        </div>
+
+        <Link to={`/search/${id}`}>
+          <button className="w-full bg-primary-600 p-2 font-bold mt-5 rounded-md mb-1">
+            View Details
+          </button>
+        </Link>
+      </div>
+    </div>
   );
 }
+
+SearchItemPreview.propTypes = {
+  dinosaurItem: PropTypes.object.isRequired,
+};
 
 export default SearchItemPreview;
