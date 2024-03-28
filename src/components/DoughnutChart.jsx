@@ -1,5 +1,5 @@
 //Import hooks
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { AppContext } from "../App";
 
 // Libs/Utils
@@ -31,6 +31,29 @@ const DinosaurTypeChart = () => {
     return dinoTypeDistribution;
   };
 
+  // Set a minimum height for the legend based on screen size
+  const [legendMinHeight, setLegendMinHeight] = useState(100); 
+
+  useEffect(() => {
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 1024) {
+      setLegendMinHeight(0); 
+    } else {
+      setLegendMinHeight(100); 
+    }
+  }, []); 
+
+  const legendMinHeightPlugin = {
+    id: "legendMinHeight",
+    beforeInit: function (chart) {
+      const fitValue = chart.legend.fit;
+      chart.legend.fit = function fit() {
+        fitValue.bind(chart.legend)();
+        this.height = Math.max(this.height, legendMinHeight);
+      };
+    }
+  };
+
   const dataset = calculateTypeDistribution();
   // Chart data
   const data = {
@@ -48,16 +71,18 @@ const DinosaurTypeChart = () => {
   // Chart options
   const options = {
     responsive: true,
-    maintainAspectRatio: false,
+    maintainAspectRatio: true,
     legend: {
       display: true,
-      position: 'bottom',
+      position: 'top',
     },
+    
   };
 
-  return <Doughnut data={data} options={options} />;
+  return <Doughnut data={data} options={options} plugins={[legendMinHeightPlugin]} />;
 };
 
 
 
 export default DinosaurTypeChart;
+
