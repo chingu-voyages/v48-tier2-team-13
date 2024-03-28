@@ -18,16 +18,16 @@ function Router() {
     },
     {
       path: "/favorites",
-      element: <FavoritesPage />
+      element: <FavoritesPage />,
     },
     {
       path: "/about",
       element: <AboutPage />,
-    },    {
+    },
+    {
       path: "/search/:idParameter",
-      element: <DinosaurDetailsPage/>
-    }
-
+      element: <DinosaurDetailsPage />,
+    },
   ]);
   return <RouterProvider router={router} />;
 }
