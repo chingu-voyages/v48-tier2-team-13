@@ -8,7 +8,7 @@
 @layer utilities {
   .container {
     margin: 0 auto;
-    max-width: 2100px;
+    max-width: 2500px;
     padding-left: 4.5%;
     padding-right: 4.5%;
   }
@@ -41,4 +41,11 @@
 
 * {
   font-family: "Inter", sans-serif;
+}
+
+.slick-slide > div {
+  margin: 0 12px;
+}
+.slick-list {
+  margin: 0 -10px;
 }

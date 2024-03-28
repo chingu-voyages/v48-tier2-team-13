@@ -1,4 +1,5 @@
 //Components
+import DinosaursNews from "../components/DinosaursNews";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
@@ -50,7 +51,7 @@ function HomePage() {
           </div>
         </section>
       </div>
-      <div className="h-screen bg-bg-secondary"></div>
+      <DinosaursNews />
       <Footer />
     </>
   );
