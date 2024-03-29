@@ -91,7 +91,7 @@ function DinosaursNews() {
     <div className="bg-bg-secondary">
       <div className="container bg-bg-secondary">
         <div className="bg-bg-secondary py-[45px]">
-          <h2 className="text-text-light font-bold text-[23px]">Latest News</h2>
+          <h2 className="text-text-light font-bold text-[25px]">Latest News</h2>
           <section className="relative z-0 flex my-[30px]">
             <Slider className="overflow-x-hidden" ref={arrowRef} {...settings}>
               {displayNews}
