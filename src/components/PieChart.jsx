@@ -1,5 +1,5 @@
 //Import hooks
-import { useContext, useState, useEffect } from "react";
+import { useContext} from "react";
 import { AppContext } from "../App";
 
 // Libs/Utils
@@ -34,21 +34,11 @@ const DietChart = () => {
   const dataset = calculateDistribution();
 
   // Set a minimum height for the legend based on screen size
-
-  const [legendMinHeight, setLegendMinHeight] = useState(100); 
-
-  useEffect(() => {
-    const screenWidth = window.innerWidth;
-    if (screenWidth < 1024) {
-      setLegendMinHeight(0); 
-    } else {
-      setLegendMinHeight(100); 
-    }
-  }, []); 
-
   const legendMinHeightPlugin = {
     id: "legendMinHeight",
     beforeInit: function (chart) {
+      const screenWidth = window.innerWidth;
+      const legendMinHeight = screenWidth < 1024 ? 10 : screenWidth >= 1024 && screenWidth < 1536 ? 100 : 70;
       const fitValue = chart.legend.fit;
       chart.legend.fit = function fit() {
         fitValue.bind(chart.legend)();
@@ -78,7 +68,7 @@ const DietChart = () => {
       display: true,
       position: 'top',
     },
-   
+    plugins: [legendMinHeightPlugin]
   };
 
   return <Pie data={data} options={options} plugins={[legendMinHeightPlugin]} />;
