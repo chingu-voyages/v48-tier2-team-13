@@ -52,7 +52,7 @@ const DietChart = () => {
     id: "legendMinHeight",
     beforeInit: function (chart) {
       const screenWidth = window.innerWidth;
-      const legendMinHeight = screenWidth < 1024 ? 10 : screenWidth >= 1024 && screenWidth < 1536 ? 100 : 70;
+      const legendMinHeight = screenWidth < 1024 ? 10 : screenWidth >= 1024 && screenWidth < 1536 ? 100 : 90;
       const fitValue = chart.legend.fit;
       chart.legend.fit = function fit() {
         fitValue.bind(chart.legend)();
