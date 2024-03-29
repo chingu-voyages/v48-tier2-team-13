@@ -47,15 +47,33 @@ const DietChart = () => {
     }
   };
 
+    // Set the chart colors to be dynamically generated based on the number of chart items
+    const generateColors = (numColors) => {
+      return Array.from({ length: numColors }, (_, i) => {
+          const hue = (i * 360) / numColors;
+          const saturation = 70;
+          const lightness = 50;
+          const hoverLightness = lightness + 15;
+  
+          const backgroundColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+          const hoverBackgroundColor = `hsl(${hue}, ${saturation}%, ${hoverLightness}%)`;
+  
+          return {
+              backgroundColor,
+              hoverBackgroundColor
+          };
+      });
+    };
+
   // Chart data
   const data = {
     labels: dataset.map((item) => item.label),
     datasets: [
       {
         data: dataset.map((item) => item.value),
-        backgroundColor: ['#0088FE', '#00C49F', '#FFBB28', '#FF5733', '#33FF57', '#5733FF'],
-        hoverBackgroundColor: ['#D94621', '#21D946', '#4621D9', '#005C9E', '#009E7A', '#D89700'],
-        borderWidth: 2,
+        backgroundColor: generateColors(dataset.length).map(color => color.backgroundColor),
+        hoverBackgroundColor: generateColors(dataset.length).map(color => color.hoverBackgroundColor),
+        borderWidth: 0,
       },
     ],
   };
@@ -64,12 +82,14 @@ const DietChart = () => {
   const options = {
     responsive: true,
     maintainAspectRatio: true,
+    color: '#fff',
     legend: {
       display: true,
       position: 'top',
     },
     plugins: [legendMinHeightPlugin]
   };
+  
 
   return <Pie data={data} options={options} plugins={[legendMinHeightPlugin]} />;
 };
