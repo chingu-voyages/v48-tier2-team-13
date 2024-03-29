@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 import { Link } from "react-router-dom";
+import AboutDinosaurs from "../components/AboutDinosaurs";
 
 const HOME_PAGE = "HOME_PAGE";
 
@@ -52,6 +53,7 @@ function HomePage() {
         </section>
       </div>
       <DinosaursNews />
+      <AboutDinosaurs/>
       <Footer />
     </>
   );
