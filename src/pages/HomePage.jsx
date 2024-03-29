@@ -1,5 +1,6 @@
 //Components
 import DinosaursNews from "../components/DinosaursNews";
+import ChartsSection from "../components/ChartsSection";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
@@ -53,7 +54,8 @@ function HomePage() {
         </section>
       </div>
       <DinosaursNews />
-      <AboutDinosaurs/>
+      <ChartsSection />
+      <AboutDinosaurs />
       <Footer />
     </>
   );
