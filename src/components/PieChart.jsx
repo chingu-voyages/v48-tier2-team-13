@@ -1,6 +1,9 @@
-//Import hooks
+// Import hooks
 import { useContext} from "react";
 import { AppContext } from "../App";
+
+// Import components
+import Loader from "../components/Loader";
 
 // Libs/Utils
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
@@ -10,7 +13,18 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 const DietChart = () => {
   // Load dinosaurs data from api context
-  const {dinosaursData} = useContext(AppContext);
+  const {dinosaursData, loadingDinosaursData, errorDinosaursData} = useContext(AppContext);
+
+  if (loadingDinosaursData) {
+    return <Loader />;
+  }
+  if (errorDinosaursData) {
+    return (
+      <div className="text-center mt-8">
+        <p>Error: There was an error with charts data.</p>
+      </div>
+    );
+  }
 
   const calculateDistribution = () => {
     // Extract the information about the diet types
@@ -87,7 +101,18 @@ const DietChart = () => {
       display: true,
       position: 'top',
     },
-    plugins: [legendMinHeightPlugin]
+    plugins: {
+      legendMinHeightPlugin,
+      tooltip: {
+        callbacks: {
+          label: function(context) {
+                let label = context.dataset.label || '';
+                label += context.raw + '%'; 
+                return label;
+            }
+        }
+      }
+    }
   };
   
 

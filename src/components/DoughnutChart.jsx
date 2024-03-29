@@ -2,6 +2,9 @@
 import { useContext} from "react";
 import { AppContext } from "../App";
 
+// Import components
+import Loader from "../components/Loader";
+
 // Libs/Utils
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
@@ -10,7 +13,18 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 const DinosaurTypeChart = () => {
   // Load dinosaurs data from api context
-  const {dinosaursData} = useContext(AppContext);
+  const {dinosaursData, loadingDinosaursData, errorDinosaursData} = useContext(AppContext);
+
+  if (loadingDinosaursData) {
+    return <Loader />;
+  }
+  if (errorDinosaursData) {
+    return (
+      <div className="text-center mt-8">
+        <p>Error: There was an error with charts data.</p>
+      </div>
+    );
+  }
 
   const calculateTypeDistribution = () => {
     // Extract the information about the dinosaur types
@@ -30,6 +44,8 @@ const DinosaurTypeChart = () => {
     }));
     return dinoTypeDistribution;
   };
+
+  const dataset = calculateTypeDistribution();
 
   // Set a minimum height for the legend based on screen size
   const legendMinHeightPlugin = {
@@ -64,8 +80,6 @@ const DinosaurTypeChart = () => {
   };
 
   // Chart data
-  const dataset = calculateTypeDistribution();
- 
   const data = {
     labels: dataset.map((item) => item.label),
     datasets: [
@@ -87,7 +101,18 @@ const DinosaurTypeChart = () => {
       display: true,
       position: 'top',
     },
-    plugins: [legendMinHeightPlugin]
+    plugins: {
+      legendMinHeightPlugin,
+      tooltip: {
+        callbacks: {
+          label: function(context) {
+                let label = context.dataset.label || '';
+                label += context.raw + '%'; 
+                return label;
+            }
+        }
+      }
+    }
   };
 
   return <Doughnut data={data} options={options} plugins={[legendMinHeightPlugin]}/>;
