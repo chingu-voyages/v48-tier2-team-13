@@ -3,11 +3,11 @@ import DinosaurTypeChart from "./DoughnutChart";
 
 function ChartsSection() {
   return (
-    <section className="container text-text-light py-14 bg-primary">
+    <section className="container text-text-light py-14 bg-primary ">
       <h2 className="text-text-light font-bold text-2xl pb-7">Charts</h2>
       <div className="flex flex-col lg:flex-row justify-center gap-10">
         <div className="flex flex-col gap-5 lg:gap-10 lg:w-6/12">
-          <div className="flex justify-center order-2 lg:order-1 w-5/6 sm:w-full m-auto">
+          <div className="flex justify-center order-2 lg:order-1 w-full m-auto h-[16rem] sm:h-[32rem] 2xl:h-[40rem]">
             <DietChart />
           </div>
           <div className="flex flex-col justify-center text-center w-4/5 m-auto order-1 lg:order-2">
@@ -22,7 +22,7 @@ function ChartsSection() {
           </div>
         </div>
         <div className="flex flex-col gap-5 lg:gap-10 lg:w-6/12">
-          <div className="flex justify-center order-2 lg:order-1 w-full m-auto">
+          <div className="flex justify-center order-2 lg:order-1 w-full m-auto h-[20rem] sm:h-[32rem] 2xl:h-[40rem]">
             <DinosaurTypeChart />
           </div>
           <div className="flex flex-col justify-center text-center w-4/5 m-auto order-1 lg:order-2">
