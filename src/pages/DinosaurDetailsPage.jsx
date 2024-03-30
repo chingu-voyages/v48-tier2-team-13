@@ -3,7 +3,7 @@ import Map from "../components/Map";
 import { EmptyHeart, SolidHeart } from "../assets/img/FavoritesIcons";
 
 //React imports
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams,} from "react-router-dom";
 import { useState, useContext } from "react";
 
 //Image
@@ -28,7 +28,8 @@ function DinosaurDetailsPage() {
   const { dinosaursData } = useContext(AppContext);
   //Load useParams to retrieve id
   const { idParameter } = useParams();
-
+  console.log(idParameter)
+  
   const {
     id,
     name,

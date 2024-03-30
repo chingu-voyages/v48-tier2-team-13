@@ -1,7 +1,7 @@
-function updateLocalStorage(favorite, id, name) {
+function updateLocalStorage(favorite,item) {
   !favorite
-    ? localStorage.setItem(id, JSON.stringify(name))
-    : localStorage.removeItem(id);
+    ? localStorage.setItem(item.id, JSON.stringify(item))
+    : localStorage.removeItem(item.id);
 }
 
 export default updateLocalStorage;

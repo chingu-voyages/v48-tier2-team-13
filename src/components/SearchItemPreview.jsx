@@ -1,5 +1,5 @@
 //React imports
-import { useState } from "react";
+import { useState, useContext } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
@@ -9,6 +9,7 @@ import { EmptyHeart, SolidHeart } from "../assets/img/FavoritesIcons.jsx";
 
 //utils imports
 import updateLocalStorage from "../utils/updateLocalStorage.js";
+import { AppContext } from "../App.jsx";
 
 function SearchItemPreview({ dinosaurItem }) {
   //Load props
@@ -16,11 +17,13 @@ function SearchItemPreview({ dinosaurItem }) {
 
   //Get favorites state from local storage
   const [favorite, setFavorite] = useState(localStorage.getItem(id));
+  const {setFavorites}= useContext(AppContext)
 
   // Handle favorite function
   function toggleFavorite() {
     setFavorite(!favorite);
-    updateLocalStorage(favorite, id, name);
+    updateLocalStorage(favorite, dinosaurItem);
+    setFavorites(Object.keys(localStorage))
   }
 
   return (
