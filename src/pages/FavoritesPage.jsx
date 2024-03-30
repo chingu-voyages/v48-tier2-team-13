@@ -1,5 +1,5 @@
 //React imports
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 // Component Imports
 import Navbar from "../components/Navbar";
@@ -14,6 +14,10 @@ const FAVORITES_PAGE = "FAVORITES_PAGE";
 
 function FavoritesPage() {
   const { favorites } = useContext(AppContext);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

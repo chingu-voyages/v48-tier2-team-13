@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 import AboutDinosaurs from "../components/AboutDinosaurs";
 
 import { Link } from "react-router-dom";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 const HOME_PAGE = "HOME_PAGE";
 
@@ -23,6 +23,11 @@ function HomePage() {
       });
     }
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <div className="h-auto pb-[70px] xl:pb-0 xl:h-screen md:min-h-[760px] bg-bg-primary relative pt-[14%] 2xl:pt-[230px]">
