@@ -21,6 +21,9 @@ function App() {
   const [loadingDinosaursNews, setLoadingDinosaursNews] = useState(true);
   const [errorDinosaursNews, setErrorDinosaursNews] = useState(null);
 
+  //Favorites state comes from local storage => use as context since 2 components are using it
+  const [favorites, setFavorites] = useState(Object.keys(localStorage));
+
   useEffect(() => {
     fetchDinosaursData()
       .then((data) => {
@@ -46,6 +49,8 @@ function App() {
   return (
     <AppContext.Provider
       value={{
+        favorites, 
+        setFavorites,
         dinosaursData,
         dinosaursNews,
         loadingDinosaursData,
