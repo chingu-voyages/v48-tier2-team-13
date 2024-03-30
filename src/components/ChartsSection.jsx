@@ -4,7 +4,7 @@ import DinosaurTypeChart from "./DoughnutChart";
 function ChartsSection() {
   return (
     <section className="container text-text-light bg-primary ">
-      <h2 className="text-text-light font-bold text-2xl pb-7">Charts</h2>
+      <h2 className="text-text-light font-bold text-[25px] pb-7">Charts</h2>
       <div className="flex flex-col lg:flex-row justify-center gap-10">
         <div className="flex flex-col gap-5 lg:gap-10 lg:w-6/12">
           <div className="flex justify-center order-2 lg:order-1 w-full m-auto h-[16rem] sm:h-[32rem] 2xl:h-[36rem]">

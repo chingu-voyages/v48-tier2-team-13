@@ -18,7 +18,7 @@ function HomePage() {
     if (chartsSection) {
       const topOffset = chartsSection.getBoundingClientRect().top;
       window.scrollTo({
-        top: topOffset - 20,
+        top: topOffset - 15,
         behavior: "smooth",
       });
     }
