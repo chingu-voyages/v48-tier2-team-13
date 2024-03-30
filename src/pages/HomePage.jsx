@@ -14,7 +14,14 @@ function HomePage() {
   const chartsSectionRef = useRef(null);
 
   const scrollToChartsSection = () => {
-    chartsSectionRef.current.scrollIntoView({ behavior: "smooth" });
+    const chartsSection = chartsSectionRef.current;
+    if (chartsSection) {
+      const topOffset = chartsSection.getBoundingClientRect().top;
+      window.scrollTo({
+        top: topOffset - 20,
+        behavior: "smooth",
+      });
+    }
   };
   return (
     <>
@@ -61,8 +68,8 @@ function HomePage() {
         </section>
       </div>
       <DinosaursNews />
-      <div ref={chartsSectionRef}>
-      <ChartsSection />
+      <div ref={chartsSectionRef} className="py-14">
+        <ChartsSection />
       </div>
       <AboutDinosaurs />
       <Footer />
