@@ -9,15 +9,19 @@ function Navbar({ activePage }) {
     <div className="bg-bg-primary fixed top-0 w-screen z-50">
       <nav className="container">
         <div className="py-3 sm:py-5 flex justify-between text-text-light">
-          <div>
+          <div className="flex items-center">
             <Link to={"/"} className="text-[25px] font-bold">
-              LOGO
+              <img
+                src="src/assets/img/DINOZZ-LOGO.png"
+                alt="logo"
+                width={104}
+              />
             </Link>
           </div>
           <div>
             <button
               type="button"
-              className="absolute top-[14px] right-[30px] z-50 md:hidden"
+              className="absolute top-[6px] right-[12px] z-50 md:hidden"
               onClick={() => setIsNavbarOpen((val) => !val)}
             >
               {isNavbarOpen ? (

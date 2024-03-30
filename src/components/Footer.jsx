@@ -3,7 +3,7 @@ function Footer() {
     <footer className="container py-14 bg-primary text-text-light w-full">
       <div className="flex flex-col lg:flex-row justify-center items-stretch gap-14 md:gap-28 border-solid border-b-2 border-bg-secondary pb-14">
         <div className="flex-[1] flex flex-col gap-7">
-          <div className="w-28 h-7 bg-[url(../assets/img/LOGO_temp.png)] bg-center bg-no-repeat bg-contain"></div>
+          <img src="src/assets/img/DINOZZ-LOGO.png" alt="logo" width={125} />
           <p className="block text-sm">
             All content on this website is protected by copyright and may not be
             used without permission from DinozzApp. For more information about
