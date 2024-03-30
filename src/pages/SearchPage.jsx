@@ -156,6 +156,10 @@ function SearchPage() {
     }
   }, [searchText, filteredDinosaurItems]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <Navbar activePage={SEARCH_PAGE} />

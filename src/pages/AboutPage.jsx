@@ -1,8 +1,12 @@
 import Navbar from "../components/Navbar";
+import { useEffect } from "react";
 
 const ABOUT_PAGE = "ABOUT_PAGE";
 
 function AboutPage() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <Navbar activePage={ABOUT_PAGE} />

@@ -3,8 +3,8 @@ import Map from "../components/Map";
 import { EmptyHeart, SolidHeart } from "../assets/img/FavoritesIcons";
 
 //React imports
-import { Link, useParams,} from "react-router-dom";
-import { useState, useContext } from "react";
+import { Link, useParams } from "react-router-dom";
+import { useState, useContext, useEffect } from "react";
 
 //Image
 import defaultDinoImage from "../assets/img/default-dino-image.png";
@@ -28,8 +28,8 @@ function DinosaurDetailsPage() {
   const { dinosaursData } = useContext(AppContext);
   //Load useParams to retrieve id
   const { idParameter } = useParams();
-  console.log(idParameter)
-  
+  console.log(idParameter);
+
   const {
     id,
     name,
@@ -76,6 +76,10 @@ function DinosaurDetailsPage() {
       !mapVisibility);
     setMapVisibility(hiddenMap);
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
