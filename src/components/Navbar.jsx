@@ -11,11 +11,7 @@ function Navbar({ activePage }) {
         <div className="py-3 sm:py-5 flex justify-between text-text-light">
           <div className="flex items-center">
             <Link to={"/"} className="text-[25px] font-bold">
-              <img
-                src="src/assets/img/DINOZZ-LOGO.png"
-                alt="logo"
-                width={104}
-              />
+              <img src="../assets/img/DINOZZ-LOGO.png" alt="logo" width={104} />
             </Link>
           </div>
           <div>
