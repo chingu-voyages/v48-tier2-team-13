@@ -3,13 +3,26 @@ import DinosaursNews from "../components/DinosaursNews";
 import ChartsSection from "../components/ChartsSection";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import AboutDinosaurs from "../components/AboutDinosaurs";
 
 import { Link } from "react-router-dom";
-import AboutDinosaurs from "../components/AboutDinosaurs";
+import { useRef } from "react";
 
 const HOME_PAGE = "HOME_PAGE";
 
 function HomePage() {
+  const chartsSectionRef = useRef(null);
+
+  const scrollToChartsSection = () => {
+    const chartsSection = chartsSectionRef.current;
+    if (chartsSection) {
+      const topOffset = chartsSection.getBoundingClientRect().top;
+      window.scrollTo({
+        top: topOffset - 20,
+        behavior: "smooth",
+      });
+    }
+  };
   return (
     <>
       <div className="h-auto pb-[70px] xl:pb-0 xl:h-screen md:min-h-[760px] bg-bg-primary relative pt-[14%] 2xl:pt-[230px]">
@@ -38,6 +51,7 @@ function HomePage() {
 
                 <button
                   type="button"
+                  onClick={scrollToChartsSection}
                   className="w-full sm:w-auto flex justify-center items-center leading-[0px] gap-3 p-3 bg-secondary-500 hover:bg-secondary-400 font-bold rounded-2xl shadow-md text-md"
                 >
                   <div className="w-[30px] h-[30px] bg-secondary-50 rounded-md shadow-md p-[5px] relative">
@@ -54,7 +68,9 @@ function HomePage() {
         </section>
       </div>
       <DinosaursNews />
-      <ChartsSection />
+      <div ref={chartsSectionRef} className="py-14">
+        <ChartsSection />
+      </div>
       <AboutDinosaurs />
       <Footer />
     </>
