@@ -18,7 +18,7 @@ import { AppContext } from "../App.jsx";
 
 function DinosaurDetailsPage() {
   //Load context
-  const { dinosaursData } = useContext(AppContext);
+  const { dinosaursData, setFavorites } = useContext(AppContext);
   //Load useParams to retrieve id
   const { idParameter } = useParams();
 
@@ -30,8 +30,6 @@ function DinosaurDetailsPage() {
     imageSrc,
     description,
     typeOfDinosaur,
-    typeSpecies,
-    taxonomy,
     whenLived,
     foundIn,
     namedBy,
@@ -50,7 +48,8 @@ function DinosaurDetailsPage() {
   // Handle favorite function
   function toggleFavorite() {
     setFavorite(!favorite);
-    updateLocalStorage(favorite, id, name);
+    updateLocalStorage(favorite, dinosaursData[idParameter - 1]);
+    setFavorites(Object.keys(localStorage));
   }
 
   useEffect(() => {
@@ -78,10 +77,7 @@ function DinosaurDetailsPage() {
       case "herbivorous or omnivorous":
         return "Herbivore/Omnivore";
       default:
-        return diet
-          .split(" ")
-          .map((word) => capitalize(word))
-          .join(",");
+        return capitalize(diet);
     }
   };
 
@@ -117,7 +113,12 @@ function DinosaurDetailsPage() {
           <span className="hidden sm:block bg-secondary-400 w-[65px] h-[65px] absolute bottom-0 right-0 z-0"></span>
         </div>
         <div className="flex-1 pt-5 relative">
-          <h1 className="font-black text-[37px]">{name}</h1>
+          <div className="flex items-center gap-4 justify-between">
+            <h1 className="font-black text-[37px]">{name}</h1>
+            <div onClick={toggleFavorite}>
+              {favorite ? <SolidHeart /> : <EmptyHeart />}
+            </div>
+          </div>
           <p className="font-bold mt-3 text-xl lg:max-w-[600px]">
             {`${name} is a ${dinosaurSize()} sized dinosaur that lived in ${whenLived}, he's fossils have been found in ${foundIn}. ${name} was named by ${namedBy}`}
           </p>
@@ -174,7 +175,7 @@ function DinosaurDetailsPage() {
                     : typeOfDinosaur
                         .split(" ")
                         .map((word) => capitalize(word))
-                        .join(",")}
+                        .join(" ")}
                 </div>
               </div>
             </div>
