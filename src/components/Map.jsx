@@ -26,14 +26,14 @@ export default function Map(geoCoordinates) {
   return (
     <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
       {/*Temporary responsive div style for testing purpose*/}
-      <div className="relative w-full h-96">
+      <div className="relative w-full h-[550px]">
         <GoogleMap
           key={uuidv4()}
           defaultZoom={1}
           defaultCenter={defaultPosition}
           mapId={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
-          style= {{
-            background: 'black'
+          style={{
+            background: "black",
           }}
         >
           {position.map((location) => (
@@ -41,10 +41,11 @@ export default function Map(geoCoordinates) {
               {/* Advanced Marker marks the coordinates position on the map*/}
               <AdvancedMarker key={uuidv4()} position={location[0]}>
                 {/*Pin is used to define the styling of the pin on the map*/}
-                <Pin key={uuidv4()}
-                  background={"yellow"}
-                  borderColor={"blue"}
-                  glyphColor={"red"}
+                <Pin
+                  key={uuidv4()}
+                  background={"red"}
+                  borderColor={"white"}
+                  glyphColor={"white"}
                 ></Pin>
               </AdvancedMarker>
             </>
