@@ -36,6 +36,8 @@ function DinosaurDetailsPage() {
     length,
     weight,
     diet,
+    typeSpecies,
+    taxonomy
   } = dinosaursData[idParameter - 1];
 
   //The country is returned as a string from the Dinosaur API which is problematic when we deal with multiple countries
@@ -55,20 +57,6 @@ function DinosaurDetailsPage() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  const dinosaurSize = () => {
-    if (length <= 1) {
-      return "small";
-    }
-
-    if (length <= 14) {
-      return "medium";
-    }
-
-    if (length >= 15) {
-      return "big";
-    }
-  };
 
   const dietText = () => {
     switch (diet) {
@@ -116,11 +104,11 @@ function DinosaurDetailsPage() {
           <div className="flex items-center gap-4 justify-between">
             <h1 className="font-black text-[37px]">{name}</h1>
             <div onClick={toggleFavorite}>
-              {favorite ? <SolidHeart /> : <EmptyHeart />}
+              {favorite ? <SolidHeart dimensions={{width:37,height:37}} /> : <EmptyHeart dimensions={{width:37,height:37}} />}
             </div>
           </div>
           <p className="font-bold mt-3 text-xl lg:max-w-[600px]">
-            {`${name} is a ${dinosaurSize()} sized dinosaur that lived in ${whenLived}, he's fossils have been found in ${foundIn}. ${name} was named by ${namedBy}`}
+            {`${name} is a ${typeSpecies} dinosaur that lived in ${whenLived}. They are a part of the ${taxonomy} classification. It's fossils have been found in ${foundIn}. ${name} was named by ${namedBy}.`}
           </p>
           <button
             onClick={scrollToDescription}
