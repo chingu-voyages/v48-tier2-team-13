@@ -6,6 +6,8 @@ import {
   Pin,
 } from "@vis.gl/react-google-maps";
 
+import PropTypes from "prop-types";
+
 //Hooks import
 import useGeoCoordinates from "../hooks/useGeoCoordinates";
 
@@ -15,8 +17,8 @@ import { v4 as uuidv4 } from "uuid";
 //Test data examples
 //const position= [{lat:50.5039, lng:5.4699}, {lat:45.9432, lng:24.9668}, {lat:44.0165, lng:21.0059} ]
 
-export default function Map(geoCoordinates) {
-  const position = useGeoCoordinates(geoCoordinates.geoCoordinates);
+export default function Map({ geoCoordinates }) {
+  const position = useGeoCoordinates(geoCoordinates);
 
   //Default coordinates for centering the map (I chose France)
   const defaultPosition = { lat: 46.2276, lng: 2.2137 };
@@ -29,29 +31,29 @@ export default function Map(geoCoordinates) {
       <div className="relative w-full h-[550px]">
         <GoogleMap
           key={uuidv4()}
-          defaultZoom={1}
+          defaultZoom={1.7}
           defaultCenter={defaultPosition}
-          mapId={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
+          mapId={import.meta.env.VITE_GOOGLE_MAPS_MAP_ID}
           style={{
             background: "black",
           }}
         >
           {position.map((location) => (
-            <>
-              {/* Advanced Marker marks the coordinates position on the map*/}
-              <AdvancedMarker key={uuidv4()} position={location[0]}>
-                {/*Pin is used to define the styling of the pin on the map*/}
-                <Pin
-                  key={uuidv4()}
-                  background={"red"}
-                  borderColor={"white"}
-                  glyphColor={"white"}
-                ></Pin>
-              </AdvancedMarker>
-            </>
+            <AdvancedMarker key={uuidv4()} position={location[0]}>
+              <Pin
+                key={uuidv4()}
+                background={"red"}
+                borderColor={"white"}
+                glyphColor={"white"}
+              ></Pin>
+            </AdvancedMarker>
           ))}
         </GoogleMap>
       </div>
     </APIProvider>
   );
 }
+
+Map.propTypes = {
+  geoCoordinates: PropTypes.any,
+};
