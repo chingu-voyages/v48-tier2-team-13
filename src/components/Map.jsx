@@ -29,9 +29,9 @@ export default function Map(geoCoordinates) {
       <div className="relative w-full h-[550px]">
         <GoogleMap
           key={uuidv4()}
-          defaultZoom={1}
+          defaultZoom={1.7}
           defaultCenter={defaultPosition}
-          mapId={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
+          mapId={import.meta.env.VITE_GOOGLE_MAPS_MAP_ID}
           style={{
             background: "black",
           }}
