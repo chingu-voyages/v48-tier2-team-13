@@ -160,10 +160,43 @@ function SearchPage() {
     window.scrollTo(0, 0);
   }, []);
 
+
+  const [showButton, setShowButton] = useState(true);
+  const [scrollUpButton, setShowScrollUpButton]= useState(false)
+
+  useEffect(() => {
+    const handleScrollIcon = () => {
+      if (items.length < filteredDinosaurItems.length) {
+        setShowButton(true);
+      } else {
+        setShowButton(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScrollIcon);
+    return () => window.removeEventListener("scroll", handleScrollIcon);
+  }, [items.length, filteredDinosaurItems.length]);
+
+
+  useEffect (()=> {
+    const handleScrollButtonVisibility = ()=> {
+      window.scrollY >300? setShowScrollUpButton(true): setShowScrollUpButton(false)
+    }
+
+    window.addEventListener("scroll", handleScrollButtonVisibility);
+    return () => window.removeEventListener("scroll", handleScrollButtonVisibility);
+
+  }, [])
+
+  const handleScrollToTop = () => {
+    window.scrollTo({top:0, behavior: 'smooth'})
+  }
+
   return (
     <>
       <Navbar activePage={SEARCH_PAGE} />
       <div className="container">
+      
         <div className="mt-[85px] sm:mt-[100px] bg-bg-primary">
           <div className="flex flex-col items-center text-text-light">
             <div className="flex flex-col items-center mb-[22px]">
@@ -316,6 +349,10 @@ function SearchPage() {
         </div>
       </div>
       <div className="bg-bg-secondary">
+        <div className="fixed bottom-0 z-50">
+        {showButton && <button className=" text-text-light">SCROLL</button>}
+        </div>
+      
         <div className="container bg-bg-secondary py-[40px]">
           <div>
             {loadingDinosaursData ? (
@@ -332,11 +369,19 @@ function SearchPage() {
                     dinosaurItem={dinosaurItem}
                   />
                 ))}
+               
+                
               </div>
+               
             )}
+          
           </div>
+          <div className="fixed bottom-0 right-0 z-50">
+        {scrollUpButton && <button onClick={handleScrollToTop} className=" text-text-light">SCROLL UP</button>}
+        </div>
         </div>
       </div>
+      
       {filteredDinosaurItems.length === 0 && <Footer />}
     </>
   );
