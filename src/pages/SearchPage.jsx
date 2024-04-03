@@ -8,7 +8,7 @@ import Loader from "../components/Loader";
 import Navbar from "../components/Navbar";
 
 //Import icons for up and down scrolling
-import {ArrowUp} from '../assets/img/ScrollArrowIcons'
+import { ArrowUp } from "../assets/img/ScrollArrowIcons";
 
 // Libs/Utils
 import { v4 as uuidv4 } from "uuid";
@@ -165,32 +165,31 @@ function SearchPage() {
 
   //Load state for arrow up icon
   //The scroll up button is show as soon as user scrolls below the screen height
-  const [scrollUpButton, setShowScrollUpButton]= useState(false)
-
+  const [scrollUpButton, setShowScrollUpButton] = useState(false);
 
   //UseEffect for Handling show of icons based on infinite scrolling
 
   //UseEffect for handling showing the scroll back up button
-  useEffect (()=> {
-    const handleScrollUpButtonVisibility = ()=> {
-      window.scrollY >300? setShowScrollUpButton(true): setShowScrollUpButton(false)
-    }
+  useEffect(() => {
+    const handleScrollUpButtonVisibility = () => {
+      window.scrollY > 300
+        ? setShowScrollUpButton(true)
+        : setShowScrollUpButton(false);
+    };
     window.addEventListener("scroll", handleScrollUpButtonVisibility);
-    return () => window.removeEventListener("scroll", handleScrollUpButtonVisibility);
-  }, [])
+    return () =>
+      window.removeEventListener("scroll", handleScrollUpButtonVisibility);
+  }, []);
 
   //Handler for what happens when user clicks on scroll to top button
   const handleScrollToTop = () => {
-    window.scrollTo({top:0, behavior: 'smooth'})
-    
-  }
-
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <>
       <Navbar activePage={SEARCH_PAGE} />
       <div className="container">
-      
         <div className="mt-[85px] sm:mt-[100px] bg-bg-primary">
           <div className="flex flex-col items-center text-text-light">
             <div className="flex flex-col items-center mb-[22px]">
@@ -343,10 +342,7 @@ function SearchPage() {
         </div>
       </div>
       <div className="bg-bg-secondary">
-       
-      
         <div className="container bg-bg-secondary py-[40px]">
-    
           <div>
             {loadingDinosaursData ? (
               <Loader />
@@ -356,29 +352,27 @@ function SearchPage() {
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5">
-           
                 {items.map((dinosaurItem) => (
                   <SearchItemPreview
                     key={uuidv4()}
                     dinosaurItem={dinosaurItem}
                   />
                 ))}
-               
-                
               </div>
-               
             )}
-          
           </div>
-         
-          <div className="fixed bottom-0 right-0 z-50 lg:mr-4 mb-2 mr-8">
-        {scrollUpButton && 
-        <button className="" onClick={handleScrollToTop}>
-          <ArrowUp /></button>}
-        </div>
+
+          {scrollUpButton && (
+            <button
+              className="border-4 border-primary-400 fixed bottom-0 right-0 z-50 w-[65px] h-[65px] mr-4 mb-4 lg:mr-[3%] min-[2800px]:mr-[10%] bg-primary-600 shadow-xl flex justify-center items-center rounded-full bg"
+              onClick={handleScrollToTop}
+            >
+              <div className="w-[35px] h-[35px] bg-[url('../assets/img/angle-up-solid.png')] bg-no-repeat bg-contain bg-center"></div>
+            </button>
+          )}
         </div>
       </div>
-      
+
       {filteredDinosaurItems.length === 0 && <Footer />}
     </>
   );
