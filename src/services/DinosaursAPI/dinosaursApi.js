@@ -7,7 +7,6 @@ async function fetchDinosaursData() {
       throw new Error("Error: Service error");
     }
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.error(error);
