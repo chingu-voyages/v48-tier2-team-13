@@ -7,6 +7,9 @@ import SearchItemPreview from "../components/SearchItemPreview";
 import Loader from "../components/Loader";
 import Navbar from "../components/Navbar";
 
+//Import icons for up and down scrolling
+import {ArrowUp, ArrowDown} from '../assets/img/ScrollArrowIcons'
+
 // Libs/Utils
 import { v4 as uuidv4 } from "uuid";
 import getFoundInCountries from "../utils/getFoundInCountries";
@@ -93,7 +96,7 @@ function SearchPage() {
     setIndex(indexToUse);
   }, [filteredDinosaurItems, indexToUse]);
 
-  //Handle scrolling and loading on scroll
+  //Handle infinte scrolling and loading on scroll
   useEffect(() => {
     const fetchMoreDinosaurData = () => {
       setItems((prevItems) => [
@@ -160,36 +163,59 @@ function SearchPage() {
     window.scrollTo(0, 0);
   }, []);
 
-
+  //Load state for arrow up & down icons
+  //The show button is shown when the inifite scrolling has not reached the end of items list
   const [showButton, setShowButton] = useState(true);
+  //The scroll up button is show as soon as user scrolls below the screen height
   const [scrollUpButton, setShowScrollUpButton]= useState(false)
+  //The scroll bottom button is shown only when user has reached the end of the infinite scrolling, in order to
+  //go back to the top of the page without having to scroll "forever"
+  const [scrollBottomButton, setShowScrollBottomButton]= useState(false)
 
+  //UseEffect for Handling show of icons based on infinite scrolling
   useEffect(() => {
     const handleScrollIcon = () => {
+      //Show button is shown as long as we haven't reached the end of the items list (from state, loaded only 10 items at a time)
       if (items.length < filteredDinosaurItems.length) {
         setShowButton(true);
+        setShowScrollBottomButton(false)
       } else {
+        //When we reach the bottom of the page and there are no more items left to load, we hide the button
         setShowButton(false);
       }
     };
-
     window.addEventListener("scroll", handleScrollIcon);
     return () => window.removeEventListener("scroll", handleScrollIcon);
   }, [items.length, filteredDinosaurItems.length]);
 
-
+  //UseEffect for handling showing the scroll back up button
   useEffect (()=> {
-    const handleScrollButtonVisibility = ()=> {
+    const handleScrollUpButtonVisibility = ()=> {
       window.scrollY >300? setShowScrollUpButton(true): setShowScrollUpButton(false)
     }
-
-    window.addEventListener("scroll", handleScrollButtonVisibility);
-    return () => window.removeEventListener("scroll", handleScrollButtonVisibility);
-
+    window.addEventListener("scroll", handleScrollUpButtonVisibility);
+    return () => window.removeEventListener("scroll", handleScrollUpButtonVisibility);
   }, [])
 
+  //Handler for what happens when user clicks on scroll to top button
   const handleScrollToTop = () => {
     window.scrollTo({top:0, behavior: 'smooth'})
+    //When the items list from state reaches the end, we show the scroll bottom button above the page
+    items.length === filteredDinosaurItems.length && setTimeout(() => {
+      setShowScrollBottomButton(true)
+    }, "1000");
+    
+  }
+
+  //Handler for what happens when user clicks scroll to bottom button
+  //We only make the scroll to bottom button available when a user has scrolled until the end of 
+  //items list from state. It doesn't make sense to let them scroll to bottom otherwise because it would defeat the purpose
+  //of having the infinite scrolling functionality
+
+  const handleScrollToBottom = () => {
+    window.scrollTo(0, document.body.scrollHeight )
+    //When we have scrolled to bottom, we hide the button
+    setShowScrollBottomButton(false)
   }
 
   return (
@@ -349,11 +375,19 @@ function SearchPage() {
         </div>
       </div>
       <div className="bg-bg-secondary">
-        <div className="fixed bottom-0 z-50">
-        {showButton && <button className=" text-text-light">SCROLL</button>}
+        <div className="fixed bottom-0 z-50 lg:ml-4 mb-2 ml-8">
+              {/* When scroll to bottom button is shown while user is scrolling down, the button is shown as a yellow
+              version of the initial button in order to show the user that button is not clickable, only informing the user that
+              they have not reached end of dinosaur list
+              */}
+        {showButton && 
+          <ArrowDown fill={{fill: "#ECE206"}}/>}
+       
         </div>
+       
       
         <div className="container bg-bg-secondary py-[40px]">
+    
           <div>
             {loadingDinosaursData ? (
               <Loader />
@@ -363,6 +397,7 @@ function SearchPage() {
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5">
+           
                 {items.map((dinosaurItem) => (
                   <SearchItemPreview
                     key={uuidv4()}
@@ -376,8 +411,17 @@ function SearchPage() {
             )}
           
           </div>
-          <div className="fixed bottom-0 right-0 z-50">
-        {scrollUpButton && <button onClick={handleScrollToTop} className=" text-text-light">SCROLL UP</button>}
+          <div className="fixed bottom-0 z-50 left-0 lg:ml-4 mb-2 ml-8">
+        {scrollBottomButton && 
+        <button onClick={handleScrollToBottom}>
+          {/* When scroll to bottom button is shown after user reached the end of infinite scrolling, it is show as a normal button
+           in order to let the user know the button is now clickable*/}
+          <ArrowDown /> </button>}
+        </div>
+          <div className="fixed bottom-0 right-0 z-50 lg:mr-4 mb-2 mr-8">
+        {scrollUpButton && 
+        <button className="" onClick={handleScrollToTop}>
+          <ArrowUp /></button>}
         </div>
         </div>
       </div>
