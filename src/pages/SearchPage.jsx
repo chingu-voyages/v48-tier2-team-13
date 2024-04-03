@@ -21,7 +21,7 @@ function SearchPage() {
   //Load dinosaurs data from api context
   const { dinosaursData, loadingDinosaursData } = useContext(AppContext);
   //Calculate screen size in order to upload first 5 (mobile) or 10(desktop) results and then the next 5 or 10 more
-  const indexToUse = window.innerWidth < 960 ? 5 : 10;
+  const indexToUse = window.innerWidth < 960 ? 5 : 12;
 
   //Load state to keep track of which items to load on scrolling as well as the index to use to split the data array
   const [items, setItems] = useState([]);
