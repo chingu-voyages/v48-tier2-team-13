@@ -93,7 +93,7 @@ function SearchPage() {
     setIndex(indexToUse);
   }, [filteredDinosaurItems, indexToUse]);
 
-  //Handle scrolling and loading on scroll
+  //Handle infinte scrolling and loading on scroll
   useEffect(() => {
     const fetchMoreDinosaurData = () => {
       setItems((prevItems) => [
@@ -159,6 +159,29 @@ function SearchPage() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  //Load state for arrow up icon
+  //The scroll up button is show as soon as user scrolls below the screen height
+  const [scrollUpButton, setShowScrollUpButton] = useState(false);
+
+  //UseEffect for Handling show of icons based on infinite scrolling
+
+  //UseEffect for handling showing the scroll back up button
+  useEffect(() => {
+    const handleScrollUpButtonVisibility = () => {
+      window.scrollY > 300
+        ? setShowScrollUpButton(true)
+        : setShowScrollUpButton(false);
+    };
+    window.addEventListener("scroll", handleScrollUpButtonVisibility);
+    return () =>
+      window.removeEventListener("scroll", handleScrollUpButtonVisibility);
+  }, []);
+
+  //Handler for what happens when user clicks on scroll to top button
+  const handleScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <>
@@ -335,8 +358,18 @@ function SearchPage() {
               </div>
             )}
           </div>
+
+          {scrollUpButton && (
+            <button
+              className="border-4 border-primary-400 fixed bottom-0 right-0 z-50 w-[65px] h-[65px] mr-4 mb-4 lg:mr-[3%] min-[2800px]:mr-[10%] bg-primary-600 shadow-xl flex justify-center items-center rounded-full bg"
+              onClick={handleScrollToTop}
+            >
+              <div className="w-[35px] h-[35px] bg-[url('../assets/img/angle-up-solid.png')] bg-no-repeat bg-contain bg-center"></div>
+            </button>
+          )}
         </div>
       </div>
+
       {filteredDinosaurItems.length === 0 && <Footer />}
     </>
   );
