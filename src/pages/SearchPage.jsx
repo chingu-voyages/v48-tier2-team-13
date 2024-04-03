@@ -7,9 +7,6 @@ import SearchItemPreview from "../components/SearchItemPreview";
 import Loader from "../components/Loader";
 import Navbar from "../components/Navbar";
 
-//Import icons for up and down scrolling
-import { ArrowUp } from "../assets/img/ScrollArrowIcons";
-
 // Libs/Utils
 import { v4 as uuidv4 } from "uuid";
 import getFoundInCountries from "../utils/getFoundInCountries";
