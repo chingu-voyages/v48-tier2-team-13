@@ -37,7 +37,7 @@ function DinosaurDetailsPage() {
     weight,
     diet,
     typeSpecies,
-    taxonomy
+    taxonomy,
   } = dinosaursData[idParameter - 1];
 
   //The country is returned as a string from the Dinosaur API which is problematic when we deal with multiple countries
@@ -73,22 +73,10 @@ function DinosaurDetailsPage() {
     return word.charAt(0).toUpperCase() + word.slice(1);
   }
 
-  const scrollToDescription = () => {
-    const descriptionSection = descriptionSectionRef.current;
-    if (descriptionSection) {
-      const topOffset =
-        descriptionSection.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({
-        top: topOffset - 90,
-        behavior: "smooth",
-      });
-    }
-  };
-
   return (
     <>
       <Navbar activePage={"SEARCH_PAGE"} />
-      <div className="container flex flex-col lg:flex-row gap-2 text-text-light justify-center py-[90px]">
+      <div className="container flex flex-col lg:flex-row lg:gap-5 text-text-light justify-center py-[90px]">
         <div className="flex-1 sm:p-5 relative">
           <span className="hidden sm:block bg-primary-600 w-[65px] h-[65px] absolute top-0 left-0 z-0"></span>
           <div className="bg-text-light overflow-hidden z-10 w-full">
@@ -101,22 +89,19 @@ function DinosaurDetailsPage() {
           <span className="hidden sm:block bg-secondary-400 w-[65px] h-[65px] absolute bottom-0 right-0 z-0"></span>
         </div>
         <div className="flex-1 pt-5 relative">
-          <div className="flex items-center gap-4 justify-between">
+          <div className="flex items-center gap-4">
             <h1 className="font-black text-[37px]">{name}</h1>
             <div onClick={toggleFavorite}>
-              {favorite ? <SolidHeart dimensions={{width:37,height:37}} /> : <EmptyHeart dimensions={{width:37,height:37}} />}
+              {favorite ? (
+                <SolidHeart dimensions={{ width: 38, height: 38 }} />
+              ) : (
+                <EmptyHeart dimensions={{ width: 38, height: 38 }} />
+              )}
             </div>
           </div>
-          <p className="font-bold mt-3 text-xl lg:max-w-[600px]">
+          <p className="font-bold mt-3 text-xl lg:max-w-[750px]">
             {`${name} is a ${typeSpecies} dinosaur that lived in ${whenLived}. They are a part of the ${taxonomy} classification. It's fossils have been found in ${foundIn}. ${name} was named by ${namedBy}.`}
           </p>
-          <button
-            onClick={scrollToDescription}
-            className="px-3 py-2 hover:bg-primary-700 bg-primary-600 font-bold mt-5 shadow-md rounded-md flex items-center gap-1"
-          >
-            <div>Full Description</div>
-            <div className="w-[20px] h-[20px] bg-[url('../assets/img/arrow-left.png')] bg-contain bg-center bg-no-repeat -rotate-90"></div>
-          </button>
         </div>
       </div>
       <div className="bg-bg-secondary">
