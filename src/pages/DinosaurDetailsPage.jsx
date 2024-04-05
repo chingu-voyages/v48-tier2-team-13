@@ -100,7 +100,7 @@ function DinosaurDetailsPage() {
             </div>
           </div>
           <p className="font-bold mt-3 text-xl lg:max-w-[750px]">
-            {`${name} is a ${typeSpecies} dinosaur that lived in ${whenLived}. They are a part of the ${taxonomy} classification. It's fossils have been found in ${foundIn}. ${name} was named by ${namedBy}.`}
+            {`${name} is a ${typeSpecies} dinosaur that lived in ${whenLived}. They are a part of the ${taxonomy} classification. Its fossils have been found in ${foundIn}. ${name} was named by ${namedBy}.`}
           </p>
         </div>
       </div>

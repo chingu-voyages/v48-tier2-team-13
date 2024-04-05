@@ -5,7 +5,7 @@ import { AppContext } from "../App";
 import { v4 as uuidv4 } from "uuid";
 
 //test data that i used in order to not reach max daily limit of 100 news requests
-import { testData } from "../utils/dinosaurNewsTestData";
+//import { testData } from "../utils/dinosaurNewsTestData";
 
 //Carousel
 import "slick-carousel/slick/slick.css";
