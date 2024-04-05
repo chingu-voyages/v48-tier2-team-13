@@ -25,7 +25,11 @@ function DinosaursNews() {
   }
 
   if (errorDinosaursNews) {
-    return <div>Error: There was an error with news data.</div>;
+    return (
+      <div className="text-center mt-8 text-text-light">
+        <p>Error: There was an error with news data.</p>
+      </div>
+    );
   }
 
   //Slider
@@ -86,6 +90,17 @@ function DinosaursNews() {
     dinosaursNews.map((article) => (
       <NewsArticle key={uuidv4()} article={article} />
     ));
+
+  if (!displayNews) {
+    return (
+      <div className="container bg-bg-secondary">
+        <div className="bg-bg-secondary py-[45px]">
+          <h2 className="text-text-light font-bold text-[25px]">Latest News</h2>
+          <p className="text-center mt-8 text-text-light">No news data available at this moment. Please try again later.</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-bg-secondary">
