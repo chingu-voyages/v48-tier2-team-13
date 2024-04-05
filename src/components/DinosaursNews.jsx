@@ -96,7 +96,7 @@ function DinosaursNews() {
       <div className="container bg-bg-secondary">
         <div className="bg-bg-secondary py-[45px]">
           <h2 className="text-text-light font-bold text-[25px]">Latest News</h2>
-          <p className="text-center mt-8 text-text-light">No news data available at this moment. Please try again later.</p>
+          <p className="text-center mt-8 text-text-light">The requests limit for today has been reached. Please try again tomorrow.</p>
         </div>
       </div>
     );
