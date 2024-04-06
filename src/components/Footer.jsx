@@ -67,64 +67,69 @@ function Footer() {
             </div>
 
             <div>
-              <div className="flex items-center gap-1 text-sm mt-3">
-                <div className="bg-[url(../assets/img/location_temp.png)] bg-center bg-no-repeat bg-contain w-4 h-4"></div>
-                <div>123 Main Street Chicago, IL</div>
+              <div className="flex items-center gap-2 text-sm mt-3">
+                <div className="bg-[url(../assets/img/location-dot-solid.svg)] bg-center bg-no-repeat bg-contain w-4 h-4"></div>
+                <div>123 Main Street, Anytown, USA</div>
               </div>
 
-              <div className="flex items-center gap-1 text-sm mt-3">
-                <div className="bg-[url(../assets/img/phone_temp.png)] bg-center bg-no-repeat bg-contain w-4 h-4"></div>
-                <div>+3818714081</div>
+              <div className="flex items-center gap-2 text-sm mt-3">
+                <div className="bg-[url(../assets/img/phone-solid.svg)] bg-center bg-no-repeat bg-contain w-4 h-4"></div>
+                <div>+1 (555) 123-4567</div>
               </div>
 
-              <div className="flex items-center gap-1 text-sm mt-3">
-                <div className="bg-[url(../assets/img/envelope_temp.png)] bg-center bg-no-repeat bg-contain w-4 h-4"></div>
-                <div>dinozzapp@email.com</div>
+              <div className="flex items-center gap-2 text-sm mt-3">
+                <div className="bg-[url(../assets/img/envelope-solid.svg)] bg-center bg-no-repeat bg-contain w-4 h-4"></div>
+                <div>dinozzapp@example.com</div>
               </div>
             </div>
           </div>
 
           <div className="flex-[1] h-full flex flex-col justify-between gap-6 lg:gap-0">
             <div className="flex flex-col">
-              <a className="font-bold mb-3.5">Support</a>
+              <a className="font-bold mb-3.5">Our Team</a>
               <a
-                href="#"
+                href="https://www.linkedin.com/in/andra-mertilos-49008055/"
+                target="_blank"
                 className="block text-sm mb-3 cursor-pointer hover:text-primary-600"
               >
-                Order Tracking
+                Andra Mertilos
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/in/stefan-brkic-4014012a3/"
+                target="_blank"
                 className="block text-sm mb-3 cursor-pointer hover:text-primary-600"
               >
-                Payment Guide
+                Stefan Brkic
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/in/andrei-olteanu-9009/"
+                target="_blank"
                 className="block text-sm mb-3 cursor-pointer hover:text-primary-600"
               >
-                Help Centre
+                Andrei Olteanu
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/in/osarumen-osayande-019a3823b"
+                target="_blank"
                 className="block text-sm mb-3 cursor-pointer hover:text-primary-600"
               >
-                Privacy Policy
+                Osayande Osarumen
               </a>
               <a
-                href="#"
+                href="https://github.com/chingu-voyages/v48-tier2-team-13"
+                target="_blank"
                 className="block text-sm mb-3 cursor-pointer hover:text-primary-600"
               >
-                Return Policy
+                Github Repository
               </a>
             </div>
 
             <div>
               <div className="font-bold mb-3.5">Contact</div>
               <div className="flex items-center gap-6">
-                <div className="bg-[url(../assets/img/FB_temp.png)] w-6 h-6 bg-center bg-no-repeat bg-contain [transition:transform_100ms_ease] cursor-pointer hover:scale-110"></div>
-                <div className="bg-[url(../assets/img/IG_temp.png)] w-5 h-5 bg-center bg-no-repeat bg-contain [transition:transform_100ms_ease] cursor-pointer hover:scale-110"></div>
-                <div className="bg-[url(../assets/img/TW_temp.png)] w-8 h-8 bg-center bg-no-repeat bg-contain [transition:transform_100ms_ease] cursor-pointer hover:scale-110"></div>
+                <div className="bg-[url(../assets/img/instagram.svg)] w-7 h-7 bg-center bg-no-repeat bg-contain [transition:transform_100ms_ease] cursor-pointer hover:scale-110"></div>
+                <div className="bg-[url(../assets/img/square-facebook.svg)] w-7 h-7 bg-center bg-no-repeat bg-contain [transition:transform_100ms_ease] cursor-pointer hover:scale-110"></div>
+                <div className="bg-[url(../assets/img/twitter.svg)] w-7 h-7 bg-center bg-no-repeat bg-contain [transition:transform_100ms_ease] cursor-pointer hover:scale-110"></div>
               </div>
             </div>
           </div>
