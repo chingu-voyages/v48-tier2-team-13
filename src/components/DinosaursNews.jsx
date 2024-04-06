@@ -90,7 +90,13 @@ function DinosaursNews() {
     ));
 
    
-/*  if (!displayNews) {
+  const backupNews =
+    dinosaursNews?.length <= 0 &&
+    newsBackupData.map((article) => (
+      <NewsArticle key={uuidv4()} article={article} />
+    ));
+
+    /*  if (!displayNews) {
     return (
       <div className="container bg-bg-secondary">
         <div className="bg-bg-secondary py-[45px]">
@@ -101,11 +107,6 @@ function DinosaursNews() {
     );
   }
   */
-  const backupNews =
-    dinosaursNews?.length <= 0 &&
-    newsBackupData.map((article) => (
-      <NewsArticle key={uuidv4()} article={article} />
-    ));
 
 
   console.log(dinosaursNews)
@@ -117,7 +118,7 @@ function DinosaursNews() {
           <h2 className="text-text-light font-bold text-[25px]">Latest News</h2>
           <section className="relative z-0 flex my-[30px]">
             <Slider className="overflow-x-hidden" ref={arrowRef} {...settings}>
-              {displayNews}
+              {displayNews || backupNews}
             </Slider>
             <div className="">
               <button
