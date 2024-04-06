@@ -3,9 +3,7 @@ import NewsArticle from "./NewsArticle";
 import Loader from "./Loader";
 import { AppContext } from "../App";
 import { v4 as uuidv4 } from "uuid";
-
-//test data that i used in order to not reach max daily limit of 100 news requests
-import { testData } from "../utils/dinosaurNewsTestData";
+import { newsBackupData } from "../utils/dinosaurNewsBackupData";
 
 //Carousel
 import "slick-carousel/slick/slick.css";
@@ -25,7 +23,11 @@ function DinosaursNews() {
   }
 
   if (errorDinosaursNews) {
-    return <div>Error: There was an error with news data.</div>;
+    return (
+      <div className="text-center mt-8 text-text-light">
+        <p>Error: There was an error with news data.</p>
+      </div>
+    );
   }
 
   //Slider
@@ -81,11 +83,32 @@ function DinosaursNews() {
     }
   };
 
-  const displayNews =
+ const displayNews =
     dinosaursNews?.length > 0 &&
     dinosaursNews.map((article) => (
       <NewsArticle key={uuidv4()} article={article} />
     ));
+
+   
+/*  if (!displayNews) {
+    return (
+      <div className="container bg-bg-secondary">
+        <div className="bg-bg-secondary py-[45px]">
+          <h2 className="text-text-light font-bold text-[25px]">Latest News</h2>
+          <p className="text-center mt-8 text-text-light">The requests limit for today has been reached. Please try again tomorrow.</p>
+        </div>
+      </div>
+    );
+  }
+  */
+  const backupNews =
+    dinosaursNews?.length <= 0 &&
+    newsBackupData.map((article) => (
+      <NewsArticle key={uuidv4()} article={article} />
+    ));
+
+
+  console.log(dinosaursNews)
 
   return (
     <div className="bg-bg-secondary">
