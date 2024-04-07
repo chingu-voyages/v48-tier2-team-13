@@ -65,7 +65,7 @@ const DietChart = () => {
     const generateColors = (numColors) => {
       return Array.from({ length: numColors }, (_, i) => {
           const hue = (i * 360) / numColors;
-          const saturation = 70;
+          const saturation = 65;
           const lightness = 50;
           const hoverLightness = lightness + 15;
   
