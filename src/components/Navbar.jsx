@@ -95,7 +95,7 @@ function Navbar({ activePage }) {
                     : "border-transparent"
                 }`}
               >
-                About
+                About Us
               </Link>
             </div>
           </div>
