@@ -18,7 +18,8 @@ import { v4 as uuidv4 } from "uuid";
 //const position= [{lat:50.5039, lng:5.4699}, {lat:45.9432, lng:24.9668}, {lat:44.0165, lng:21.0059} ]
 
 export default function Map({ geoCoordinates }) {
-  const position = useGeoCoordinates(geoCoordinates);
+  const unfilteredPosition = useGeoCoordinates(geoCoordinates);
+  const position = unfilteredPosition.filter((coordinate) => coordinate !== null && coordinate !== undefined);
 
   //Default coordinates for centering the map (I chose France)
   const defaultPosition = { lat: 46.2276, lng: 2.2137 };
