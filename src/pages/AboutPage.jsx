@@ -38,7 +38,7 @@ function AboutPage() {
           <h2 className="font-bold text-[25px] pt-[35px]">Team Members</h2>
           <div className="flex flex-col gap-[45px] pt-[25px] pb-[70px]">
             <TeamMember
-              image={"src/assets/img/andra.jpeg"}
+              image={"/andra.jpeg"}
               role="FRONTEND DEVELOPER"
               fullname="Andra Mertilos"
               email="mertilosandra@gmail.com"
@@ -53,7 +53,7 @@ function AboutPage() {
             If I wouldn't be doing this, then I would probably be in a lab somewhere doing research and reading books."
             />
             <TeamMember
-              image={"src/assets/img/stefan.jpeg"}
+              image={"/stefan.jpeg"}
               role="FRONTEND DEVELOPER"
               fullname="Stefan Brkic"
               email="stefanbrkic.inbox@gmail.com"
@@ -63,7 +63,7 @@ function AboutPage() {
               imagePosition="RIGHT"
             />
             <TeamMember
-              image={"src/assets/img/andrei.jpeg"}
+              image={"/andrei.jpeg"}
               role="FRONTEND DEVELOPER"
               fullname="Andrei Olteanu"
               email="andreiolteanu2014@gmail.com"
@@ -84,7 +84,7 @@ function AboutPage() {
               Voluptates."
             />
             <TeamMember
-              image={"src/assets/img/chukuli.jpeg"}
+              image={"/chukuli.jpeg"}
               role="PRODUCT OWNER"
               fullname="Osayande Osarumen"
               email="osarumenlande@gmail.com"
