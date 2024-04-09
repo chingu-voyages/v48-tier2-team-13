@@ -69,19 +69,8 @@ function AboutPage() {
               email="andreiolteanu2014@gmail.com"
               linkedin="https://www.linkedin.com/in/andrei-olteanu-9009/"
               github="https://github.com/andreiolteanu555"
-              text="Hi, I am Andrei👋, dolor sit amet consectetur adipisicing elit. Voluptatum
-              perferendis velit nesciunt vel minus dolorem delectus sed saepe
-              laudantium necessitatibus sint nulla quae in, reprehenderit
-              laboriosam officiis, beatae reiciendis veniam aperiam ipsam,
-              expedita qui aliquid harum unde. Consequatur at explicabo sapiente
-              molestias illum, odio eum quaerat voluptatum ab quo, officiis,
-              dolorem dolore! Numquam assumenda, similique debitis, magni totam
-              nostrum, sed rerum magnam molestiae repellendus id deserunt.
-              Molestias libero illo mollitia officia voluptatibus perspiciatis
-              harum. Quidem dolore amet quos, sunt iusto ullam delectus excepturi
-              accusantium dignissimos ex consequuntur? Deleniti ea velit explicabo
-              voluptatem dolores, cumque possimus nisi temporibus vitae labore!
-              Voluptates."
+              text="Hi, I am Andrei👋 and the first things that come to mind when I think about myself are: curiosity, strategic thinking and adventure. I have a passion for both web development and digital marketing and this started when I realized that it was important for me to understand 'the big picture' in every project. I enjoy analyzing ideas and data, conducting research and finding ways to solve problems.
+              One lesser-known fact about me is that I used to act in comedy plays and improvisation theatre. This taught me about how to approach challenges and how to deal with the unexpected things that come in life. After that, I became a bit of a globetrotter, as I am fascinated by foreign cultures and learning about them. I love traveling and try to explore the world as much as I can."
             />
             <TeamMember
               image={"/chukuli.jpeg"}
@@ -90,19 +79,7 @@ function AboutPage() {
               email="osarumenlande@gmail.com"
               linkedin="https://www.linkedin.com/in/osarumen-osayande-019a3823b"
               github="https://github.com/Chukuli12"
-              text="Hi, I am Osayande👋, dolor sit amet consectetur adipisicing elit. Voluptatum
-              perferendis velit nesciunt vel minus dolorem delectus sed saepe
-              laudantium necessitatibus sint nulla quae in, reprehenderit
-              laboriosam officiis, beatae reiciendis veniam aperiam ipsam,
-              expedita qui aliquid harum unde. Consequatur at explicabo sapiente
-              molestias illum, odio eum quaerat voluptatum ab quo, officiis,
-              dolorem dolore! Numquam assumenda, similique debitis, magni totam
-              nostrum, sed rerum magnam molestiae repellendus id deserunt.
-              Molestias libero illo mollitia officia voluptatibus perspiciatis
-              harum. Quidem dolore amet quos, sunt iusto ullam delectus excepturi
-              accusantium dignissimos ex consequuntur? Deleniti ea velit explicabo
-              voluptatem dolores, cumque possimus nisi temporibus vitae labore!
-              Voluptates."
+              text="As a Product Manager, I'm captivated by the dynamic role's fusion of technology, problem-solving, and creativity. Understanding user needs, shaping product strategies, and collaborating with diverse teams to innovate is both challenging and fulfilling. Witnessing direct user impact and product success drives my passion. Additionally, beyond my professional persona, I possess a hidden talent for guitar playing, cultivated since adolescence, providing solace amidst life's chaos. Music serves as a cherished outlet for joy and relaxation. If not in Product Management, I envision exploring entrepreneurship. The prospect of creating ventures from scratch, embracing risks, and fostering growth entices me. Whether launching a tech startup or venturing into new industries, I'd channel my problem-solving acumen and innovation fervor to craft impactful ventures."
               imagePosition="RIGHT"
             />
           </div>
