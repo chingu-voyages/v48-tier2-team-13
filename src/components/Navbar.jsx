@@ -97,6 +97,16 @@ function Navbar({ activePage }) {
               >
                 About Us
               </Link>
+              <Link
+                to={"/dynamicMapPage"}
+                className={`px-4 py-1 border-b-[3px] transition-all ${
+                  activePage === "DYNAMIC MAP PAGE"
+                    ? "border-primary-500"
+                    : "border-transparent"
+                }`}
+              >
+                Dynamic Map
+              </Link>
             </div>
           </div>
         </div>
