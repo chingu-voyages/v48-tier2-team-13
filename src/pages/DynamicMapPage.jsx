@@ -38,17 +38,21 @@ function DynamicMapPage() {
       });
   });
   const countriesArray = Object.keys(dinosaursByCountry);
-  
-  const geoCoordinates = countriesArray;
-
-
-/*
-  Object.keys(dinosaursByCountry).forEach((country) => {
-    console.log(`Dinosaurs in ${country}:`, dinosaursByCountry[country]);
-});
-
+  const dinosaursArray = Object.values(dinosaursByCountry);
+/*  console.log(dinosaursByCountry)
+    console.log(countriesArray)
+    console.log(dinosaursArray)
 */
 
+//const geoCoordinates = countriesArray;
+const geoCoordinates = countriesArray.map((country, index) => {
+  return {
+    country: country,
+    dinosaurs: dinosaursArray[index]
+  };
+});
+
+console.log(geoCoordinates);
 
   return (
     <>
@@ -56,10 +60,11 @@ function DynamicMapPage() {
       <section className="pt-[100px] w-screen text-center">
         <h1 className="text-xl font-bold text-text-light">DYNAMIC MAP PAGE</h1>
         <h2 className="text-text-light">
-          This is a page for the dynamic map:
+          Here is a page where we tell more about this project or about
+          ourselves:
         </h2>
       </section>
-      <DynamicMap geoCoordinates={geoCoordinates} />
+      <DynamicMap geoCoordinates = {geoCoordinates}/>
     </>
   );
 }

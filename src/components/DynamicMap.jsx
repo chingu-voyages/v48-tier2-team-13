@@ -4,68 +4,77 @@ import {
   Map as GoogleMap,
   AdvancedMarker,
   Pin,
+  InfoWindow,
 } from "@vis.gl/react-google-maps";
 
 import PropTypes from "prop-types";
 
 //Hooks import
+import { useState} from "react";
 import useGeoCoordinates from "../hooks/useGeoCoordinates";
 
 //Id generator
 import { v4 as uuidv4 } from "uuid";
 
 
-//Test data examples
-//const position= [{lat:50.5039, lng:5.4699}, {lat:45.9432, lng:24.9668}, {lat:44.0165, lng:21.0059} ]
+export default function DynamicMap({geoCoordinates}) {
 
-export default function DynamicMap({ geoCoordinates }) {
-  const unfilteredPosition = useGeoCoordinates(geoCoordinates);
-  // const position = unfilteredPosition.filter((coordinate) => coordinate !== null && coordinate !== undefined);
-  // const unfilteredPosition= [[{lat:50.5039, lng:5.4699}], [{lat:45.9432, lng:24.9668}], null, [{lat:44.0165, lng:21.0059}] ]
-  const filteredPosition = unfilteredPosition.filter((coordinate) => coordinate !== null && coordinate !== undefined);
+  const [open, setOpen] = useState(false);
 
-  const positions = filteredPosition.map(subArray => ({
-    lat: subArray[0].lat,
-    lng: subArray[0].lng
-  }));
+  // Translate the country names into coordinates.
+  const countries = geoCoordinates.map(item => item.country);
+  const unfilteredPositions = useGeoCoordinates(countries);
+
+  // Create a new positions array and filter out the null and undefined results (some coordinates were null because the dinosaurs API also generates some non-countries) because these null coordinates resulted in showing wrong country names in the InfoWindows. 
+  // I also filtered out the coordinates of North Africa (This is not a country, so these coordinates are wrongly mistaken with North Korea by the GeocodingAPI)
+  const northAfricaCoordinates = { lat: 40.248916, lng: 126.699424 };  
+
+  const positions = unfilteredPositions.map((subArray, index) => {
+    if (subArray && subArray[0] && !(subArray[0].lat === northAfricaCoordinates.lat && subArray[0].lng === northAfricaCoordinates.lng)) {
+      const uuid = uuidv4();
+      return {
+        lat: subArray[0].lat,
+        lng: subArray[0].lng,
+        country: geoCoordinates[index].country,  
+        dinosaurs: geoCoordinates[index].dinosaurs,
+        uuid: uuid
+      };
+    }
+  }).filter(Boolean);
   
-  console.log(positions);
+    console.log(positions)
 
-  //Default coordinates for centering the map (I chose France)
+  // This is the default position of the map (chosen as France)
   const defaultPosition = { lat: 46.2276, lng: 2.2137 };
 
-
-
-  //API provider wraps the map by connecting to the Google Maps API
-  //Map component provides the map defaults and the style defined in the Google Cloud Console
-  return (
+   return (
     <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
-      {/*Temporary responsive div style for testing purpose*/}
       <div className="relative w-full h-[550px]">
-        <GoogleMap
-          key={uuidv4()}
-          defaultZoom={1.7}
-          defaultCenter={defaultPosition}
-          mapId={import.meta.env.VITE_GOOGLE_MAPS_MAP_ID}
-          style={{
-            background: "black",
-          }}
-        >
+        <GoogleMap defaultZoom={1.7} defaultCenter={defaultPosition} mapId={import.meta.env.VITE_GOOGLE_MAPS_MAP_ID}>
 
           {positions.map((location) => (
-            <AdvancedMarker key={uuidv4()} position={location}>
-              <Pin
-                key={uuidv4()}
-                background={"red"}
-                borderColor={"white"}
-                glyphColor={"white"}
-              ></Pin>
-            </AdvancedMarker>
+            <div key={location.uuid}>
+              <AdvancedMarker key={location.uuid} position={location} onClick={() => {console.log('Clicked marker uuid:', location.uuid); setOpen(location.uuid)}}>
+                <Pin background={"red"} borderColor={"white"} glyphColor={"white"} />
+              </AdvancedMarker>
+              {open  && (
+                <InfoWindow position={location} onCloseClick={() => setOpen(null)}>
+                  {console.log('Rendering InfoWindow for uuid:', location.uuid)}
+                  <p className="font-bold">Dinosaurs in {location.country}:</p>
+                  <ul>
+                    {location.dinosaurs.map((dinosaur, index) => (
+                      <li key={index}>{dinosaur}</li>
+                    ))}
+                  </ul>
+                </InfoWindow>
+              )}
+            </div>
           ))}
+
         </GoogleMap>
       </div>
     </APIProvider>
-  );
+  ); 
 }
 
 DynamicMap.propTypes = {
