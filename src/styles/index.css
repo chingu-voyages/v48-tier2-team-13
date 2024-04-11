@@ -1,10 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .container {
+    margin: 0 auto;
+    max-width: 2500px;
+    padding-left: 4.5%;
+    padding-right: 4.5%;
+  }
+
+  .search-scroll-bar::-webkit-scrollbar {
+    width: 5px; /* Adjust as needed */
+  }
+
+  .search-scroll-bar::-webkit-scrollbar-track {
+    background: transparent; /* Adjust as needed */
+  }
+
+  .search-scroll-bar::-webkit-scrollbar-thumb {
+    background: #888; /* Adjust as needed */
+  }
+
+  .search-scroll-bar::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Adjust as needed */
+  }
+}
 
 :root {
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /*For testing how dark mode looks*/
+  background: #121212;
+}
+
+* {
+  font-family: "Inter", sans-serif;
+}
+
+.slick-slide > div {
+  margin: 0 12px;
+}
+.slick-list {
+  margin: 0 -10px;
 }
