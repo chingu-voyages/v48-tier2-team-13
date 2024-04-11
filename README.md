@@ -1,4 +1,4 @@
-# DINOZZ
+# DINOZz
 
 ## Preview
 
@@ -13,7 +13,7 @@
 - [Acknowledgements](#acknowledgements)
 
 ## Project Description
-DINOZz is a web application that helps dinosaur enthusiasts explore and learn about various types of dinosaurs quickly and easily. The data, sourced from the National History Museum in London, includes details about each dinosaur’s characteristics, diet and geographical origin. Users can search and filter the dinosaurs, dive into interactive charts for insights, check the locations map where they have been found and stay updated with the latest news in this field.
+DINOZz is a web application that helps dinosaur enthusiasts explore and learn about various types of dinosaurs quickly and easily. The data, sourced from the National History Museum in London, includes details about each dinosaur’s characteristics, diet and geographical origin. Users can search and filter the dinosaurs, save their favorites, dive into interactive charts for insights, check the locations map where they have been found and stay updated with the latest news in this field.
 
 ## Built With
 - React
@@ -21,7 +21,6 @@ DINOZz is a web application that helps dinosaur enthusiasts explore and learn ab
 - Chart.js
 - React Google Maps
 - Vite
-- Context API
 
 ## Tools Used
 - Npm
