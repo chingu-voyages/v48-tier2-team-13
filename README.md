@@ -50,7 +50,12 @@ DINOZz is a web application that helps dinosaur enthusiasts explore and learn ab
 ## Getting Started
 Open our app on [Render](https://dinozz-discovery.onrender.com/) </br>
 OR </br>
-You can clone the repository to your local machine.
+You can clone the repository to your local machine. </br>
+In order to successfully run the project locally, install all necessary dependencies from package.json. </br>
+Create a local .env file at the root level of the project and add the following API keys (online registration for an API key with the listed providers will be needed):
+ - VITE_GOOGLE_MAPS_API_KEY, VITE_GOOGLE_MAPS_MAP_ID from Google Maps API using [Google Cloud Platform](https://cloud.google.com/)
+ - VITE_GEOAPIFY_API_KEY from Geocoding API [Geoapify](https://www.geoapify.com/)
+ - VITE_NEWS_API_KEY from News API [GNews](https://gnews.io/)
 
 ## Our Team
 ### Developers:
@@ -65,4 +70,3 @@ The Figma design for this project can be found [here](https://www.figma.com/file
 
 ## Acknowledgements
 - The [National History Museum](https://www.nhm.ac.uk/) in London provided access to the dataset containing dinosaur information.
-- We used [GNews](https://gnews.io/) for getting the latest news about dinosaurs.
