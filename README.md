@@ -1,5 +1,5 @@
 <div align="center">
-# DINOZz
+    <img src="./src/assets/img/dinozz-logo-light.svg" alt="logo">
 <br>
 <br>
   <p>
@@ -12,6 +12,9 @@
 </div>
 
 ## Preview
+![Preview](./src/assets/img/screenshots/home-page.jpg)
+![Preview](./src/assets/img/screenshots/search-page.jpg)
+![Preview](./src/assets/img/screenshots/dinosaur-page.jpg)
 
 ## Table of Contents
 [Project Description](#project-description)
