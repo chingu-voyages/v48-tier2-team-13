@@ -58,6 +58,8 @@ Create a local .env file at the root level of the project and add the following 
  - VITE_NEWS_API_KEY from News API [GNews](https://gnews.io/)
 
 ## Our Team
+### UI Designer
+- Stefan Brkic, who is also in the list of Developers, took the additional responsibility of designing the interface
 ### Developers:
 - Andra Mertilos #1: [GitHub](https://github.com/andram11) / [LinkedIn](https://www.linkedin.com/in/andra-mertilos-49008055/)
 - Stefan Brkic #2: [GitHub](https://github.com/stefanbrkic1) / [LinkedIn](https://www.linkedin.com/in/stefan-brki%C4%87-4014012a3/)
