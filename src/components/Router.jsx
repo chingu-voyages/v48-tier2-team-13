@@ -4,6 +4,7 @@ import SearchPage from "../pages/SearchPage";
 import FavoritesPage from "../pages/FavoritesPage";
 import DinosaurDetailsPage from "../pages/DinosaurDetailsPage";
 import AboutPage from "../pages/AboutPage";
+import DynamicMapPage from "../pages/DynamicMapPage";
 
 function Router() {
   const router = createBrowserRouter([
@@ -27,6 +28,10 @@ function Router() {
     {
       path: "/search/:idParameter",
       element: <DinosaurDetailsPage />,
+    },
+    {
+      path: "/overview-map",
+      element: <DynamicMapPage />,
     },
   ]);
   return <RouterProvider router={router} />;

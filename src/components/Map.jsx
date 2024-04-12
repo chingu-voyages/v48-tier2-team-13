@@ -19,7 +19,15 @@ import { v4 as uuidv4 } from "uuid";
 
 export default function Map({ geoCoordinates }) {
   const unfilteredPosition = useGeoCoordinates(geoCoordinates);
-  const position = unfilteredPosition.filter((coordinate) => coordinate !== null && coordinate !== undefined);
+// Filter out the null and undedined results, as well as coordinates for North Africa (which is not a country).
+  const northAfricaCoordinates = { lat: 40.248916, lng: 126.699424 };
+  const position = unfilteredPosition.filter((coordinate) => {
+    return (
+      coordinate !== null &&
+      coordinate !== undefined &&
+      !(coordinate[0].lat === northAfricaCoordinates.lat && coordinate[0].lng === northAfricaCoordinates.lng)
+    );
+  });
 
   //Default coordinates for centering the map (I chose France)
   const defaultPosition = { lat: 46.2276, lng: 2.2137 };
@@ -29,7 +37,7 @@ export default function Map({ geoCoordinates }) {
   return (
     <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
       {/*Temporary responsive div style for testing purpose*/}
-      <div className="relative w-full h-[550px]">
+      <div className="relative w-full h-[550px] map">
         <GoogleMap
           key={uuidv4()}
           defaultZoom={1.7}
