@@ -29,12 +29,12 @@ DINOZz is a web application that helps dinosaur enthusiasts explore and learn ab
 
 ## Built With
 <div align="center">
-![React](https://img.shields.io/badge/react-0D6D8C?style=for-the-badge&logo=react&logoColor=white) &nbsp;&nbsp;![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white) &nbsp;&nbsp;![Chart.js](https://img.shields.io/badge/chart.js-F5788D.svg?style=for-the-badge&logo=chart.js&logoColor=white) &nbsp;&nbsp;![Google Maps](https://img.shields.io/badge/google-DA4437?style=for-the-badge&logo=google&logoColor=white) &nbsp;&nbsp;![Vite](https://img.shields.io/badge/vite-646CFF.svg?style=for-the-badge&logo=vite&logoColor=white) &nbsp;&nbsp;
+<img src="https://img.shields.io/badge/react-0D6D8C?style=for-the-badge&logo=react&logoColor=white"> &nbsp;&nbsp;<img src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white"> &nbsp;&nbsp;<img src="https://img.shields.io/badge/chart.js-F5788D.svg?style=for-the-badge&logo=chart.js&logoColor=white"> &nbsp;&nbsp;<img src="https://img.shields.io/badge/Google_Maps-555555?style=for-the-badge&logo=google-maps&logoColor=ffffff"> &nbsp;&nbsp;<img src="https://img.shields.io/badge/vite-646CFF.svg?style=for-the-badge&logo=vite&logoColor=white"> &nbsp;&nbsp;
 </div>
 
 ## Tools Used
 <div align="center">  
-![NPM](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white) &nbsp;&nbsp;![Eslint](https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white) &nbsp;&nbsp;![Visual Studio Code](https://img.shields.io/badge/VS%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white) &nbsp;&nbsp;![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white) &nbsp;&nbsp;![GitHub](https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white) &nbsp;&nbsp;![Figma](https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white) &nbsp;&nbsp;
+<img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white"> &nbsp;&nbsp;<img src="https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white"> &nbsp;&nbsp;<img src="https://img.shields.io/badge/VS%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white"> &nbsp;&nbsp;<img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white"> &nbsp;&nbsp;<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"> &nbsp;&nbsp;<img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"> &nbsp;&nbsp;
 </div>
 
 ## Features
