@@ -30,7 +30,7 @@ function Router() {
       element: <DinosaurDetailsPage />,
     },
     {
-      path: "/dynamicMapPage",
+      path: "/overview-map",
       element: <DynamicMapPage />,
     },
   ]);

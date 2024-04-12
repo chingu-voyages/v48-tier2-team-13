@@ -88,6 +88,16 @@ function Navbar({ activePage }) {
                 Favorites
               </Link>
               <Link
+                to={"/overview-map"}
+                className={`px-4 py-1 border-b-[3px] transition-all ${
+                  activePage === "DYNAMIC_MAP_PAGE"
+                    ? "border-primary-500"
+                    : "border-transparent"
+                }`}
+              >
+                Overview Map
+              </Link>
+              <Link
                 to={"/about"}
                 className={`px-4 py-1 border-b-[3px] transition-all ${
                   activePage === "ABOUT_PAGE"
@@ -96,16 +106,6 @@ function Navbar({ activePage }) {
                 }`}
               >
                 About Us
-              </Link>
-              <Link
-                to={"/dynamicMapPage"}
-                className={`px-4 py-1 border-b-[3px] transition-all ${
-                  activePage === "DYNAMIC_MAP_PAGE"
-                    ? "border-primary-500"
-                    : "border-transparent"
-                }`}
-              >
-                Dynamic Map
               </Link>
             </div>
           </div>
