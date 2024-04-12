@@ -28,12 +28,14 @@ function MarkerWithInfoWindow({ location }) {
       </AdvancedMarker>
       {isOpen && (
         <InfoWindow position={location} onCloseClick={() => setIsOpen(false)}>
-          <p className="font-bold">Dinosaurs in {location.country}:</p>
-          <ul>
-            {location.dinosaurs.map((dinosaur, index) => (
-              <li key={index}>{dinosaur}</li>
-            ))}
-          </ul>
+          <div className="min-w-40 p-2">
+            <p className="font-bold">Dinosaurs in {location.country}:</p>
+            <ul>
+              {location.dinosaurs.map((dinosaur, index) => (
+                <li key={index}>{dinosaur}</li>
+              ))}
+            </ul>
+          </div>
         </InfoWindow>
       )}
     </div>
@@ -69,7 +71,7 @@ export default function DynamicMap({geoCoordinates}) {
 
    return (
     <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
-      <div className="relative w-full h-[550px]">
+      <div className="relative w-full h-[550px] map">
         <GoogleMap defaultZoom={1.7} defaultCenter={defaultPosition} mapId={import.meta.env.VITE_GOOGLE_MAPS_MAP_ID}>
         {positions.map((location) => (
             <MarkerWithInfoWindow key={location.uuid} location={location} />

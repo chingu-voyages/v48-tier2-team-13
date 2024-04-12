@@ -17,7 +17,7 @@ function Navbar({ activePage }) {
           <div>
             <button
               type="button"
-              className="absolute top-[6px] right-[12px] z-50 md:hidden"
+              className="absolute top-[6px] right-[12px] z-50 lg:hidden"
               onClick={() => setIsNavbarOpen((val) => !val)}
             >
               {isNavbarOpen ? (
@@ -55,7 +55,7 @@ function Navbar({ activePage }) {
             <div
               className={`transition-transform  bg-neutral-950 flex flex-col justify-center py-[30px] items-center gap-[10px] font-[600] absolute top-[-500px] ${
                 isNavbarOpen ? "translate-y-[500px]" : "translate-y-[-500px]"
-              } left-0 w-screen md:translate-y-[0px] md:bg-bg-primary md:static md:flex-row md:justify-end md:w-auto md:gap-[50px] md:p-0`}
+              } left-0 w-screen lg:translate-y-[0px] lg:bg-bg-primary lg:static lg:flex-row lg:justify-end lg:w-auto lg:gap-[50px] lg:p-0`}
             >
               <Link
                 to={"/"}

@@ -29,7 +29,7 @@ export default function Map({ geoCoordinates }) {
   return (
     <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
       {/*Temporary responsive div style for testing purpose*/}
-      <div className="relative w-full h-[550px]">
+      <div className="relative w-full h-[550px] map">
         <GoogleMap
           key={uuidv4()}
           defaultZoom={1.7}

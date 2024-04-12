@@ -49,3 +49,7 @@
 .slick-list {
   margin: 0 -10px;
 }
+
+.map div[role="region"] {
+  background-color: #151414;
+}
