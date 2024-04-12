@@ -64,8 +64,9 @@ function SearchPage() {
       // Check if the dinosaur's diet matches the selected diet filter
       const dietMatches = !dietFilter || item.diet === dietFilter;
       // Check if the dinosaur is found in the selected country
-      const countryMatches =
-        !countryFilter || item.foundIn.split(",").includes(countryFilter);
+      const countryMatches = 
+        !countryFilter || item.foundIn.split(",").map(country => country.trim()).includes(countryFilter);
+
       // Apply filtering for all values that have filtering condition
       return (
         nameMatches &&
