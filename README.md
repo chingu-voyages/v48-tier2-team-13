@@ -1,34 +1,43 @@
+<div align="center">
 # DINOZz
+<br>
+<br>
+  <p>
+    <a href="https://dinozz-discovery.onrender.com/">View App</a>
+    &nbsp;·&nbsp;
+    <a href="https://github.com/chingu-voyages/voyage-project-tier2-dinosaurs/issues">Report Bug</a>
+    &nbsp;·&nbsp;
+    <a href="https://github.com/chingu-voyages/voyage-project-tier2-dinosaurs/issues">Request Feature</a>
+  </p>
+</div>
 
 ## Preview
 
 ## Table of Contents
-- [Project Description](#project-description)
-- [Built With](#built-with)
-- [Tools Used](#tools-used)
-- [Features](#features)
-- [Getting Started](#getting-started)
-- [Our Team](#our-team)
-- [Design](#design)
-- [Acknowledgements](#acknowledgements)
+[Project Description](#project-description)
+[Built With](#built-with)
+[Tools Used](#tools-used)
+[Features](#features)
+[Getting Started](#getting-started)
+[Our Team](#our-team)
+[Design](#design)
+[Acknowledgements](#acknowledgements)
 
 ## Project Description
 DINOZz is a web application that helps dinosaur enthusiasts explore and learn about various types of dinosaurs quickly and easily. The data, sourced from the National History Museum in London, includes details about each dinosaur’s characteristics, diet and geographical origin. Users can search and filter the dinosaurs, save their favorites, dive into interactive charts for insights, check the locations map where they have been found and stay updated with the latest news in this field.
 
 ## Built With
-- React
-- Tailwind
-- Chart.js
-- React Google Maps
-- Vite
+<div align=center>
+![React](https://img.shields.io/badge/react-0D6D8C?style=for-the-badge&logo=react&logoColor=white) &nbsp;&nbsp;![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white) &nbsp;&nbsp;![Chart.js](https://img.shields.io/badge/chart.js-F5788D.svg?style=for-the-badge&logo=chart.js&logoColor=white) &nbsp;&nbsp;![Google Maps](https://img.shields.io/badge/google-DA4437?style=for-the-badge&logo=google&logoColor=white) &nbsp;&nbsp;![Vite](https://img.shields.io/badge/vite-646CFF.svg?style=for-the-badge&logo=vite&logoColor=white) &nbsp;&nbsp;
+<br>
+</div>
 
 ## Tools Used
-- Npm
-- ESLint
-- VS Code
-- Git
-- GitHub
-- Figma
+<div align=center>  
+![NPM](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white) &nbsp;&nbsp;![Eslint](https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white) &nbsp;&nbsp;![Visual Studio Code](https://img.shields.io/badge/VS%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white) &nbsp;&nbsp;![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white) &nbsp;&nbsp;![GitHub](https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white) &nbsp;&nbsp;![Figma](https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white) &nbsp;&nbsp;
+</div>
+
+<br>
 
 ## Features
 - **Search component:** Allows users to search for dinosaurs by name, weight, length, country, and diet. While searching by name, users get autocomplete suggestions matching the names of the dinosaurs.
@@ -42,6 +51,8 @@ DINOZz is a web application that helps dinosaur enthusiasts explore and learn ab
 
 ## Getting Started
 Open our app on [Render](https://dinozz-discovery.onrender.com/)
+OR
+You can clone the repository to your local machine.
 
 ## Our Team
 ### Developers:
