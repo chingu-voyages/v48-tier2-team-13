@@ -53,7 +53,7 @@ console.log(geoCoordinates);
   return (
     <>
       <Navbar activePage={DYNAMIC_MAP_PAGE} />
-      <section className="mb-[85px] mt-[85px] sm:mt-[100px] bg-bg-primary flex flex-col items-center text-text-light">
+      <section className=" mb-[85px] mt-[85px] sm:mt-[100px] bg-bg-primary flex flex-col items-center text-text-light">
         <h1 className="font-black text-[37px] md:text-[54px] xl:text-[60px]">Overview Map</h1>
         <h2 className="text-[15px] md:text-[16px] xl:text-[17px] text-center px-3 md:max-w-[800px] block">
           This is a map where you can check all the dinosaur locations.

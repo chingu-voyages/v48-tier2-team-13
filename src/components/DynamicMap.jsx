@@ -71,8 +71,8 @@ export default function DynamicMap({geoCoordinates}) {
 
    return (
     <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
-      <div className="relative w-full h-[550px] map">
-        <GoogleMap defaultZoom={1.7} defaultCenter={defaultPosition} mapId={import.meta.env.VITE_GOOGLE_MAPS_MAP_ID}>
+      <div className="container relative w-full h-[550px] map">
+        <GoogleMap defaultZoom={1.7}  mapTypeId='satellite' defaultCenter={defaultPosition} mapId={import.meta.env.VITE_GOOGLE_MAPS_MAP_ID}>
         {positions.map((location) => (
             <MarkerWithInfoWindow key={location.uuid} location={location} />
           ))}
