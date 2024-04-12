@@ -50,7 +50,7 @@ export default function DynamicMap({geoCoordinates}) {
   const unfilteredPositions = useGeoCoordinates(countries);
 
   // Create a new positions array and filter out the null and undefined results. These null coordinates resulted in showing wrong country names in the InfoWindows (some coordinates were null because the dinosaurs API also generates some non-countries) 
-  // I also filtered out the coordinates of North Africa (This is not a country, so these coordinates are wrongly mistaken with North Korea by the GeocodingAPI)
+  // I also filtered out the coordinates of North Africa (This is not a country, so these coordinates were wrongly mistaken with North Korea by the GeocodingAPI)
   const northAfricaCoordinates = { lat: 40.248916, lng: 126.699424 };  
 
   const positions = unfilteredPositions.map((subArray, index) => {
