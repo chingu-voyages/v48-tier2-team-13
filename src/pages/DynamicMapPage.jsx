@@ -39,10 +39,6 @@ function DynamicMapPage() {
   });
   const countriesArray = Object.keys(dinosaursByCountry);
   const dinosaursArray = Object.values(dinosaursByCountry);
-/*  console.log(dinosaursByCountry)
-    console.log(countriesArray)
-    console.log(dinosaursArray)
-*/
 
 //const geoCoordinates = countriesArray;
 const geoCoordinates = countriesArray.map((country, index) => {
