@@ -5,12 +5,14 @@ import FavoritesPage from "../pages/FavoritesPage";
 import DinosaurDetailsPage from "../pages/DinosaurDetailsPage";
 import AboutPage from "../pages/AboutPage";
 
+import {useNavigate} from 'react-router-dom'
+
 function Router() {
+
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <HomePage />,
-      errorElement: <div>ERROR 404 PAGE</div>,
+      element: <HomePage />
     },
     {
       path: "/search",
@@ -27,9 +29,16 @@ function Router() {
     {
       path: "/search/:idParameter",
       element: <DinosaurDetailsPage />,
+      errorElement: <DetailPageErrorBoundary/>
     },
   ]);
   return <RouterProvider router={router} />;
 }
+
+    function DetailPageErrorBoundary() {
+      const navigate= useNavigate()
+      navigate('/search')
+      return <SearchPage/>
+    }
 
 export default Router;
