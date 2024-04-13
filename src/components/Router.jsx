@@ -4,6 +4,7 @@ import SearchPage from "../pages/SearchPage";
 import FavoritesPage from "../pages/FavoritesPage";
 import DinosaurDetailsPage from "../pages/DinosaurDetailsPage";
 import AboutPage from "../pages/AboutPage";
+import DynamicMapPage from "../pages/DynamicMapPage";
 
 import {useNavigate} from 'react-router-dom'
 
@@ -30,6 +31,10 @@ function Router() {
       path: "/search/:idParameter",
       element: <DinosaurDetailsPage />,
       errorElement: <DetailPageErrorBoundary/>
+    },
+    {
+      path: "/overview-map",
+      element: <DynamicMapPage />,
     },
   ]);
   return <RouterProvider router={router} />;
