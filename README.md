@@ -3,9 +3,9 @@
   <p>
     <a href="https://dinozz-discovery.onrender.com/">View App</a>
     &nbsp;·&nbsp;
-    <a href="https://github.com/chingu-voyages/voyage-project-tier2-dinosaurs/issues">Report Bug</a>
+    <a href="https://github.com/chingu-voyages/v48-tier2-team-13/issues">Report Bug</a>
     &nbsp;·&nbsp;
-    <a href="https://github.com/chingu-voyages/voyage-project-tier2-dinosaurs/issues">Request Feature</a>
+    <a href="https://github.com/chingu-voyages/v48-tier2-team-13/issues">Request Feature</a>
   </p>
 </div>
 
