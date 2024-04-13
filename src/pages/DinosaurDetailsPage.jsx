@@ -4,8 +4,8 @@ import { EmptyHeart, SolidHeart } from "../assets/img/FavoritesIcons";
 import Navbar from "../components/Navbar.jsx";
 
 //React imports
-import { useParams } from "react-router-dom";
-import { useState, useContext, useEffect, useRef } from "react";
+import { useParams, } from "react-router-dom";
+import { useState, useContext, useEffect, useRef, } from "react";
 
 //Image
 import defaultDinoImage from "../assets/img/default-dino-image.png";
@@ -16,16 +16,18 @@ import updateLocalStorage from "../utils/updateLocalStorage.js";
 //App Context
 import { AppContext } from "../App.jsx";
 
+
 function DinosaurDetailsPage() {
   //Load context
   const { dinosaursData, setFavorites } = useContext(AppContext);
   //Load useParams to retrieve id
   const { idParameter } = useParams();
 
+
   const descriptionSectionRef = useRef(null);
 
   const {
-    id,
+    id ,
     name,
     imageSrc,
     description,
@@ -38,7 +40,7 @@ function DinosaurDetailsPage() {
     diet,
     typeSpecies,
     taxonomy,
-  } = dinosaursData[idParameter - 1];
+  } =  dinosaursData[idParameter-1] ;
 
   //The country is returned as a string from the Dinosaur API which is problematic when we deal with multiple countries
   //per item. We need to transform the list of countries from string to array
@@ -171,6 +173,7 @@ function DinosaurDetailsPage() {
             <Map key={id} geoCoordinates={geoCoordinates} />
           </div>
         </div>
+       
       </div>
     </>
   );
