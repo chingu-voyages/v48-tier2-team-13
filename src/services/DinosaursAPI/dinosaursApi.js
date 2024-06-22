@@ -1,4 +1,4 @@
-const URL = "https://chinguapi.onrender.com/dinosaurs";
+/* const URL = "https://chinguapi.onrender.com/dinosaurs";
 
 async function fetchDinosaursData() {
   try {
@@ -13,4 +13,23 @@ async function fetchDinosaursData() {
   }
 }
 
+export default fetchDinosaursData; */
+
+
+import dinosaursData from '../../utils/dinosaurs.json';
+
+async function fetchDinosaursData() {
+  try {
+    const data = await new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(dinosaursData);
+      }, 100); 
+    });
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export default fetchDinosaursData;
+
